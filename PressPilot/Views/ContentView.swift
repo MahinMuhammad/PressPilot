@@ -24,12 +24,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var networkManager = NetworkManager()
+    
     var body: some View {
         NavigationView{
-            List{
-                
+            List(networkManager.newsCollection){news in
+                HStack{
+                    Text(news.title)
+                }
             }
             .listStyle(.plain)
+            .navigationTitle("PressPilot")
             
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
@@ -62,6 +68,9 @@ struct ContentView: View {
                     .padding(.trailing)
                 }
             }
+        }
+        .onAppear{
+            self.networkManager.fetchData()
         }
     }
 }
