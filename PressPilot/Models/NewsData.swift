@@ -17,5 +17,5 @@ struct News:Decodable, Identifiable{
     }
     let title:String
     let url:String
-    let urlToImage:String
+    let urlToImage:String?
 }

@@ -32,7 +32,9 @@ struct ContentView: View {
             List(networkManager.newsCollection){news in
                 HStack{
                     Text(news.title)
+                        .bold()
                 }
+                .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
             .navigationTitle("PressPilot")
@@ -43,6 +45,7 @@ struct ContentView: View {
                         Image(systemName: "house")
                         Text("Home")
                     }
+                    .foregroundColor(Color("Brand Light Dark"))
                     .padding(.leading)
                     
                     Spacer()
@@ -51,6 +54,7 @@ struct ContentView: View {
                         Image(systemName: "heart")
                         Text("Supporting")
                     }
+                    .foregroundColor(Color("Brand Light Dark"))
                     
                     Spacer()
                     
@@ -58,6 +62,7 @@ struct ContentView: View {
                         Image(systemName: "bookmark")
                         Text("Saved")
                     }
+                    .foregroundColor(Color("Brand Light Dark"))
                     
                     Spacer()
                     
@@ -65,6 +70,7 @@ struct ContentView: View {
                         Image(systemName: "person")
                         Text("My Profile")
                     }
+                    .foregroundColor(Color("Brand Light Dark"))
                     .padding(.trailing)
                 }
             }
