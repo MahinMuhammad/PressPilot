@@ -39,41 +39,9 @@ struct ContentView: View {
             .listStyle(.plain)
             .navigationTitle("PressPilot")
             
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    VStack{
-                        Image(systemName: "house")
-                        Text("Home")
-                    }
-                    .foregroundColor(Color("Brand Light Dark"))
-                    .padding(.leading)
-                    
-                    Spacer()
-                    
-                    VStack{
-                        Image(systemName: "heart")
-                        Text("Supporting")
-                    }
-                    .foregroundColor(Color("Brand Light Dark"))
-                    
-                    Spacer()
-                    
-                    VStack{
-                        Image(systemName: "bookmark")
-                        Text("Saved")
-                    }
-                    .foregroundColor(Color("Brand Light Dark"))
-                    
-                    Spacer()
-                    
-                    VStack{
-                        Image(systemName: "person")
-                        Text("My Profile")
-                    }
-                    .foregroundColor(Color("Brand Light Dark"))
-                    .padding(.trailing)
-                }
-            }
+        }
+        .tabItem{
+            Label("Home", systemImage: "house")
         }
         .onAppear{
             self.networkManager.fetchData()

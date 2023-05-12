@@ -27,7 +27,7 @@ import SwiftUI
 struct PressPilotApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
