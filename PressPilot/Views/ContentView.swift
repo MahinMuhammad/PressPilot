@@ -30,18 +30,28 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             List(networkManager.newsCollection){news in
-                HStack{
+                HStack(alignment:.top){
+                    AsyncImage(url: news.imageUrl) { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 150, height: 150)
+                            .clipped()
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                    } placeholder: {
+                        Image(systemName: "photo")
+                            .imageScale(.large)
+                    }
+
                     Text(news.title)
                         .bold()
+                        .padding(.leading, 10)
                 }
                 .listRowSeparator(.hidden)
             }
-            .listStyle(.plain)
-            .navigationTitle("PressPilot")
             
-        }
-        .tabItem{
-            Label("Home", systemImage: "house")
+            .listStyle(.plain)
+//            .navigationTitle("PressPilot")
         }
         .onAppear{
             self.networkManager.fetchData()

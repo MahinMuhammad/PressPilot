@@ -15,6 +15,12 @@ struct News:Decodable, Identifiable{
     var id:String{
         return url
     }
+    var imageUrl:URL?{
+        if let safeUrlToImage = urlToImage{
+            return URL(string: safeUrlToImage)
+        }
+        return nil
+    }
     let title:String
     let url:String
     let urlToImage:String?

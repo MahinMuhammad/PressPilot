@@ -14,6 +14,20 @@ struct MainView: View {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
+                .toolbarBackground(Color.white, for: .navigationBar, .tabBar)
+            
+            SavedView()
+                .tabItem {
+                    Label("Saved", systemImage: "bookmark")
+//                        .environment(\.symbolVariants, .none)
+                }
+                .toolbarBackground(Color.white, for: .navigationBar, .tabBar)
+            
+            MyProfileView()
+                .tabItem {
+                    Label("My Profile", systemImage: "person")
+                }
+                .toolbarBackground(Color.white, for: .navigationBar, .tabBar)
         }
     }
 }
