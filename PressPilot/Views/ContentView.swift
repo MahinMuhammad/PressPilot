@@ -40,7 +40,11 @@ struct ContentView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 16))
                     } placeholder: {
                         Image(systemName: "photo")
-                            .imageScale(.large)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 128, height: 128)
+                            .clipped()
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
 
                     Text(news.title)
