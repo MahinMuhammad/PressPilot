@@ -19,6 +19,9 @@
 		00E9DE532A0EC1C300C440CF /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9DE522A0EC1C300C440CF /* MyProfileView.swift */; };
 		00E9DE552A0F9E6300C440CF /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9DE542A0F9E6300C440CF /* DetailView.swift */; };
 		00E9DE572A0F9F4E00C440CF /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9DE562A0F9F4E00C440CF /* WebView.swift */; };
+		00E9DE592A0FE61000C440CF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9DE582A0FE61000C440CF /* LoginView.swift */; };
+		00E9DE5B2A0FE62100C440CF /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9DE5A2A0FE62100C440CF /* RegistrationView.swift */; };
+		00E9DE5E2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 00E9DE5D2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,8 @@
 		00E9DE522A0EC1C300C440CF /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
 		00E9DE542A0F9E6300C440CF /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		00E9DE562A0F9F4E00C440CF /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		00E9DE582A0FE61000C440CF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		00E9DE5A2A0FE62100C440CF /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00E9DE5E2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +109,8 @@
 				00E9DE522A0EC1C300C440CF /* MyProfileView.swift */,
 				00E9DE542A0F9E6300C440CF /* DetailView.swift */,
 				00E9DE562A0F9F4E00C440CF /* WebView.swift */,
+				00E9DE582A0FE61000C440CF /* LoginView.swift */,
+				00E9DE5A2A0FE62100C440CF /* RegistrationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -123,6 +131,9 @@
 			dependencies = (
 			);
 			name = PressPilot;
+			packageProductDependencies = (
+				00E9DE5D2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI */,
+			);
 			productName = PressPilot;
 			productReference = 00475F682A0AB8A200CA8227 /* PressPilot.app */;
 			productType = "com.apple.product-type.application";
@@ -151,6 +162,9 @@
 				Base,
 			);
 			mainGroup = 00475F5F2A0AB8A200CA8227;
+			packageReferences = (
+				00E9DE5C2A0FFCB700C440CF /* XCRemoteSwiftPackageReference "FloatingLabelTextFieldSwiftUI" */,
+			);
 			productRefGroup = 00475F692A0AB8A200CA8227 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -180,11 +194,13 @@
 				00E9DE532A0EC1C300C440CF /* MyProfileView.swift in Sources */,
 				00E9DE572A0F9F4E00C440CF /* WebView.swift in Sources */,
 				00E9DE552A0F9E6300C440CF /* DetailView.swift in Sources */,
+				00E9DE5B2A0FE62100C440CF /* RegistrationView.swift in Sources */,
 				00E9DE482A0E966F00C440CF /* NetworkManager.swift in Sources */,
 				00E9DE4F2A0EBF1900C440CF /* MainView.swift in Sources */,
 				00E9DE4A2A0E96A500C440CF /* Config.swift in Sources */,
 				00E9DE512A0EC15D00C440CF /* SavedView.swift in Sources */,
 				00475F6E2A0AB8A200CA8227 /* ContentView.swift in Sources */,
+				00E9DE592A0FE61000C440CF /* LoginView.swift in Sources */,
 				00475F6C2A0AB8A200CA8227 /* PressPilotApp.swift in Sources */,
 				00E9DE4C2A0E9B1800C440CF /* NewsData.swift in Sources */,
 			);
@@ -387,6 +403,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		00E9DE5C2A0FFCB700C440CF /* XCRemoteSwiftPackageReference "FloatingLabelTextFieldSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishanraja/FloatingLabelTextFieldSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		00E9DE5D2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00E9DE5C2A0FFCB700C440CF /* XCRemoteSwiftPackageReference "FloatingLabelTextFieldSwiftUI" */;
+			productName = FloatingLabelTextFieldSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 00475F602A0AB8A200CA8227 /* Project object */;
 }
