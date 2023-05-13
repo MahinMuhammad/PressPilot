@@ -48,7 +48,13 @@ struct ContentView: View {
                     }
                     
                     VStack(alignment: .trailing) {
-                        NavigationLink(destination: DetailView(url: news.url)){
+                        ZStack {
+                            NavigationLink(destination: DetailView(url: news.url)){
+                                EmptyView()
+                            }
+                            .opacity(0.0)
+                            .buttonStyle(PlainButtonStyle())
+                            
                             Text(news.title)
                                 .bold()
                                 .padding(.leading, 10)
@@ -56,7 +62,7 @@ struct ContentView: View {
                         }
                         
                         Button {
-                            print("Saved")
+                            print("Saved \(news.title)")
                         } label: {
                             Image(systemName: "bookmark")
                         }
@@ -68,7 +74,6 @@ struct ContentView: View {
                 .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
-//            .navigationTitle("PressPilot")
         }
         .onAppear{
             self.networkManager.fetchData()
