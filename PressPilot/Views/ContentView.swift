@@ -46,15 +46,27 @@ struct ContentView: View {
                             .clipped()
                             .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
-
-                    Text(news.title)
-                        .bold()
-                        .padding(.leading, 10)
-                        .lineLimit(3)
+                    
+                    VStack(alignment: .trailing) {
+                        NavigationLink(destination: DetailView(url: news.url)){
+                            Text(news.title)
+                                .bold()
+                                .padding(.leading, 10)
+                                .lineLimit(3)
+                        }
+                        
+                        Button {
+                            print("Saved")
+                        } label: {
+                            Image(systemName: "bookmark")
+                        }
+                        .buttonStyle(.borderless)
+                        .padding()
+                    }
+                    
                 }
                 .listRowSeparator(.hidden)
             }
-            
             .listStyle(.plain)
 //            .navigationTitle("PressPilot")
         }
