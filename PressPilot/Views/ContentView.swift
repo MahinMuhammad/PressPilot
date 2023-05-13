@@ -35,9 +35,9 @@ struct ContentView: View {
                         image
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 150, height: 150)
+                            .frame(width: 128, height: 128)
                             .clipped()
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
                     } placeholder: {
                         Image(systemName: "photo")
                             .imageScale(.large)
@@ -46,6 +46,7 @@ struct ContentView: View {
                     Text(news.title)
                         .bold()
                         .padding(.leading, 10)
+                        .lineLimit(3)
                 }
                 .listRowSeparator(.hidden)
             }
