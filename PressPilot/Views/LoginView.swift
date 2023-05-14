@@ -13,8 +13,12 @@ struct LoginView: View {
     
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var isRememberOn:Bool = false
     
-    @State var isLoading: Bool = false
+    @State private var isPasswordShow: Bool = false
+    
+    @State private var isLoading: Bool = false
+    
     
     var body: some View {
         NavigationView {
@@ -31,11 +35,36 @@ struct LoginView: View {
                             .frame(height: 70)
                         
                         FloatingLabelTextField($password, placeholder: "Password")
-                            .isSecureTextEntry(true)
+                            .isSecureTextEntry(!isPasswordShow)
+                            .rightView({
+                                Button {
+                                    withAnimation {
+                                        isPasswordShow.toggle()
+                                    }
+                                } label: {
+                                    isPasswordShow ? Image(systemName: "eye.fill") : Image(systemName: "eye.slash.fill")
+                                }
+                                .foregroundColor(.gray)
+                                
+                            })
                             .floatingStyle(ThemeTextFieldStyle())
                             .frame(height: 70)
                         
-                        Text("Forgot password?")
+                        HStack(alignment: .center){
+                            Button {
+                                isRememberOn.toggle()
+                            } label: {
+                                !isRememberOn ? Image(systemName: "square") : Image(systemName: "checkmark.square.fill")
+                            }
+                            .imageScale(.large)
+                            .foregroundColor(.gray)
+                            Text("Remember me")
+
+                            Spacer()
+                            
+                            Text("Forgot password?")
+                                .underline()
+                        }
                         
                         LoadingButton(action: {
                             self.endEditing(true)
