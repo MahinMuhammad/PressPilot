@@ -82,16 +82,20 @@ struct FormElements{
     }
 }
 
-struct FormToFormNavigationLinkView: View {
+struct FormToFormNavigationLinkView<TheView: View>: View {
     let prompt:String
     let navigationLinkText:String
+    let destinationView: TheView
     var body: some View {
         HStack {
             Text(prompt)
                 .fontWeight(.semibold)
-            Text(navigationLinkText)
-                .underline()
-                .fontWeight(.bold)
+            NavigationLink(destination: destinationView) {
+                Text(navigationLinkText)
+                    .underline()
+                    .fontWeight(.bold)
+            }
+            .foregroundColor(Color(UIColor.label))
         }
         .font(.system(size: 17))
     }

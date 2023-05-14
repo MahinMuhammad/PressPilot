@@ -9,7 +9,20 @@ import SwiftUI
 
 struct SignUpView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ScrollView{
+                VStack{
+                    
+                }
+                .padding(.leading, 19)
+                .padding(.trailing, 19)
+                .navigationTitle("Sign Up")
+            }
+        }
+        .toolbar(.hidden, for: .navigationBar)
+        .onTapGesture {
+            self.endEditing(true)
+        }
     }
 }
 
