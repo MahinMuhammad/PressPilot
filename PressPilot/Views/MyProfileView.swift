@@ -24,8 +24,19 @@
 import SwiftUI
 
 struct MyProfileView: View {
+    
+    @State private var isShowingSignInView = false
+    
     var body: some View {
-        Text("My Profile")
+        NavigationView {
+            NavigationLink(destination: SignInView(), isActive: $isShowingSignInView){
+                
+            }
+            
+        }
+        .onAppear{
+            isShowingSignInView = true
+        }
     }
 }
 
