@@ -22,6 +22,8 @@
 		00E9DE592A0FE61000C440CF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9DE582A0FE61000C440CF /* LoginView.swift */; };
 		00E9DE5B2A0FE62100C440CF /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9DE5A2A0FE62100C440CF /* RegistrationView.swift */; };
 		00E9DE5E2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 00E9DE5D2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI */; };
+		00E9DE602A10C0EA00C440CF /* ThemeTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9DE5F2A10C0EA00C440CF /* ThemeTextFieldStyle.swift */; };
+		00E9DE632A10E4DE00C440CF /* LoadingButton in Frameworks */ = {isa = PBXBuildFile; productRef = 00E9DE622A10E4DE00C440CF /* LoadingButton */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,7 @@
 		00E9DE562A0F9F4E00C440CF /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		00E9DE582A0FE61000C440CF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		00E9DE5A2A0FE62100C440CF /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		00E9DE5F2A10C0EA00C440CF /* ThemeTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTextFieldStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +51,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E9DE5E2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI in Frameworks */,
+				00E9DE632A10E4DE00C440CF /* LoadingButton in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +115,7 @@
 				00E9DE562A0F9F4E00C440CF /* WebView.swift */,
 				00E9DE582A0FE61000C440CF /* LoginView.swift */,
 				00E9DE5A2A0FE62100C440CF /* RegistrationView.swift */,
+				00E9DE5F2A10C0EA00C440CF /* ThemeTextFieldStyle.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 			name = PressPilot;
 			packageProductDependencies = (
 				00E9DE5D2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI */,
+				00E9DE622A10E4DE00C440CF /* LoadingButton */,
 			);
 			productName = PressPilot;
 			productReference = 00475F682A0AB8A200CA8227 /* PressPilot.app */;
@@ -164,6 +170,7 @@
 			mainGroup = 00475F5F2A0AB8A200CA8227;
 			packageReferences = (
 				00E9DE5C2A0FFCB700C440CF /* XCRemoteSwiftPackageReference "FloatingLabelTextFieldSwiftUI" */,
+				00E9DE612A10E4DE00C440CF /* XCRemoteSwiftPackageReference "LoadingButton" */,
 			);
 			productRefGroup = 00475F692A0AB8A200CA8227 /* Products */;
 			projectDirPath = "";
@@ -203,6 +210,7 @@
 				00E9DE592A0FE61000C440CF /* LoginView.swift in Sources */,
 				00475F6C2A0AB8A200CA8227 /* PressPilotApp.swift in Sources */,
 				00E9DE4C2A0E9B1800C440CF /* NewsData.swift in Sources */,
+				00E9DE602A10C0EA00C440CF /* ThemeTextFieldStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +267,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -313,7 +321,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -339,6 +347,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -368,6 +377,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -413,6 +423,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		00E9DE612A10E4DE00C440CF /* XCRemoteSwiftPackageReference "LoadingButton" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Changemin/LoadingButton";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -420,6 +438,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 00E9DE5C2A0FFCB700C440CF /* XCRemoteSwiftPackageReference "FloatingLabelTextFieldSwiftUI" */;
 			productName = FloatingLabelTextFieldSwiftUI;
+		};
+		00E9DE622A10E4DE00C440CF /* LoadingButton */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00E9DE612A10E4DE00C440CF /* XCRemoteSwiftPackageReference "LoadingButton" */;
+			productName = LoadingButton;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
