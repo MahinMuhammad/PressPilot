@@ -39,6 +39,12 @@ struct MainView: View {
                 }
                 .toolbarBackground(Color(UIColor.systemBackground), for: .navigationBar, .tabBar)
             
+            DownloadedView()
+                .tabItem {
+                    Label("Downloads", systemImage: "arrow.down.to.line.compact")
+                }
+                .toolbarBackground(Color(UIColor.systemBackground), for: .navigationBar, .tabBar)
+            
             MyProfileView()
                 .tabItem {
                     Label("My Profile", systemImage: "person")
