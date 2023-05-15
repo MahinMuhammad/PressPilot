@@ -39,10 +39,9 @@ struct SignInView: View {
                         
                         FormElements.LoadingButtonView(buttonName: "Sign In")
                         
-                        FormToFormNavigationLinkView(prompt: "Don't have an account?", navigationLinkText: "Sign Up", destinationView: SignUpView())
+                        FormElements.FormToFormNavigationLinkView(prompt: "Don't have an account?", navigationLinkText: "Sign Up", destinationView: SignUpView())
                     }
                     .padding(.all)
-                    Spacer()
                 }
                 .padding(.leading, 19)
                 .padding(.trailing, 19)
