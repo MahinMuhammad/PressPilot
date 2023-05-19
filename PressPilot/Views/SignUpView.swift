@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import LoadingButton
 
 struct SignUpView: View {
-    @State private var firstName:String = ""
-    @State private var lasttName:String = ""
-    @State private var email:String = ""
-    @State private var password:String = ""
+    @State private var firstName:String = "han"
+    @State private var lastName:String = "ban"
+    @State private var email:String = "2@2.com"
+    @State private var password:String = "123456"
+    @State private var isLoading: Bool = false
+    
+    @State private var regSuccess = true
+    
+    @EnvironmentObject var authService: AuthService
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView{
                 VStack(alignment: .leading){
                     FormElements.StartingTextView(text: "Sign up to unlock a personalized news experience tailored to your interests")
@@ -22,13 +28,28 @@ struct SignUpView: View {
                     VStack{
                         HStack(spacing: 30){
                             FormElements.InputFieldView(input: $firstName, titleShown: "First Name")
-                            FormElements.InputFieldView(input: $lasttName, titleShown: "Last Name")
+                            FormElements.InputFieldView(input: $lastName, titleShown: "Last Name")
                         }
                         FormElements.InputFieldView(input: $email, titleShown: "Email")
                         
                         FormElements.PasswordFielView(pass: $password)
                         
-                        FormElements.LoadingButtonView(buttonName: "Sign Up")
+                        //loading button
+                        LoadingButton(action: {
+                            authService.signUpUser(firstName: firstName, lastName: lastName, email: email, password: password)
+                            DispatchQueue.main.async {
+                                regSuccess =  authService.signedIn
+                            }
+                        }, isLoading: $isLoading, style: LoadingButtonStyle(cornerRadius: 27, strokeColor: .white)) {
+                            Text("Sign Up")
+                                .foregroundColor(Color.white)
+                                .font(.system(size: 25))
+                        }
+                        .navigationDestination(isPresented: $regSuccess, destination: {
+                            MyProfileView()
+                        })
+                        .padding(.top)
+                        .padding(.bottom, 40)
                         
                         FormElements.FormToFormNavigationLinkView(prompt: "Already have an account?", navigationLinkText: "Sign In", destinationView: SignInView())
                     }

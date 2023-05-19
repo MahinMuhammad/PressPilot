@@ -67,10 +67,14 @@ struct FormElements{
     
     struct LoadingButtonView: View {
         let buttonName:String
+        let firstName:String
+        let lastName:String
+        let email:String
+        let password:String
         @State private var isLoading: Bool = false
         var body: some View {
             LoadingButton(action: {
-                self.endEditing(true)
+                //action
             }, isLoading: $isLoading, style: LoadingButtonStyle(cornerRadius: 27, strokeColor: .white)) {
                 Text(buttonName)
                     .foregroundColor(Color.white)

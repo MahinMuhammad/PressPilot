@@ -22,20 +22,42 @@
 */
 
 import SwiftUI
+import FirebaseAuth
 
 struct MyProfileView: View {
     
     @State private var isShowingSignInView = false
+    @State private var logoutSuccess = false
+    
+    @EnvironmentObject var authService: AuthService
     
     var body: some View {
-        NavigationView {
-            NavigationLink(destination: SignInView(), isActive: $isShowingSignInView){
+        NavigationStack {
+            VStack{
                 
             }
-            
+            .toolbar{
+                Button("Log Out"){
+                    do {
+                        try Auth.auth().signOut()
+                        logoutSuccess = true
+                    } catch let signOutError as NSError {
+                      print("Error signing out: %@", signOutError)
+                    }
+                }
+                .navigationDestination(isPresented: $logoutSuccess) {
+                    SignInView()
+                }
+            }
+            .navigationDestination(isPresented: $isShowingSignInView) {
+                SignInView()
+            }
         }
         .onAppear{
-            isShowingSignInView = true
+            isShowingSignInView = !authService.signedIn
+            
+            //use below line to avoid firebase dependency
+//            isShowingSignInView = false
         }
     }
 }

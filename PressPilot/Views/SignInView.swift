@@ -14,10 +14,10 @@ struct SignInView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isRememberOn:Bool = false
-    
+    @State private var isLoading: Bool = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView{
                 VStack(alignment: .leading){
                     FormElements.StartingTextView(text: "Stay Signed In for a seamless experience")
@@ -37,7 +37,16 @@ struct SignInView: View {
                                 .underline()
                         }
                         
-                        FormElements.LoadingButtonView(buttonName: "Sign In")
+                        //loading button
+                        LoadingButton(action: {
+                            //action
+                        }, isLoading: $isLoading, style: LoadingButtonStyle(cornerRadius: 27, strokeColor: .white)) {
+                            Text("Sign Up")
+                                .foregroundColor(Color.white)
+                                .font(.system(size: 25))
+                        }
+                        .padding(.top)
+                        .padding(.bottom, 40)
                         
                         FormElements.FormToFormNavigationLinkView(prompt: "Don't have an account?", navigationLinkText: "Sign Up", destinationView: SignUpView())
                     }
