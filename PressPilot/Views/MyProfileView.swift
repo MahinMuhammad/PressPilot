@@ -28,13 +28,14 @@ struct MyProfileView: View {
     
     @State private var isShowingSignInView = false
     @State private var logoutSuccess = false
+    @State private var email = ""
     
     @EnvironmentObject var authService: AuthService
     
     var body: some View {
         NavigationStack {
             VStack{
-                
+                Text(email)
             }
             .toolbar{
                 Button("Log Out"){

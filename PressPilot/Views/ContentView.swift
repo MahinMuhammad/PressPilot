@@ -28,7 +28,7 @@ struct ContentView: View {
     @ObservedObject var networkManager = NetworkManager()
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             List(networkManager.newsCollection){news in
                 HStack(alignment:.top){
                     AsyncImage(url: news.imageUrl) { image in

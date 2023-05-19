@@ -15,7 +15,7 @@ struct SignUpView: View {
     @State private var password:String = "123456"
     @State private var isLoading: Bool = false
     
-    @State private var regSuccess = true
+    @State private var regSuccess = false
     
     @EnvironmentObject var authService: AuthService
     
@@ -45,9 +45,9 @@ struct SignUpView: View {
                                 .foregroundColor(Color.white)
                                 .font(.system(size: 25))
                         }
-                        .navigationDestination(isPresented: $regSuccess, destination: {
+                        .navigationDestination(isPresented: $regSuccess){
                             MyProfileView()
-                        })
+                        }
                         .padding(.top)
                         .padding(.bottom, 40)
                         
