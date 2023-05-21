@@ -102,54 +102,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C6591412-0FB9-4DA2-9CB0-1E23D9D3ADE9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PressPilot/Views/SignInView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "C6591412-0FB9-4DA2-9CB0-1E23D9D3ADE9 - 770b6c965ca5e0b6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PressPilot.SignInView.body.getter : some"
-                  moduleName = "PressPilot"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/md.mahinurrahman/Desktop/PressPilot/PressPilot/Views/SignInView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "664">
-               </Location>
-               <Location
-                  uuid = "C6591412-0FB9-4DA2-9CB0-1E23D9D3ADE9 - 1ae57e3745b91a71"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; SwiftUI.ScrollView&lt;&lt;&lt;opaque return type of SwiftUI.View.navigationTitle(SwiftUI.LocalizedStringKey) -&gt; some&gt;&gt;.0&gt; in PressPilot.SignInView.body.getter : some"
-                  moduleName = "PressPilot"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/md.mahinurrahman/Desktop/PressPilot/PressPilot/Views/SignInView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "25"
-                  endingLineNumber = "25"
-                  offsetFromSymbolStart = "568">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "76BEE6C2-7FDC-4894-891F-AC6FC7518125"
             shouldBeEnabled = "No"
             ignoreCount = "0"

@@ -19,6 +19,8 @@ struct SignUpView: View {
     
     @EnvironmentObject var authService: AuthService
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode> //to popup one view back
+    
     var body: some View {
         NavigationStack {
             ScrollView{
@@ -48,7 +50,18 @@ struct SignUpView: View {
                         .padding(.top)
                         .padding(.bottom, 40)
                         
-                        FormElements.FormToFormNavigationLinkView(prompt: "Already have an account?", navigationLinkText: "Sign In", destinationView: SignInView())
+                        HStack {
+                            Text("Already have an account?")
+                                .fontWeight(.semibold)
+                            Text("Sign In")
+                                .underline()
+                                .fontWeight(.bold)
+                                .onTapGesture {
+                                    
+                                }
+                        }
+                        .font(.system(size: 17))
+                        
                     }
                     .padding(.all)
                 }
