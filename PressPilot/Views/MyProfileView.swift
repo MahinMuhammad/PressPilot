@@ -63,8 +63,8 @@ struct MyProfileView: View {
     }
 }
 
-struct MyProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyProfileView()
-    }
-}
+//struct MyProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MyProfileView()
+//    }
+//}

@@ -24,14 +24,10 @@ class AuthService : ObservableObject {
     func signUpUser(firstName:String, lastName:String, email:String, password:String){
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let e = error{
-                DispatchQueue.main.async {
-                    print("Failed to sign up with error: \(e)")
-                }
+                print("Failed to sign up with error: \(e)")
             }else{
-                DispatchQueue.main.async {
-                    print("User registration successfull!")
-                    self.signedIn = true
-                }
+                print("User registration successfull!")
+                self.signedIn = true
             }
         }
     }

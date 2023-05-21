@@ -46,7 +46,7 @@ struct MainView: View {
                 }
                 .toolbarBackground(Color(UIColor.systemBackground), for: .navigationBar, .tabBar)
             
-            MyProfileView()
+            SignInView()
                 .tabItem {
                     Label("My Profile", systemImage: "person")
                 }

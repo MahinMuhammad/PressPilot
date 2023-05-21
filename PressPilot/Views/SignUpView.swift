@@ -45,9 +45,6 @@ struct SignUpView: View {
                                 .foregroundColor(Color.white)
                                 .font(.system(size: 25))
                         }
-                        .navigationDestination(isPresented: $regSuccess){
-                            MyProfileView()
-                        }
                         .padding(.top)
                         .padding(.bottom, 40)
                         
@@ -55,12 +52,16 @@ struct SignUpView: View {
                     }
                     .padding(.all)
                 }
+                .navigationTitle("Sign Up")
                 .padding(.leading, 19)
                 .padding(.trailing, 19)
-                .navigationTitle("Sign Up")
+                
+            }
+            .navigationDestination(isPresented: $regSuccess){
+                MyProfileView()
             }
         }
-        .toolbar(.hidden, for: .navigationBar)
+        .navigationBarBackButtonHidden(true)
         .onTapGesture {
             self.endEditing(true)
         }

@@ -41,7 +41,7 @@ struct SignInView: View {
                         LoadingButton(action: {
                             //action
                         }, isLoading: $isLoading, style: LoadingButtonStyle(cornerRadius: 27, strokeColor: .white)) {
-                            Text("Sign Up")
+                            Text("Sign In")
                                 .foregroundColor(Color.white)
                                 .font(.system(size: 25))
                         }
@@ -57,7 +57,7 @@ struct SignInView: View {
                 .navigationTitle("Sign In")
             }
         }
-        .toolbar(.hidden, for: .navigationBar)
+//        .toolbar(.hidden, for: .navigationBar)
         .onTapGesture {
             self.endEditing(true)
         }
