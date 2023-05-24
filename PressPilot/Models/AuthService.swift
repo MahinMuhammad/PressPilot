@@ -48,6 +48,17 @@ class AuthService : ObservableObject {
         }
     }
     
+    func signInUser(email:String, password:String){
+        Auth.auth().signIn(withEmail: email, password: password){ response, error in
+            if let e = error{
+                print("SignIn failed with error: \(e)")
+            }else{
+                print("User signIn successfull!")
+                self.signedIn = true
+            }
+        }
+    }
+    
     func signOut()->Bool{
         do {
             try Auth.auth().signOut()

@@ -59,7 +59,9 @@ struct SignInView: View {
                         
                         //loading button
                         LoadingButton(action: {
-                            //action
+                            if email != "" && password != ""{
+                                authService.signInUser(email: email, password: password)
+                            }
                         }, isLoading: $isLoading, style: LoadingButtonStyle(cornerRadius: 27, strokeColor: .white)) {
                             Text("Sign In")
                                 .foregroundColor(Color.white)
