@@ -74,6 +74,9 @@ struct NewsView: View {
                 .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
+            .refreshable {
+                self.networkManager.fetchData()
+            }
         }
         .onAppear{
             self.networkManager.fetchData()
