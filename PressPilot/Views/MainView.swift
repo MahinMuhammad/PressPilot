@@ -27,7 +27,7 @@ struct MainView: View {
     
     var body: some View {
         TabView{
-            ContentView()
+            NewsView()
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }

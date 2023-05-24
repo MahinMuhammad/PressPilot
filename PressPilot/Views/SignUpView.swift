@@ -65,17 +65,7 @@ struct SignUpView: View {
                     .padding(.top)
                     .padding(.bottom, 40)
                     
-                    HStack {
-                        Text("Already have an account?")
-                            .fontWeight(.semibold)
-                        Text("Sign In")
-                            .underline()
-                            .fontWeight(.bold)
-                            .onTapGesture {
-                                
-                            }
-                    }
-                    .font(.system(size: 17))
+                    FormElements.FormToFormNavigationLinkView(prompt: "Already have an account?", navigationLinkText: "Sign In", destinationView: SignInView())
                     
                 }
                 .padding(.all)

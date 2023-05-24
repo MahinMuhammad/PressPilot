@@ -25,15 +25,15 @@ import SwiftUI
 import FirebaseAuth
 
 struct MyProfileView: View {
-    
-    @State private var isShowingSignInView = false
     @State private var logoutSuccess = false
     @State private var email = ""
     
     @EnvironmentObject var authService: AuthService
     
     var body: some View {
-        NavigationStack {
+        if !authService.signedIn{
+            SignInView()
+        }else{
             VStack{
                 Text("MyProfileView")
             }
@@ -50,17 +50,6 @@ struct MyProfileView: View {
                     SignInView()
                 }
             }
-            .navigationDestination(isPresented: $isShowingSignInView) {
-                SignInView()
-            }
-        }
-        .onAppear{
-            //below condition is checked to avoid firebase dependency on preview
-            if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"{
-                //no firebase medhod is called. any value is needed provided by another way.
-            }else{
-                isShowingSignInView = !authService.signedIn //firebase property is accessed and the value used
-            }
         }
     }
 }
@@ -68,5 +57,6 @@ struct MyProfileView: View {
 struct MyProfileView_Previews: PreviewProvider {
     static var previews: some View {
         MyProfileView()
+            .environmentObject(AuthService())
     }
 }

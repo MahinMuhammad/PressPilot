@@ -23,7 +23,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct NewsView: View {
     
     @ObservedObject var networkManager = NetworkManager()
     
@@ -83,6 +83,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        NewsView()
     }
 }
