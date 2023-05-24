@@ -75,13 +75,6 @@ struct SignUpView: View {
             .padding(.leading, 19)
             .padding(.trailing, 19)
             .navigationBarBackButtonHidden(true)
-            
-        }
-        //            .navigationDestination(isPresented: $regSuccess){
-        //                MyProfileView()
-        //            }
-        .onTapGesture {
-            self.endEditing(true)
         }
     }
 }

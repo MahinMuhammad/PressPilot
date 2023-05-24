@@ -39,12 +39,7 @@ struct MyProfileView: View {
             }
             .toolbar{
                 Button("Log Out"){
-                    //below condition is checked to avoid firebase dependency on preview
-                    if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"{
-                        //no firebase medhod is called. any value is needed provided by another way.
-                    }else{
-                        logoutSuccess = authService.signOut() //firebase method is called and the value used
-                    }
+                    logoutSuccess = authService.signOut()
                 }
                 .navigationDestination(isPresented: $logoutSuccess) {
                     SignInView()

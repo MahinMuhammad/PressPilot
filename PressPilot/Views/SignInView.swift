@@ -75,9 +75,6 @@ struct SignInView: View {
                 .navigationBarBackButtonHidden(true)
             }
         }
-        .onTapGesture {
-            self.endEditing(true)
-        }
     }
 }
 
