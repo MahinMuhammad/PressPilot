@@ -35,7 +35,7 @@ struct SignUpView: View {
     
     @EnvironmentObject var authService: AuthService
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode> //to popup one view back
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         ScrollView{
@@ -54,9 +54,6 @@ struct SignUpView: View {
                     //loading button
                     LoadingButton(action: {
                         authService.signUpUser(firstName: firstName, lastName: lastName, email: email, password: password)
-                        DispatchQueue.main.async {
-                            regSuccess =  authService.signedIn
-                        }
                     }, isLoading: $isLoading, style: LoadingButtonStyle(cornerRadius: 27, strokeColor: .white)) {
                         Text("Sign Up")
                             .foregroundColor(Color.white)
@@ -65,7 +62,19 @@ struct SignUpView: View {
                     .padding(.top)
                     .padding(.bottom, 40)
                     
-                    FormElements.FormToFormNavigationLinkView(prompt: "Already have an account?", navigationLinkText: "Sign In", destinationView: SignInView())
+                    HStack {
+                        Text("Already have an account?")
+                            .fontWeight(.semibold)
+                        Button {
+                            self.presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            Text("Sign In")
+                                .underline()
+                                .fontWeight(.bold)
+                        }
+                        .foregroundColor(Color(UIColor.label))
+                    }
+                    .font(.system(size: 17))
                     
                 }
                 .padding(.all)

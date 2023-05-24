@@ -25,14 +25,14 @@ import SwiftUI
 
 struct SavedView: View {
     @EnvironmentObject var authService: AuthService
-    @State private var isShowingSignInView = false
     
     var body: some View {
-        if !authService.signedIn{
-            SignInView()
-        }else{
+        NavigationStack{
             VStack{
                 Text("SavedView()")
+            }
+            .navigationDestination(isPresented: Binding<Bool>(get: {return !authService.signedIn}, set: { p in authService.signedIn = p})) {
+                SignInView()
             }
         }
     }

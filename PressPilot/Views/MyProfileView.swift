@@ -31,9 +31,7 @@ struct MyProfileView: View {
     @EnvironmentObject var authService: AuthService
     
     var body: some View {
-        if !authService.signedIn{
-            SignInView()
-        }else{
+        NavigationStack{
             VStack{
                 Text("MyProfileView")
             }
@@ -44,6 +42,9 @@ struct MyProfileView: View {
                 .navigationDestination(isPresented: $logoutSuccess) {
                     SignInView()
                 }
+            }
+            .navigationDestination(isPresented: Binding<Bool>(get: {return !authService.signedIn}, set: { p in authService.signedIn = p})) {
+                SignInView()
             }
         }
     }

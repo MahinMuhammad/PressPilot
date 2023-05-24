@@ -32,6 +32,10 @@ struct SignInView: View {
     @State private var isRememberOn:Bool = false
     @State private var isLoading: Bool = false
     
+    @EnvironmentObject var authService: AuthService
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
         NavigationStack {
             ScrollView{
