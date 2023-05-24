@@ -36,7 +36,6 @@ struct MainView: View {
             SavedView()
                 .tabItem {
                     Label("Saved", systemImage: "bookmark")
-//                        .environment(\.symbolVariants, .none)
                 }
                 .toolbarBackground(Color(UIColor.systemBackground), for: .navigationBar, .tabBar)
             

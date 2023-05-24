@@ -35,15 +35,15 @@ struct MyProfileView: View {
     var body: some View {
         NavigationStack {
             VStack{
-                Text(email)
+                Text("MyProfileView")
             }
             .toolbar{
                 Button("Log Out"){
-                    do {
-                        try Auth.auth().signOut()
-                        logoutSuccess = true
-                    } catch let signOutError as NSError {
-                        print("Error signing out: %@", signOutError)
+                    //below condition is checked to avoid firebase dependency on preview
+                    if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"{
+                        //no firebase medhod is called. any value is needed provided by another way.
+                    }else{
+                        logoutSuccess = authService.signOut() //firebase method is called and the value used
                     }
                 }
                 .navigationDestination(isPresented: $logoutSuccess) {
@@ -55,11 +55,11 @@ struct MyProfileView: View {
             }
         }
         .onAppear{
-            //below condition is checked to avoid firebase dependency
+            //below condition is checked to avoid firebase dependency on preview
             if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"{
-                isShowingSignInView = false
+                //no firebase medhod is called. any value is needed provided by another way.
             }else{
-                isShowingSignInView = !authService.signedIn
+                isShowingSignInView = !authService.signedIn //firebase property is accessed and the value used
             }
         }
     }

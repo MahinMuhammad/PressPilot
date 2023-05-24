@@ -126,10 +126,10 @@
 			children = (
 				00E9DE4E2A0EBF1900C440CF /* MainView.swift */,
 				00475F6D2A0AB8A200CA8227 /* ContentView.swift */,
-				00E9DE502A0EC15D00C440CF /* SavedView.swift */,
-				00E9DE522A0EC1C300C440CF /* MyProfileView.swift */,
 				00E9DE542A0F9E6300C440CF /* DetailView.swift */,
 				00E9DE562A0F9F4E00C440CF /* WebView.swift */,
+				00E9DE502A0EC15D00C440CF /* SavedView.swift */,
+				00E9DE522A0EC1C300C440CF /* MyProfileView.swift */,
 				00E9DE582A0FE61000C440CF /* SignInView.swift */,
 				00E9DE5A2A0FE62100C440CF /* SignUpView.swift */,
 				00E9DE5F2A10C0EA00C440CF /* ThemeTextFieldStyle.swift */,

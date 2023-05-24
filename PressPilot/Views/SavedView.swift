@@ -24,8 +24,26 @@
 import SwiftUI
 
 struct SavedView: View {
+    @EnvironmentObject var authService: AuthService
+    @State private var isShowingSignInView = false
+    
     var body: some View {
-        Text("Saved")
+        NavigationStack{
+            VStack{
+                Text("SavedView()")
+            }
+            .navigationDestination(isPresented: $isShowingSignInView) {
+                SignInView()
+            }
+        }
+        .onAppear{
+            //below condition is checked to avoid firebase dependency on preview
+            if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"{
+                //no firebase medhod is called. any value is needed provided by another way.
+            }else{
+                isShowingSignInView = !authService.signedIn //firebase property is accessed and the value used
+            }
+        }
     }
 }
 
