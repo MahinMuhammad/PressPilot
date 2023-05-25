@@ -40,31 +40,45 @@ struct FormElements{
     struct InputFieldView: View {
         @Binding var input: String
         let titleShown: String
+        @Binding var warningMessage:String?
+        
         var body: some View {
-            FloatingLabelTextField($input, placeholder: titleShown)
-                .floatingStyle(ThemeTextFieldStyle())
-                .frame(height: 70)
+            VStack(alignment: .leading) {
+                FloatingLabelTextField($input, placeholder: titleShown)
+                    .floatingStyle(ThemeTextFieldStyle())
+                    .frame(height: 70)
+                
+                Text(warningMessage ?? "")
+                    .foregroundColor(.red)
+            }
         }
     }
     
     struct PasswordFielView: View {
         @Binding var pass:String
         @State private var isPasswordShow: Bool = false
+        @Binding var warningMessage:String?
+        
         var body: some View {
-            FloatingLabelTextField($pass, placeholder: "Password")
-                .isSecureTextEntry(!isPasswordShow)
-                .rightView({
-                    Button {
-                        withAnimation {
-                            isPasswordShow.toggle()
+            VStack(alignment: .leading) {
+                FloatingLabelTextField($pass, placeholder: "Password")
+                    .isSecureTextEntry(!isPasswordShow)
+                    .rightView({
+                        Button {
+                            withAnimation {
+                                isPasswordShow.toggle()
+                            }
+                        } label: {
+                            isPasswordShow ? Image(systemName: "eye.fill") : Image(systemName: "eye.slash.fill")
                         }
-                    } label: {
-                        isPasswordShow ? Image(systemName: "eye.fill") : Image(systemName: "eye.slash.fill")
-                    }
-                    .foregroundColor(.gray)
-                })
-                .floatingStyle(ThemeTextFieldStyle())
-                .frame(height: 70)
+                        .foregroundColor(.gray)
+                    })
+                    .floatingStyle(ThemeTextFieldStyle())
+                    .frame(height: 70)
+                
+                Text(warningMessage ?? "")
+                    .foregroundColor(.red)
+            }
         }
     }
     

@@ -24,10 +24,11 @@
 import Foundation
 import FirebaseCore
 import FirebaseAuth
+import SwiftUI
 
 class AuthService : ObservableObject {
     @Published var signedIn:Bool
-    @Published var error:Error?
+    @Published var errorMessage:String = ""
     
     init() {
         if Auth.auth().currentUser != nil{
@@ -53,9 +54,9 @@ class AuthService : ObservableObject {
         Auth.auth().signIn(withEmail: email, password: password){ response, error in
             if let e = error{
                 print("SignIn failed with error: \(e)")
+                self.errorMessage = e.localizedDescription
             }else{
                 print("User signIn successfull!")
-                self.signedIn = true
             }
         }
     }

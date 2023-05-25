@@ -31,6 +31,12 @@ struct SignUpView: View {
     @State private var password:String = "123456"
     @State private var isLoading: Bool = false
     
+    @State var firstNameWarning:String?
+    @State var lastNameWarning:String?
+    @State var emailWarning:String?
+    @State var passwordWarning:String?
+    
+    
     @State private var regSuccess = false
     
     @EnvironmentObject var authService: AuthService
@@ -44,21 +50,32 @@ struct SignUpView: View {
                 
                 VStack{
                     HStack(spacing: 30){
-                        FormElements.InputFieldView(input: $firstName, titleShown: "First Name")
-                        FormElements.InputFieldView(input: $lastName, titleShown: "Last Name")
+                        FormElements.InputFieldView(input: $firstName, titleShown: "First Name", warningMessage: $firstNameWarning)
+                        FormElements.InputFieldView(input: $lastName, titleShown: "Last Name", warningMessage: $lastNameWarning)
                     }
-                    FormElements.InputFieldView(input: $email, titleShown: "Email")
+                    FormElements.InputFieldView(input: $email, titleShown: "Email", warningMessage: $emailWarning)
                     
-                    FormElements.PasswordFielView(pass: $password)
+                    FormElements.PasswordFielView(pass: $password, warningMessage: $passwordWarning)
                     
                     //button
                     Button{
-                        authService.signUpUser(firstName: firstName, lastName: lastName, email: email, password: password)
+                        if firstName == ""{
+                            firstNameWarning = "Name required"
+                        }else if lastName == ""{
+                            lastNameWarning = "Last name required"
+                        }else if email == ""{
+                            emailWarning = "Email required"
+                        }else if password == ""{
+                            passwordWarning = "Password required"
+                        }else{
+                            authService.signUpUser(firstName: firstName, lastName: lastName, email: email, password: password)
+                        }
                     } label: {
                         FormElements.ButtonLabelView(buttonText: "Sign Up")
                     }
                     .padding(.top)
                     .padding(.bottom, 40)
+                    //button ending
                     
                     HStack {
                         Text("Already have an account?")
@@ -89,5 +106,6 @@ struct SignUpView: View {
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()
+            .environmentObject(AuthService())
     }
 }
