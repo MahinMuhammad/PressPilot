@@ -36,6 +36,24 @@ struct SignUpView: View {
     @State var emailWarning:String?
     @State var passwordWarning:String?
     
+    func formValidation(){
+        firstNameWarning = ""
+        lastNameWarning = ""
+        emailWarning = ""
+        passwordWarning = ""
+        if firstName == ""{
+            firstNameWarning = "Name required"
+        }
+        if lastName == ""{
+            lastNameWarning = "Last name required"
+        }
+        if email == ""{
+            emailWarning = "Email required"
+        }
+        if password == ""{
+            passwordWarning = "Password required"
+        }
+    }
     
     @State private var regSuccess = false
     
@@ -59,15 +77,8 @@ struct SignUpView: View {
                     
                     //button
                     Button{
-                        if firstName == ""{
-                            firstNameWarning = "Name required"
-                        }else if lastName == ""{
-                            lastNameWarning = "Last name required"
-                        }else if email == ""{
-                            emailWarning = "Email required"
-                        }else if password == ""{
-                            passwordWarning = "Password required"
-                        }else{
+                        formValidation()
+                        if(firstName != "" && lastName != "" && email != "" && password != ""){
                             authService.signUpUser(firstName: firstName, lastName: lastName, email: email, password: password)
                         }
                     } label: {

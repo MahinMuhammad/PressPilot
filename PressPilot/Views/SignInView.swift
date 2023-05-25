@@ -35,6 +35,17 @@ struct SignInView: View {
     @State var passwordWarning:String?
     @State private var showSignInFail:Bool = false
     
+    func formValidation(){
+        emailWarning = ""
+        passwordWarning = ""
+        if email == ""{
+            emailWarning = "Email Required"
+        }
+        if password == ""{
+            passwordWarning = "Password Required"
+        }
+    }
+    
     @EnvironmentObject var authService: AuthService
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -59,19 +70,13 @@ struct SignInView: View {
                         Text("Forgot password?")
                             .underline()
                     }
+                    .padding(.top, 10)
                     
                     //button
                     Button{
-                        if email != ""{
-                            emailWarning = ""
-                            if password != ""{
-                                passwordWarning = ""
-                               authService.signInUser(email: email, password: password)
-                            }else{
-                                passwordWarning = "Password Required"
-                            }
-                        }else{
-                            emailWarning = "Email Required"
+                        formValidation()
+                        if email != "" && password != ""{
+                            authService.signInUser(email: email, password: password)
                         }
                     } label: {
                         FormElements.ButtonLabelView(buttonText: "Sign In")
