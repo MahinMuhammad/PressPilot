@@ -81,26 +81,6 @@ struct FormElements{
         }
     }
     
-    struct LoadingButtonView: View {
-        let buttonName:String
-        let firstName:String
-        let lastName:String
-        let email:String
-        let password:String
-        @State private var isLoading: Bool = false
-        var body: some View {
-            LoadingButton(action: {
-                //action
-            }, isLoading: $isLoading, style: LoadingButtonStyle(cornerRadius: 27, strokeColor: .white)) {
-                Text(buttonName)
-                    .foregroundColor(Color.white)
-                    .font(.system(size: 25))
-            }
-            .padding(.top)
-            .padding(.bottom, 40)
-        }
-    }
-    
     struct FormToFormNavigationLinkView<TheView: View>: View {
         let prompt:String
         let navigationLinkText:String
