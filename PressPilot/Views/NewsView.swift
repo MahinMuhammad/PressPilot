@@ -73,11 +73,32 @@ struct NewsView: View {
                 }
                 .listRowSeparator(.hidden)
             }
+            .toolbar(content: {
+                ToolbarItemGroup(placement: .navigation) {
+                    Image(systemName: "photo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 35)
+                    Text("PressPilot")
+                        .fontWeight(.heavy)
+                        .font(.system(size: 35))
+                        .foregroundColor(.blue)
+                }
+                ToolbarItemGroup {
+                    Image(systemName: "bell.fill")
+                        .foregroundColor(.blue)
+                    Image(systemName: "magnifyingglass")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.blue)
+                }
+            })
+            .padding(.top, 10)
             .listStyle(.plain)
             .refreshable {
                 self.networkManager.fetchData()
             }
         }
+        .padding(.top,20)
         .onAppear{
             self.networkManager.fetchData()
         }
