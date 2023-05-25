@@ -30,7 +30,6 @@
 		00E9DE5B2A0FE62100C440CF /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9DE5A2A0FE62100C440CF /* SignUpView.swift */; };
 		00E9DE5E2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 00E9DE5D2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI */; };
 		00E9DE602A10C0EA00C440CF /* ThemeTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9DE5F2A10C0EA00C440CF /* ThemeTextFieldStyle.swift */; };
-		00E9DE632A10E4DE00C440CF /* LoadingButton in Frameworks */ = {isa = PBXBuildFile; productRef = 00E9DE622A10E4DE00C440CF /* LoadingButton */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +63,6 @@
 			files = (
 				00E9DE5E2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI in Frameworks */,
 				009E0E5A2A1793A100ECAE73 /* FirebaseAuth in Frameworks */,
-				00E9DE632A10E4DE00C440CF /* LoadingButton in Frameworks */,
 				009E0E5C2A1793A100ECAE73 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,7 +155,6 @@
 			name = PressPilot;
 			packageProductDependencies = (
 				00E9DE5D2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI */,
-				00E9DE622A10E4DE00C440CF /* LoadingButton */,
 				009E0E592A1793A100ECAE73 /* FirebaseAuth */,
 				009E0E5B2A1793A100ECAE73 /* FirebaseFirestoreSwift */,
 			);
@@ -191,7 +188,6 @@
 			mainGroup = 00475F5F2A0AB8A200CA8227;
 			packageReferences = (
 				00E9DE5C2A0FFCB700C440CF /* XCRemoteSwiftPackageReference "FloatingLabelTextFieldSwiftUI" */,
-				00E9DE612A10E4DE00C440CF /* XCRemoteSwiftPackageReference "LoadingButton" */,
 				009E0E582A1793A000ECAE73 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 00475F692A0AB8A200CA8227 /* Products */;
@@ -458,14 +454,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		00E9DE612A10E4DE00C440CF /* XCRemoteSwiftPackageReference "LoadingButton" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Changemin/LoadingButton";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.2;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -483,11 +471,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 00E9DE5C2A0FFCB700C440CF /* XCRemoteSwiftPackageReference "FloatingLabelTextFieldSwiftUI" */;
 			productName = FloatingLabelTextFieldSwiftUI;
-		};
-		00E9DE622A10E4DE00C440CF /* LoadingButton */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 00E9DE612A10E4DE00C440CF /* XCRemoteSwiftPackageReference "LoadingButton" */;
-			productName = LoadingButton;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
