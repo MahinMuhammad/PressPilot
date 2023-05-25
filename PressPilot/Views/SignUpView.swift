@@ -51,13 +51,16 @@ struct SignUpView: View {
                     
                     FormElements.PasswordFielView(pass: $password)
                     
-                    //loading button
-                    LoadingButton(action: {
+                    //button
+                    Button{
                         authService.signUpUser(firstName: firstName, lastName: lastName, email: email, password: password)
-                    }, isLoading: $isLoading, style: LoadingButtonStyle(cornerRadius: 27, strokeColor: .white)) {
+                    } label: {
                         Text("Sign Up")
                             .foregroundColor(Color.white)
                             .font(.system(size: 25))
+                            .frame(width: 312, height: 54)
+                            .background(Color.blue)
+                            .cornerRadius(25)
                     }
                     .padding(.top)
                     .padding(.bottom, 40)

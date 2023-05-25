@@ -27,6 +27,7 @@ import FirebaseAuth
 
 class AuthService : ObservableObject {
     @Published var signedIn:Bool
+    @Published var error:Error?
     
     init() {
         if Auth.auth().currentUser != nil{

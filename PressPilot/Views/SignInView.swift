@@ -31,6 +31,8 @@ struct SignInView: View {
     @State private var password: String = ""
     @State private var isRememberOn:Bool = false
     @State private var isLoading: Bool = false
+    @State private var showEmailRequired:Bool = false
+    @State private var showPasswordRequired:Bool = false
     
     @EnvironmentObject var authService: AuthService
     
@@ -57,18 +59,33 @@ struct SignInView: View {
                                 .underline()
                         }
                         
-                        //loading button
-                        LoadingButton(action: {
-                            if email != "" && password != ""{
-                                authService.signInUser(email: email, password: password)
+                        //button
+                        Button{
+                            if email != ""{
+                                if password != ""{
+                                    authService.signInUser(email: email, password: password)
+                                }else{
+                                    showPasswordRequired = true
+                                }
+                            }else{
+                                showEmailRequired = true
                             }
-                        }, isLoading: $isLoading, style: LoadingButtonStyle(cornerRadius: 27, strokeColor: .white)) {
+                        } label: {
                             Text("Sign In")
                                 .foregroundColor(Color.white)
                                 .font(.system(size: 25))
+                                .frame(width: 312, height: 54)
+                                .background(Color.blue)
+                                .cornerRadius(25)
                         }
                         .padding(.top)
                         .padding(.bottom, 40)
+                        .alert(Text("Email Required"), isPresented: $showEmailRequired) {
+                            Button("Ok", role: .cancel){}
+                        }
+                        .alert(Text("Pawword Required"), isPresented: $showPasswordRequired) {
+                            Button("Ok", role: .cancel){}
+                        }
                         
                         FormElements.FormToFormNavigationLinkView(prompt: "Don't have an account?", navigationLinkText: "Sign Up", destinationView: SignUpView())
                     }
@@ -87,5 +104,6 @@ struct SignInView: View {
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
+            .environmentObject(AuthService())
     }
 }
