@@ -71,12 +71,7 @@ struct SignInView: View {
                                 showEmailRequired = true
                             }
                         } label: {
-                            Text("Sign In")
-                                .foregroundColor(Color.white)
-                                .font(.system(size: 25))
-                                .frame(width: 312, height: 54)
-                                .background(Color.blue)
-                                .cornerRadius(25)
+                            FormElements.ButtonLabelView(buttonText: "Sign In")
                         }
                         .padding(.top)
                         .padding(.bottom, 40)

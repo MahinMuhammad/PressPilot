@@ -81,6 +81,18 @@ struct FormElements{
         }
     }
     
+    struct ButtonLabelView: View {
+        let buttonText:String
+        var body: some View {
+            Text(buttonText)
+                .foregroundColor(Color.white)
+                .font(.system(size: 25))
+                .frame(width: 312, height: 54)
+                .background(Color.blue)
+                .cornerRadius(25)
+        }
+    }
+    
     struct FormToFormNavigationLinkView<TheView: View>: View {
         let prompt:String
         let navigationLinkText:String
@@ -99,5 +111,4 @@ struct FormElements{
             .font(.system(size: 17))
         }
     }
-
 }

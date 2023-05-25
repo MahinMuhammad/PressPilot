@@ -55,12 +55,7 @@ struct SignUpView: View {
                     Button{
                         authService.signUpUser(firstName: firstName, lastName: lastName, email: email, password: password)
                     } label: {
-                        Text("Sign Up")
-                            .foregroundColor(Color.white)
-                            .font(.system(size: 25))
-                            .frame(width: 312, height: 54)
-                            .background(Color.blue)
-                            .cornerRadius(25)
+                        FormElements.ButtonLabelView(buttonText: "Sign Up")
                     }
                     .padding(.top)
                     .padding(.bottom, 40)
