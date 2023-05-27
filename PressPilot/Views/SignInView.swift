@@ -35,15 +35,19 @@ struct SignInView: View {
     @State var passwordWarning:String?
     @State private var showSignInFail:Bool = false
     
-    func formValidation(){
+    func formValidation()->Bool{
+        var flag:Bool = true
         emailWarning = ""
         passwordWarning = ""
         if email == ""{
+            flag = false
             emailWarning = "Email Required"
         }
         if password == ""{
+            flag = false
             passwordWarning = "Password Required"
         }
+        return flag
     }
     
     @EnvironmentObject var authService: AuthService
@@ -74,8 +78,7 @@ struct SignInView: View {
                     
                     //button
                     Button{
-                        formValidation()
-                        if email != "" && password != ""{
+                        if formValidation(){
                             authService.signInUser(email: email, password: password)
                         }
                     } label: {
