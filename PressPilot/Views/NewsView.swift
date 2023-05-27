@@ -78,18 +78,17 @@ struct NewsView: View {
                     Image(systemName: "photo")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 35)
+                        .frame(width: 32)
                     Text("PressPilot")
-                        .fontWeight(.heavy)
-                        .font(.system(size: 35))
-                        .foregroundColor(.blue)
+                        .fontWeight(.bold)
+                        .font(.system(size: 24))
                 }
                 ToolbarItemGroup {
-                    Image(systemName: "bell.fill")
-                        .foregroundColor(.blue)
+                    Image(systemName: "bell")
+                        .fontWeight(.medium)
+                        .padding(.trailing, 15)
                     Image(systemName: "magnifyingglass")
-                        .fontWeight(.semibold)
-                        .foregroundColor(.blue)
+                        .fontWeight(.medium)
                 }
             })
             .padding(.top, 10)
@@ -98,7 +97,7 @@ struct NewsView: View {
                 self.networkManager.fetchData()
             }
         }
-        .padding(.top,20)
+        .padding(.top,16)
         .onAppear{
             self.networkManager.fetchData()
         }
