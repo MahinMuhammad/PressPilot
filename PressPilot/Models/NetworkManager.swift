@@ -36,6 +36,8 @@ struct Language: Identifiable{
 
 class NetworkManager: ObservableObject{
     
+    var requestSettings = RequestSettings()
+    
     @Published var newsCollection = [News]()
     
     let pageSize = "100"

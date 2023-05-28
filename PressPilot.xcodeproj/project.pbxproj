@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0026E2D52A2343D700F0308D /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0026E2D42A2343D700F0308D /* CustomPicker.swift */; };
+		0026E2D72A23A44F00F0308D /* RequestSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0026E2D62A23A44F00F0308D /* RequestSettings.swift */; };
 		00475F6C2A0AB8A200CA8227 /* PressPilotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00475F6B2A0AB8A200CA8227 /* PressPilotApp.swift */; };
 		00475F6E2A0AB8A200CA8227 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00475F6D2A0AB8A200CA8227 /* NewsView.swift */; };
 		00475F702A0AB8A300CA8227 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00475F6F2A0AB8A300CA8227 /* Assets.xcassets */; };
@@ -34,7 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0026E2D42A2343D700F0308D /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
+		0026E2D62A23A44F00F0308D /* RequestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSettings.swift; sourceTree = "<group>"; };
 		00475F682A0AB8A200CA8227 /* PressPilot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PressPilot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00475F6B2A0AB8A200CA8227 /* PressPilotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressPilotApp.swift; sourceTree = "<group>"; };
 		00475F6D2A0AB8A200CA8227 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
@@ -114,6 +114,7 @@
 		00E9DE462A0E964800C440CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0026E2D62A23A44F00F0308D /* RequestSettings.swift */,
 				00E9DE472A0E966F00C440CF /* NetworkManager.swift */,
 				00E9DE4B2A0E9B1800C440CF /* NewsData.swift */,
 				009E0E562A174DED00ECAE73 /* AuthService.swift */,
@@ -135,7 +136,6 @@
 				00E9DE5F2A10C0EA00C440CF /* ThemeTextFieldStyle.swift */,
 				009FDCFE2A11386D0088F44B /* FormElements.swift */,
 				006DB0F02A1295E70097E567 /* DownloadedView.swift */,
-				0026E2D42A2343D700F0308D /* CustomPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,11 +228,11 @@
 				009E0E572A174DED00ECAE73 /* AuthService.swift in Sources */,
 				006DB0F12A1295E70097E567 /* DownloadedView.swift in Sources */,
 				00E9DE482A0E966F00C440CF /* NetworkManager.swift in Sources */,
-				0026E2D52A2343D700F0308D /* CustomPicker.swift in Sources */,
 				00E9DE4F2A0EBF1900C440CF /* MainView.swift in Sources */,
 				00E9DE4A2A0E96A500C440CF /* Config.swift in Sources */,
 				00E9DE512A0EC15D00C440CF /* SavedView.swift in Sources */,
 				00475F6E2A0AB8A200CA8227 /* NewsView.swift in Sources */,
+				0026E2D72A23A44F00F0308D /* RequestSettings.swift in Sources */,
 				00E9DE592A0FE61000C440CF /* SignInView.swift in Sources */,
 				00475F6C2A0AB8A200CA8227 /* PressPilotApp.swift in Sources */,
 				00E9DE4C2A0E9B1800C440CF /* NewsData.swift in Sources */,
