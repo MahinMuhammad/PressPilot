@@ -23,7 +23,24 @@
 
 import Foundation
 
+struct NewsCategory: Identifiable {
+    var id: String
+    var isSelected = false
+}
+
+struct Language: Identifiable{
+    var id: String
+    var language: String
+}
+
 class RequestSettings: ObservableObject{
+    
+    let pageSize = "5"
+    
+    //MARK: - Language or Country
+    
+    @Published var selectedBetweenLanguageOrCountry = "language"
+    let choicesBetweenLanguageOrCountry = [K.languageInString, K.countryInString]
     
     //MARK: - Language Settings
     @Published var selectedLanguage = "en"
@@ -41,20 +58,28 @@ class RequestSettings: ObservableObject{
     let options = ["News of Today", "Last seven days", "Last thirty days", "Last one year"]
     
     //MARK: - Catagory Settings
-    @Published var newsFilterCollection:[NewsFilter] = [
-        NewsFilter(id: "All", isSelected: true),
-        NewsFilter(id: "Business"),
-        NewsFilter(id: "Science"),
-        NewsFilter(id: "Entertainment"),
-        NewsFilter(id: "Health"),
-        NewsFilter(id: "Sports"),
-        NewsFilter(id: "Technology")
+    func selectedCategory()->String{
+        for newsCategory in newsCategoryCollection{
+            if newsCategory.isSelected && newsCategory.id != "All"{
+                return newsCategory.id.lowercased()
+            }
+        }
+        return "general"
+    }
+    @Published var newsCategoryCollection:[NewsCategory] = [
+        NewsCategory(id: "All", isSelected: true),
+        NewsCategory(id: "Business"),
+        NewsCategory(id: "Science"),
+        NewsCategory(id: "Entertainment"),
+        NewsCategory(id: "Health"),
+        NewsCategory(id: "Sports"),
+        NewsCategory(id: "Technology")
     ]
     
     func unselectOtherFilter(id:String){
-        for i in 0..<newsFilterCollection.count{
-            if newsFilterCollection[i].id != id{
-                newsFilterCollection[i].isSelected = false
+        for i in 0..<newsCategoryCollection.count{
+            if newsCategoryCollection[i].id != id{
+                newsCategoryCollection[i].isSelected = false
             }
         }
     }

@@ -23,29 +23,26 @@
 
 import Foundation
 
-struct NewsFilter: Identifiable {
-    var id: String
-    var isSelected = false
-}
-
-struct Language: Identifiable{
-    var id: String
-    var language: String
-}
-
-
 class NetworkManager: ObservableObject{
     
-    var requestSettings = RequestSettings()
+    @Published var rs = RequestSettings()
+
+    func getRequestSettings()->RequestSettings{
+        return rs
+    }
     
     @Published var newsCollection = [News]()
-    
-    let pageSize = "100"
     
     let urlString = "https://newsapi.org/v2/top-headlines?language=en"
     
     func getURL()->String{
-        let finaUrlString = "\(urlString)&pageSize=\(pageSize)&apiKey=\(Config.apiKey)"
+        if rs.selectedBetweenLanguageOrCountry == K.countryInString{
+            
+        }else{
+            
+        } //implement after language or country settings are done.
+        
+        let finaUrlString = "\(urlString)&pageSize=\(rs.pageSize)&category=\(rs.selectedCategory())&apiKey=\(Config.apiKey)"
         return finaUrlString
     }
     
@@ -61,10 +58,13 @@ class NetworkManager: ObservableObject{
                         do{
                             let results = try decoder.decode(Result.self, from: safeData)
                             DispatchQueue.main.async {
+//                                self.objectWillChange.send()
                                 self.newsCollection = results.articles
+                                print(self.rs.selectedCategory())
+                                print("Data fetch successful")
                             }
                         }catch{
-                            print(error)
+                            print("Data fetch failed with error: \(error)")
                         }
                     }
                 }

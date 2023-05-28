@@ -24,5 +24,6 @@
 import Foundation
 
 struct K{
-    
+    static let languageInString = "language"
+    static let countryInString = "country"
 }

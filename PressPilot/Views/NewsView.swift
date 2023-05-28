@@ -24,7 +24,6 @@
 import SwiftUI
 
 struct NewsView: View {
-    @ObservedObject var requestSettings = RequestSettings()
     @ObservedObject var networkManager = NetworkManager()
     
     var body: some View {
@@ -32,23 +31,22 @@ struct NewsView: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack{
-                        Picker(selection: $requestSettings.selectedOption, label: PickerLabelView()) {
-                            ForEach(requestSettings.options, id: \.self) {
+                        Picker(selection: $networkManager.rs.selectedOption, label: PickerLabelView()) {
+                            ForEach(networkManager.rs.options, id: \.self) {
                                 Text($0)
                             }
                         }
                         .frame(width: 35,height: 35)
                         .pickerStyle(.navigationLink)
                         
-                        ForEach($requestSettings.newsFilterCollection){ $filter in
-                            Toggle(filter.id, isOn: $filter.isSelected)
+                        ForEach($networkManager.rs.newsCategoryCollection){ $category in
+                            Toggle(category.id, isOn: $category.isSelected)
                                 .toggleStyle(.button)
                                 .cornerRadius(16.5)
                                 .foregroundColor(Color(UIColor.label))
-                                .onChange(of: filter.isSelected) {value in
+                                .onChange(of: category.isSelected) {value in
                                     if value{
-                                        filter.isSelected = true
-                                        requestSettings.unselectOtherFilter(id: filter.id)
+                                        networkManager.rs.unselectOtherFilter(id: category.id)
                                         self.networkManager.fetchData()
                                     }else{
 //                                        filter.isSelected = true
