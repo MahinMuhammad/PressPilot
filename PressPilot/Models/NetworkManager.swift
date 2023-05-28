@@ -41,8 +41,12 @@ class NetworkManager: ObservableObject{
         }else{
             
         } //implement after language or country settings are done.
-        
-        let finaUrlString = "\(urlString)&pageSize=\(rs.pageSize)&category=\(rs.selectedCategory())&apiKey=\(Config.apiKey)"
+        var finaUrlString = "\(urlString)&pageSize=\(rs.pageSize)&apiKey=\(Config.apiKey)"
+        if rs.selectedKeyword == ""{
+            finaUrlString = "\(urlString)&pageSize=\(rs.pageSize)&category=\(rs.selectedCategory())&apiKey=\(Config.apiKey)"
+        }else{
+            finaUrlString = "\(urlString)&pageSize=\(rs.pageSize)&q=\(rs.selectedKeyword)&apiKey=\(Config.apiKey)"
+        }
         return finaUrlString
     }
     
@@ -58,9 +62,7 @@ class NetworkManager: ObservableObject{
                         do{
                             let results = try decoder.decode(Result.self, from: safeData)
                             DispatchQueue.main.async {
-//                                self.objectWillChange.send()
                                 self.newsCollection = results.articles
-                                print(self.rs.selectedCategory())
                                 print("Data fetch successful")
                             }
                         }catch{

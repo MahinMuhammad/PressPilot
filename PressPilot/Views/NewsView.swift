@@ -24,6 +24,7 @@
 import SwiftUI
 
 struct NewsView: View {
+    @State private var showSearchBox = false
     @ObservedObject var networkManager = NetworkManager()
     
     var body: some View {
@@ -112,14 +113,41 @@ struct NewsView: View {
                             .font(.system(size: 24))
                     }
                     ToolbarItemGroup {
-                        Image(systemName: "gearshape")
-                            .padding(.trailing, 15)
-                        
-                        Image(systemName: "bell")
-                            .fontWeight(.medium)
-                            .padding(.trailing, 15)
-                        Image(systemName: "magnifyingglass")
-                            .fontWeight(.medium)
+                        if !showSearchBox{
+                            Button{
+                                
+                            }label: {
+                                Image(systemName: "gearshape")
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color(UIColor.label))
+                            }
+                            Button{
+                                
+                            }label: {
+                                Image(systemName: "bell")
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color(UIColor.label))
+                            }
+                        }
+                        if showSearchBox{
+                            TextField("Search", text: $networkManager.rs.selectedKeyword)
+                                .frame(width: 160)
+                                .textFieldStyle(.roundedBorder)
+                        }
+                        Button{
+                            if showSearchBox{
+                                self.networkManager.fetchData()
+                                
+//                                networkManager.rs.selectedKeyword = ""
+                            }
+                            withAnimation {
+                                showSearchBox.toggle()
+                            }
+                        }label: {
+                            Image(systemName: "magnifyingglass")
+                                .fontWeight(.medium)
+                                .foregroundColor(Color(UIColor.label))
+                        }
                     }
                 })
                 .padding(.top, 24)
