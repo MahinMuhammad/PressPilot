@@ -23,19 +23,28 @@
 
 import SwiftUI
 
-struct NewsFilter: Identifiable {
-    var id: String
-    var isSelected = false
-}
-
 struct NewsView: View {
+    
+    @State private var selectedLanguage = "en"
+    let languages = [
+        Language(id: "en", language: "English"),
+        Language(id: "ru", language: "Russian"),
+        Language(id: "es", language: "Espanish"),
+        Language(id: "fr", language: "French"),
+        Language(id: "it", language: "Italian")
+    ]
+    
+    @State private var selectedOption = "News of Today"
+    let options = ["News of Today", "Last seven days", "Last thirty days", "Last one year"]
     
     @State var newsFilterCollection:[NewsFilter] = [
         NewsFilter(id: "All", isSelected: true),
-        NewsFilter(id: "Trending"),
+        NewsFilter(id: "Business"),
         NewsFilter(id: "Science"),
+        NewsFilter(id: "Entertainment"),
+        NewsFilter(id: "Health"),
         NewsFilter(id: "Sports"),
-        NewsFilter(id: "Entertainment")
+        NewsFilter(id: "Technology")
     ]
     
     func unselectOtherFilter(id:String){
@@ -46,6 +55,10 @@ struct NewsView: View {
         }
     }
     
+//    private func numberOfSelectedToggles() -> Int {
+//        return newsFilterCollection.filter({ NewsFilter.isSelected }).count
+//        }
+    
     @ObservedObject var networkManager = NetworkManager()
     
     var body: some View {
@@ -53,6 +66,14 @@ struct NewsView: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack{
+                        Picker(selection: $selectedOption, label: PickerLabelView()) {
+                            ForEach(options, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        .frame(width: 35,height: 35)
+                        .pickerStyle(.navigationLink)
+                        
                         ForEach($newsFilterCollection){ $filter in
                             Toggle(filter.id, isOn: $filter.isSelected)
                                 .toggleStyle(.button)
@@ -60,7 +81,11 @@ struct NewsView: View {
                                 .foregroundColor(Color(UIColor.label))
                                 .onChange(of: filter.isSelected) {value in
                                     if value{
+                                        filter.isSelected = true
                                         unselectOtherFilter(id: filter.id)
+                                        self.networkManager.fetchData()
+                                    }else{
+//                                        filter.isSelected = true
                                     }
                                 }
                         }
@@ -123,6 +148,17 @@ struct NewsView: View {
                             .font(.system(size: 24))
                     }
                     ToolbarItemGroup {
+//                        Picker(selection: $selectedLanguage, label: EmptyView()) {
+//                            ForEach(languages) { language in
+//                                Text(language.language).tag(language.id)
+//                            }
+//                        }
+//                        .foregroundColor(Color(UIColor.label))
+//                        .pickerStyle(.navigationLink)
+                        
+                        Image(systemName: "gearshape")
+                            .padding(.trailing, 15)
+                        
                         Image(systemName: "bell")
                             .fontWeight(.medium)
                             .padding(.trailing, 15)
@@ -147,5 +183,13 @@ struct NewsView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NewsView()
+    }
+}
+
+struct PickerLabelView: View {
+    var body: some View {
+        Image(systemName: "line.3.horizontal")
+            .foregroundColor(Color(UIColor.label))
+            .imageScale(.large)
     }
 }

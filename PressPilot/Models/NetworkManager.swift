@@ -23,14 +23,27 @@
 
 import Foundation
 
+struct NewsFilter: Identifiable {
+    var id: String
+    var isSelected = false
+}
+
+struct Language: Identifiable{
+    var id: String
+    var language: String
+}
+
+
 class NetworkManager: ObservableObject{
     
     @Published var newsCollection = [News]()
     
-    let urlString = "https://newsapi.org/v2/top-headlines?country=us"
+    let pageSize = "100"
+    
+    let urlString = "https://newsapi.org/v2/top-headlines?language=en"
     
     func getURL()->String{
-        let finaUrlString = "\(urlString)&apiKey=\(Config.apiKey)"
+        let finaUrlString = "\(urlString)&pageSize=\(pageSize)&apiKey=\(Config.apiKey)"
         return finaUrlString
     }
     
