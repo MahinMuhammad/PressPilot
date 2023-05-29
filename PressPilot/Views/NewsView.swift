@@ -37,6 +37,7 @@ struct NewsView: View {
                                 withAnimation(.spring()) {
                                     showSearchBox = false
                                 }
+                                networkManager.rs.selectedKeyword = ""
                                 networkManager.rs.isKewordSearchOn = false
                                 networkManager.fetchData()
                             }label: {
