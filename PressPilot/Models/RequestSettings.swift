@@ -38,6 +38,7 @@ class RequestSettings: ObservableObject{
     let pageSize = "5"
     
     //MARK: - KeyWord search
+    @Published var isKewordSearchOn = false
     @Published var selectedKeyword = ""
     
     //MARK: - Language or Country

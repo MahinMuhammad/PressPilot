@@ -42,10 +42,10 @@ class NetworkManager: ObservableObject{
             
         } //implement after language or country settings are done.
         var finaUrlString = "\(urlString)&pageSize=\(rs.pageSize)&apiKey=\(Config.apiKey)"
-        if rs.selectedKeyword == ""{
-            finaUrlString = "\(urlString)&pageSize=\(rs.pageSize)&category=\(rs.selectedCategory())&apiKey=\(Config.apiKey)"
-        }else{
+        if rs.isKewordSearchOn{
             finaUrlString = "\(urlString)&pageSize=\(rs.pageSize)&q=\(rs.selectedKeyword)&apiKey=\(Config.apiKey)"
+        }else{
+            finaUrlString = "\(urlString)&pageSize=\(rs.pageSize)&category=\(rs.selectedCategory())&apiKey=\(Config.apiKey)"
         }
         return finaUrlString
     }

@@ -32,27 +32,61 @@ struct NewsView: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack{
-                        Picker(selection: $networkManager.rs.selectedOption, label: PickerLabelView()) {
-                            ForEach(networkManager.rs.options, id: \.self) {
-                                Text($0)
-                            }
-                        }
-                        .frame(width: 35,height: 35)
-                        .pickerStyle(.navigationLink)
-                        
-                        ForEach($networkManager.rs.newsCategoryCollection){ $category in
-                            Toggle(category.id, isOn: $category.isSelected)
-                                .toggleStyle(.button)
-                                .cornerRadius(16.5)
-                                .foregroundColor(Color(UIColor.label))
-                                .onChange(of: category.isSelected) {value in
-                                    if value{
-                                        networkManager.rs.unselectOtherFilter(id: category.id)
-                                        self.networkManager.fetchData()
-                                    }else{
-//                                        filter.isSelected = true
-                                    }
+                        if showSearchBox{
+                            Button{
+                                withAnimation(.spring()) {
+                                    showSearchBox = false
                                 }
+                                networkManager.rs.isKewordSearchOn = false
+                                networkManager.fetchData()
+                            }label: {
+                                Image(systemName: "chevron.backward")
+                                    .foregroundColor(Color(UIColor.label))
+                                    .imageScale(.large)
+                            }
+                            .transition(.asymmetric(insertion: .slide, removal: .move(edge: .leading)))
+                            
+                            TextField("Search", text: $networkManager.rs.selectedKeyword)
+                                .frame(width: 300)
+                                .textFieldStyle(.roundedBorder)
+                                .transition(.asymmetric(insertion: .slide, removal: .move(edge: .leading)))
+                            
+                            Button{
+                                networkManager.fetchData()
+                            }label: {
+                                Image(systemName: "magnifyingglass")
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color(UIColor.label))
+                            }
+                            .transition(.asymmetric(insertion: .slide, removal: .move(edge: .trailing)))
+                        }
+                        if !showSearchBox{
+                            Picker(selection: $networkManager.rs.selectedOption, label: PickerLabelView()) {
+                                ForEach(networkManager.rs.options, id: \.self) {
+                                    Text($0)
+                                }
+                            }
+                            .frame(width: 35,height: 35)
+                            .pickerStyle(.navigationLink)
+                            .animation(.easeInOut(duration: 5), value: 0)
+                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .slide))
+                            
+                            ForEach($networkManager.rs.newsCategoryCollection){ $category in
+                                Toggle(category.id, isOn: $category.isSelected)
+                                    .toggleStyle(.button)
+                                    .cornerRadius(16.5)
+                                    .foregroundColor(Color(UIColor.label))
+                                    .animation(.easeInOut(duration: 5), value: 0)
+                                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .slide))
+                                    .onChange(of: category.isSelected) {value in
+                                        if value{
+                                            networkManager.rs.unselectOtherFilter(id: category.id)
+                                            self.networkManager.fetchData()
+                                        }else{
+    //                                        filter.isSelected = true
+                                        }
+                                    }
+                            }
                         }
                     }
                     .padding(.leading, 16)
@@ -113,40 +147,33 @@ struct NewsView: View {
                             .font(.system(size: 24))
                     }
                     ToolbarItemGroup {
-                        if !showSearchBox{
-                            Button{
-                                
-                            }label: {
-                                Image(systemName: "gearshape")
-                                    .fontWeight(.medium)
-                                    .foregroundColor(Color(UIColor.label))
-                            }
-                            Button{
-                                
-                            }label: {
-                                Image(systemName: "bell")
-                                    .fontWeight(.medium)
-                                    .foregroundColor(Color(UIColor.label))
-                            }
-                        }
-                        if showSearchBox{
-                            TextField("Search", text: $networkManager.rs.selectedKeyword)
-                                .frame(width: 160)
-                                .textFieldStyle(.roundedBorder)
-                        }
                         Button{
-                            if showSearchBox{
-                                self.networkManager.fetchData()
-                                
-//                                networkManager.rs.selectedKeyword = ""
-                            }
-                            withAnimation {
-                                showSearchBox.toggle()
-                            }
+                            
                         }label: {
-                            Image(systemName: "magnifyingglass")
+                            Image(systemName: "gearshape")
                                 .fontWeight(.medium)
                                 .foregroundColor(Color(UIColor.label))
+                        }
+                        Button{
+                            
+                        }label: {
+                            Image(systemName: "bell")
+                                .fontWeight(.medium)
+                                .foregroundColor(Color(UIColor.label))
+                        }
+                        if !showSearchBox{
+                            Button{
+                                withAnimation(.spring()) {
+                                    showSearchBox = true
+                                }
+                                networkManager.rs.isKewordSearchOn = true
+                            }label: {
+                                Image(systemName: "magnifyingglass")
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color(UIColor.label))
+                            }
+                            .animation(.easeInOut(duration: 0.2), value: 0)
+                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .slide))
                         }
                     }
                 })
