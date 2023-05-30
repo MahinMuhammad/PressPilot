@@ -33,6 +33,11 @@ struct Language: Identifiable{
     var language: String
 }
 
+struct Country: Identifiable{
+    var id: String
+    var country: String
+}
+
 class RequestSettings: ObservableObject{
     
     let pageSize = "5"
@@ -42,9 +47,19 @@ class RequestSettings: ObservableObject{
     @Published var selectedKeyword = ""
     
     //MARK: - Language or Country
-    
     @Published var selectedBetweenLanguageOrCountry = "language"
     let choicesBetweenLanguageOrCountry = [K.languageInString, K.countryInString]
+    
+    //MARK: - Country Settings
+    @Published var selectedCountry = "us"
+    
+    let countries = [
+        Country(id: "us", country: "USA"),
+        Country(id: "ru", country: "Russia"),
+        Country(id: "gb", country: "UK"),
+        Country(id: "fr", country: "France"),
+        Country(id: "it", country: "Italy")
+    ]
     
     //MARK: - Language Settings
     @Published var selectedLanguage = "en"

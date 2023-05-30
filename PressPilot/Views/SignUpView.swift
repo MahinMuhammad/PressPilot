@@ -29,12 +29,15 @@ struct SignUpView: View {
     @State private var lastName:String = "ban"
     @State private var email:String = "2@2.com"
     @State private var password:String = "123456"
-    @State private var isLoading: Bool = false
     
     @State var firstNameWarning:String?
     @State var lastNameWarning:String?
     @State var emailWarning:String?
     @State var passwordWarning:String?
+    
+    @EnvironmentObject var authService: AuthService
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     func formValidation()->Bool{
         var flag = true
@@ -60,12 +63,6 @@ struct SignUpView: View {
         }
         return flag
     }
-    
-    @State private var regSuccess = false
-    
-    @EnvironmentObject var authService: AuthService
-    
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         ScrollView{

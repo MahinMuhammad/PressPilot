@@ -47,6 +47,7 @@ struct NewsView: View {
                             }
                             .transition(.asymmetric(insertion: .slide, removal: .move(edge: .leading)))
                             
+                            
                             TextField("Search", text: $networkManager.rs.selectedKeyword)
                                 .frame(width: 300)
                                 .textFieldStyle(.roundedBorder)
@@ -62,7 +63,7 @@ struct NewsView: View {
                             .transition(.asymmetric(insertion: .slide, removal: .move(edge: .trailing)))
                         }
                         if !showSearchBox{
-                            Picker(selection: $networkManager.rs.selectedOption, label: PickerLabelView()) {
+                            Picker(selection: $networkManager.rs.selectedOption, label: OptionsPickerLabelView()) {
                                 ForEach(networkManager.rs.options, id: \.self) {
                                     Text($0)
                                 }
@@ -198,7 +199,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct PickerLabelView: View {
+struct OptionsPickerLabelView: View {
     var body: some View {
         Image(systemName: "line.3.horizontal")
             .foregroundColor(Color(UIColor.label))

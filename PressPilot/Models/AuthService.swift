@@ -30,6 +30,8 @@ class AuthService : ObservableObject {
     @Published var signedIn:Bool
     @Published var errorMessage:String = ""
     
+    var dataService:DataService = DataService()
+    
     init() {
         if Auth.auth().currentUser != nil{
             self.signedIn = true
@@ -40,15 +42,30 @@ class AuthService : ObservableObject {
     
     // Make sure the API calls once they are finished modify the values on the Main Thread
     func signUpUser(firstName:String, lastName:String, email:String, password:String){
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+        Auth.auth().createUser(withEmail: email, password: password) { [self] authResult, error in
             if let e = error{
                 print("Failed to sign up with error: \(e)")
             }else{
                 print("User registration successfull!")
+                dataService.storeUserData(firstName: firstName, lastName: lastName, email: email)
                 self.signedIn = true
             }
         }
     }
+    
+//    func signUpUser(firstName: String, lastName: String, email: String, password: String, completion: @escaping (Error?) -> Void) {
+//        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+//            if let e = error {
+//                print("Failed to sign up with error: \(e)")
+//                completion(e)
+//            } else {
+//                print("User registration successful!")
+//                self.signedIn = true
+//                completion(nil)
+//            }
+//        }
+//    }
+
     
     func signInUser(email:String, password:String){
         Auth.auth().signIn(withEmail: email, password: password){ response, error in

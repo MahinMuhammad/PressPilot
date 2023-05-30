@@ -41,7 +41,7 @@ struct MainView: View {
             
             DownloadedView()
                 .tabItem {
-                    Label("Downloads", systemImage: "arrow.down.to.line.compact")
+                    Label("Downloads", systemImage: "platter.filled.bottom.and.arrow.down.iphone")
                 }
                 .toolbarBackground(Color(UIColor.systemBackground), for: .navigationBar, .tabBar)
             
