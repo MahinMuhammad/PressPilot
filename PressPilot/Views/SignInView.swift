@@ -91,7 +91,17 @@ struct SignInView: View {
                     }
                     //button ending
                     
-                    FormElements.FormToFormNavigationLinkView(prompt: "Don't have an account?", navigationLinkText: "Sign Up", destinationView: SignUpView())
+                    HStack {
+                        Text("Don't have an account?")
+                            .fontWeight(.semibold)
+                        NavigationLink(destination: SignUpView()) {
+                            Text("Sign Up")
+                                .underline()
+                                .fontWeight(.bold)
+                        }
+                        .foregroundColor(Color(UIColor.label))
+                    }
+                    .font(.system(size: 17))
                 }
                 .padding(.all)
             }

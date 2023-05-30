@@ -143,9 +143,9 @@ struct MyProfileView: View {
                     }
                 }
             }
-            //            .navigationDestination(isPresented: Binding<Bool>(get: {return !authService.signedIn}, set: { p in authService.signedIn = p})) {
-            //                SignInView()
-            //            }
+            .navigationDestination(isPresented: Binding<Bool>(get: {return !authService.signedIn}, set: { p in authService.signedIn = p})) {
+                SignInView()
+            }
         }
     }
 }

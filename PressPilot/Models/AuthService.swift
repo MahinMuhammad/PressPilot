@@ -53,20 +53,6 @@ class AuthService : ObservableObject {
         }
     }
     
-//    func signUpUser(firstName: String, lastName: String, email: String, password: String, completion: @escaping (Error?) -> Void) {
-//        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-//            if let e = error {
-//                print("Failed to sign up with error: \(e)")
-//                completion(e)
-//            } else {
-//                print("User registration successful!")
-//                self.signedIn = true
-//                completion(nil)
-//            }
-//        }
-//    }
-
-    
     func signInUser(email:String, password:String){
         Auth.auth().signIn(withEmail: email, password: password){ response, error in
             if let e = error{
@@ -74,6 +60,7 @@ class AuthService : ObservableObject {
                 self.errorMessage = e.localizedDescription
             }else{
                 print("User signIn successfull!")
+                self.signedIn = true
             }
         }
     }
