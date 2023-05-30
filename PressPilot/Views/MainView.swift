@@ -49,7 +49,7 @@ struct MainView: View {
                 .tabItem {
                     Label("My Profile", systemImage: "person")
                 }
-                .toolbarBackground(Color(UIColor.systemBackground), for: .navigationBar, .tabBar)
+                .toolbarBackground(Color("MyProfileBGColor"), for: .navigationBar, .tabBar)
         }
     }
 }
