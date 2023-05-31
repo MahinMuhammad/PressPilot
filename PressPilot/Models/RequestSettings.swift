@@ -47,8 +47,8 @@ class RequestSettings: ObservableObject{
     @Published var selectedKeyword = ""
     
     //MARK: - Language or Country
-    @Published var selectedBetweenLanguageOrCountry = "language"
-    let choicesBetweenLanguageOrCountry = [K.languageInString, K.countryInString]
+    @Published var selectedLangOrCntry = "language"
+    let choicesLangOrCntry = [K.languageInString, K.countryInString]
     
     //MARK: - Country Settings
     @Published var selectedCountry = "us"

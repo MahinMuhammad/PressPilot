@@ -56,15 +56,15 @@ struct NewsView: View {
                             Button{
                                 networkManager.fetchData()
                             }label: {
-                                Image(systemName: "magnifyingglass")
+                                Image(systemName: "checkmark")
                                     .fontWeight(.medium)
                                     .foregroundColor(Color(UIColor.label))
                             }
                             .transition(.asymmetric(insertion: .slide, removal: .move(edge: .trailing)))
                         }
                         if !showSearchBox{
-                            Picker(selection: $networkManager.rs.selectedOption, label: OptionsPickerLabelView()) {
-                                ForEach(networkManager.rs.options, id: \.self) {
+                            Picker(selection: $networkManager.rs.selectedLangOrCntry, label: OptionsPickerLabelView()) {
+                                ForEach(networkManager.rs.choicesLangOrCntry, id: \.self) {
                                     Text($0)
                                 }
                             }
@@ -84,8 +84,6 @@ struct NewsView: View {
                                         if value{
                                             networkManager.rs.unselectOtherFilter(id: category.id)
                                             self.networkManager.fetchData()
-                                        }else{
-    //                                        filter.isSelected = true
                                         }
                                     }
                             }
@@ -163,19 +161,15 @@ struct NewsView: View {
                                 .fontWeight(.medium)
                                 .foregroundColor(Color(UIColor.label))
                         }
-                        if !showSearchBox{
-                            Button{
-                                withAnimation(.spring()) {
-                                    showSearchBox = true
-                                }
-                                networkManager.rs.isKewordSearchOn = true
-                            }label: {
-                                Image(systemName: "magnifyingglass")
-                                    .fontWeight(.medium)
-                                    .foregroundColor(Color(UIColor.label))
+                        Button{
+                            withAnimation(.spring()) {
+                                showSearchBox = true
                             }
-                            .animation(.easeInOut(duration: 0.2), value: 0)
-                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .slide))
+                            networkManager.rs.isKewordSearchOn = true
+                        }label: {
+                            Image(systemName: "magnifyingglass")
+                                .fontWeight(.medium)
+                                .foregroundColor(Color(UIColor.label))
                         }
                     }
                 })

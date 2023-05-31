@@ -33,19 +33,22 @@ class NetworkManager: ObservableObject{
     
     @Published var newsCollection = [News]()
     
-    let urlString = "https://newsapi.org/v2/top-headlines?language=en"
+    let urlString = "https://newsapi.org/v2/top-headlines?"
     
     func getURL()->String{
-        if rs.selectedBetweenLanguageOrCountry == K.countryInString{
-            
-        }else{
-            
-        } //implement after language or country settings are done.
         var finaUrlString = "\(urlString)&pageSize=\(rs.pageSize)&apiKey=\(Config.apiKey)"
-        if rs.isKewordSearchOn{
-            finaUrlString = "\(urlString)&pageSize=\(rs.pageSize)&q=\(rs.selectedKeyword)&apiKey=\(Config.apiKey)"
+        if rs.selectedLangOrCntry == K.countryInString{
+            if rs.isKewordSearchOn{
+                finaUrlString = "\(urlString)country=\(rs.selectedCountry)&pageSize=\(rs.pageSize)&q=\(rs.selectedKeyword)&apiKey=\(Config.apiKey)"
+            }else{
+                finaUrlString = "\(urlString)language=\(rs.selectedCountry)&pageSize=\(rs.pageSize)&category=\(rs.selectedCategory())&apiKey=\(Config.apiKey)"
+            }
         }else{
-            finaUrlString = "\(urlString)&pageSize=\(rs.pageSize)&category=\(rs.selectedCategory())&apiKey=\(Config.apiKey)"
+            if rs.isKewordSearchOn{
+                finaUrlString = "\(urlString)language=\(rs.selectedLanguage)&pageSize=\(rs.pageSize)&q=\(rs.selectedKeyword)&apiKey=\(Config.apiKey)"
+            }else{
+                finaUrlString = "\(urlString)language=\(rs.selectedLanguage)&pageSize=\(rs.pageSize)&category=\(rs.selectedCategory())&apiKey=\(Config.apiKey)"
+            }
         }
         return finaUrlString
     }
