@@ -111,7 +111,6 @@ struct SignInView: View {
             .navigationBarTitleDisplayMode(.large)
             .navigationBarBackButtonHidden(true)
         }
-        
     }
 }
 

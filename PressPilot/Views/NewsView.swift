@@ -27,6 +27,8 @@ struct NewsView: View {
     @State private var showSearchBox = false
     @EnvironmentObject var networkManager: NetworkManager
     
+    @State var showAppSettings = false
+    
     var body: some View {
         NavigationStack{
             VStack {
@@ -150,12 +152,14 @@ struct NewsView: View {
                     }
                     ToolbarItemGroup {
                         Button{
-                            
+                            showAppSettings = true
                         }label: {
                             Image(systemName: "gearshape")
                                 .fontWeight(.medium)
                                 .foregroundColor(Color(UIColor.label))
                         }
+                        .sheet(isPresented: $showAppSettings, content: AppSettingsView.init)
+                        
                         Button{
                             
                         }label: {
