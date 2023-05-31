@@ -40,7 +40,7 @@ struct Country: Identifiable{
 
 class RequestSettings: ObservableObject{
     
-    let pageSize = "5"
+    let pageSize = "20"
     
     //MARK: - KeyWord search
     @Published var isKewordSearchOn = false

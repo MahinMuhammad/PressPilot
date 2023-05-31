@@ -25,7 +25,7 @@ import SwiftUI
 
 struct NewsView: View {
     @State private var showSearchBox = false
-    @ObservedObject var networkManager = NetworkManager()
+    @EnvironmentObject var networkManager: NetworkManager
     
     var body: some View {
         NavigationStack{
@@ -192,6 +192,7 @@ struct NewsView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NewsView()
+            .environmentObject(NetworkManager())
     }
 }
 

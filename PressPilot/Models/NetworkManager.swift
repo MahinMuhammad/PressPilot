@@ -26,10 +26,6 @@ import Foundation
 class NetworkManager: ObservableObject{
     
     @Published var rs = RequestSettings()
-
-    func getRequestSettings()->RequestSettings{
-        return rs
-    }
     
     @Published var newsCollection = [News]()
     

@@ -12,8 +12,8 @@ struct AppSettingsView: View {
         ZStack{
             Color(K.CustomColors.bluishWhiteToBlack)
                 .edgesIgnoringSafeArea(.all)
-            VStack{
-                
+            List{
+//                Toggle(isOn: <#T##Binding<Bool>#>, label: <#T##() -> View#>)
             }
         }
     }

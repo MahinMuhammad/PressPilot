@@ -28,7 +28,7 @@ struct MyProfileView: View {
     @State private var logoutSuccess = false
     @State private var email = ""
     
-    @ObservedObject var networkManager = NetworkManager()
+    @EnvironmentObject var networkManager: NetworkManager
     
     @EnvironmentObject var authService: AuthService
     
@@ -154,6 +154,7 @@ struct MyProfileView_Previews: PreviewProvider {
     static var previews: some View {
         MyProfileView()
             .environmentObject(AuthService())
+            .environmentObject(NetworkManager())
     }
 }
 

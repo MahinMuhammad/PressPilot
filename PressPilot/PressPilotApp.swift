@@ -41,8 +41,11 @@ struct PressPilotApp: App {
     var body: some Scene {
         WindowGroup {
             @ObservedObject var authService = AuthService()
+            @ObservedObject var networkManager = NetworkManager()
             MainView()
                 .environmentObject(authService)
+                .environmentObject(networkManager)
+            
         }
     }
 }
