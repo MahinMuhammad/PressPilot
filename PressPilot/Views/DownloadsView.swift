@@ -23,14 +23,14 @@
 
 import SwiftUI
 
-struct DownloadedView: View {
+struct DownloadsView: View {
     var body: some View {
         Text("DownloadedView")
     }
 }
 
-struct DownloadedView_Previews: PreviewProvider {
+struct DownloadsView_Previews: PreviewProvider {
     static var previews: some View {
-        DownloadedView()
+        DownloadsView()
     }
 }

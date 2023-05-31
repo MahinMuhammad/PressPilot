@@ -97,6 +97,10 @@ struct MyProfileView: View {
                         }
                         .foregroundColor(Color(UIColor.label))
                         .pickerStyle(.navigationLink)
+                        .onChange(of: networkManager.rs.selectedLanguage) {value in
+                            //commented out because data is automatically fetched while changing news tabview
+//                            self.networkManager.fetchData()
+                        }
                         
                         Picker(selection: $networkManager.rs.selectedCountry, label: PickerLabelView(imageName: "globe", title: "Country")) {
                             ForEach(networkManager.rs.countries) { country in
@@ -105,6 +109,10 @@ struct MyProfileView: View {
                         }
                         .foregroundColor(Color(UIColor.label))
                         .pickerStyle(.navigationLink)
+                        .onChange(of: networkManager.rs.selectedCountry) {value in
+                            //commented out because data is automatically fetched while changing news tabview
+//                            self.networkManager.fetchData()
+                        }
                     }
                     .scrollDisabled(true)
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))

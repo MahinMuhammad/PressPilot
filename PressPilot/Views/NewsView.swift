@@ -45,13 +45,13 @@ struct NewsView: View {
                                     .foregroundColor(Color(UIColor.label))
                                     .imageScale(.large)
                             }
-                            .transition(.asymmetric(insertion: .slide, removal: .move(edge: .leading)))
+                            .transition(.push(from: .trailing))
                             
                             
                             TextField("Search", text: $networkManager.rs.selectedKeyword)
                                 .frame(width: 300)
                                 .textFieldStyle(.roundedBorder)
-                                .transition(.asymmetric(insertion: .slide, removal: .move(edge: .leading)))
+                                .transition(.push(from: .trailing))
                             
                             Button{
                                 networkManager.fetchData()
@@ -60,7 +60,7 @@ struct NewsView: View {
                                     .fontWeight(.medium)
                                     .foregroundColor(Color(UIColor.label))
                             }
-                            .transition(.asymmetric(insertion: .slide, removal: .move(edge: .trailing)))
+                            .transition(.push(from: .trailing))
                         }
                         if !showSearchBox{
                             Picker(selection: $networkManager.rs.selectedLangOrCntry, label: OptionsPickerLabelView()) {
@@ -71,7 +71,7 @@ struct NewsView: View {
                             .frame(width: 35,height: 35)
                             .pickerStyle(.navigationLink)
                             .animation(.easeInOut(duration: 5), value: 0)
-                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .slide))
+                            .transition(.push(from: .leading))
                             .onChange(of: networkManager.rs.selectedLangOrCntry) {value in
                                 self.networkManager.fetchData()
                             }
@@ -81,7 +81,7 @@ struct NewsView: View {
                                     .cornerRadius(16.5)
                                     .foregroundColor(Color(UIColor.label))
                                     .animation(.easeInOut(duration: 5), value: 0)
-                                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .slide))
+                                    .transition(.push(from: .leading))
                                     .onChange(of: category.isSelected) {value in
                                         if value{
                                             networkManager.rs.unselectOtherFilter(id: category.id)
