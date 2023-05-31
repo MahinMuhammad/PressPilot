@@ -41,7 +41,7 @@ class NetworkManager: ObservableObject{
             if rs.isKewordSearchOn{
                 finaUrlString = "\(urlString)country=\(rs.selectedCountry)&pageSize=\(rs.pageSize)&q=\(rs.selectedKeyword)&apiKey=\(Config.apiKey)"
             }else{
-                finaUrlString = "\(urlString)language=\(rs.selectedCountry)&pageSize=\(rs.pageSize)&category=\(rs.selectedCategory())&apiKey=\(Config.apiKey)"
+                finaUrlString = "\(urlString)country=\(rs.selectedCountry)&pageSize=\(rs.pageSize)&category=\(rs.selectedCategory())&apiKey=\(Config.apiKey)"
             }
         }else{
             if rs.isKewordSearchOn{
@@ -66,7 +66,7 @@ class NetworkManager: ObservableObject{
                             let results = try decoder.decode(Result.self, from: safeData)
                             DispatchQueue.main.async {
                                 self.newsCollection = results.articles
-                                print("Data fetch successful")
+                                print("Data fetch successful with \(self.newsCollection.count) articles")
                             }
                         }catch{
                             print("Data fetch failed with error: \(error)")

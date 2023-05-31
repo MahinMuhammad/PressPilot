@@ -65,14 +65,16 @@ struct NewsView: View {
                         if !showSearchBox{
                             Picker(selection: $networkManager.rs.selectedLangOrCntry, label: OptionsPickerLabelView()) {
                                 ForEach(networkManager.rs.choicesLangOrCntry, id: \.self) {
-                                    Text($0)
+                                    Text("Search by \($0)").tag($0)
                                 }
                             }
                             .frame(width: 35,height: 35)
                             .pickerStyle(.navigationLink)
                             .animation(.easeInOut(duration: 5), value: 0)
                             .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .slide))
-                            
+                            .onChange(of: networkManager.rs.selectedLangOrCntry) {value in
+                                self.networkManager.fetchData()
+                            }
                             ForEach($networkManager.rs.newsCategoryCollection){ $category in
                                 Toggle(category.id, isOn: $category.isSelected)
                                     .toggleStyle(.button)
