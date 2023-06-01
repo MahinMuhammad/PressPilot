@@ -26,17 +26,15 @@ import FirebaseAuth
 
 struct MyProfileView: View {
     @State private var logoutSuccess = false
+    @State private var firstName = ""
+    @State private var lastName = ""
     @State private var email = ""
     
     @EnvironmentObject var networkManager: NetworkManager
     
     @EnvironmentObject var authService: AuthService
     
-    init() {
-        // Modify UITableView appearance
-        UITableView.appearance().separatorStyle = .none
-        UITableView.appearance().tableFooterView = UIView()
-    }
+    @EnvironmentObject var dataService: DataService
     
     var body: some View {
         NavigationStack{
@@ -150,6 +148,9 @@ struct MyProfileView: View {
                         SignInView()
                     }
                 }
+                if dataService.email == ""{
+                    LoadingView(isAnimating: .constant(true), style: .large)
+                }
             }
             .navigationDestination(isPresented: Binding<Bool>(get: {return !authService.signedIn}, set: { p in authService.signedIn = p})) {
                 SignInView()
@@ -163,6 +164,7 @@ struct MyProfileView_Previews: PreviewProvider {
         MyProfileView()
             .environmentObject(AuthService())
             .environmentObject(NetworkManager())
+            .environmentObject(DataService())
     }
 }
 

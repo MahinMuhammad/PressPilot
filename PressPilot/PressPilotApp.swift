@@ -47,9 +47,11 @@ struct PressPilotApp: App {
         WindowGroup {
             @ObservedObject var authService = AuthService()
             @ObservedObject var networkManager = NetworkManager()
+            @ObservedObject var dataService:DataService = authService.dataService
             MainView()
                 .environmentObject(authService)
                 .environmentObject(networkManager)
+                .environmentObject(dataService)
                 .onAppear {
                     isDarkModeOn = (currentSystemScheme == .dark)
                 }

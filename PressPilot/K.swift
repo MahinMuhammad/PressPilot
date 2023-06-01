@@ -31,4 +31,11 @@ struct K{
         static let bluishWhiteToBlack = "MyProfileBGColor"
         static let whiteToDarkGray = "ProfileInfoColor"
     }
+    
+    struct FStore{
+        static let userCollectionName = "users"
+        static let firstNameField = "firstName"
+        static let lastNameField = "lastName"
+        static let emailField = "email"
+    }
 }

@@ -31,158 +31,164 @@ struct NewsView: View {
     
     var body: some View {
         NavigationStack{
-            VStack {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack{
-                        if showSearchBox{
-                            Button{
-                                withAnimation(.spring()) {
-                                    showSearchBox = false
+            ZStack{
+                VStack {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack{
+                            if showSearchBox{
+                                Button{
+                                    withAnimation(.spring()) {
+                                        showSearchBox = false
+                                    }
+                                    networkManager.rs.selectedKeyword = ""
+                                    networkManager.rs.isKewordSearchOn = false
+                                    networkManager.fetchData()
+                                }label: {
+                                    Image(systemName: "chevron.backward")
+                                        .foregroundColor(Color(UIColor.label))
+                                        .imageScale(.large)
                                 }
-                                networkManager.rs.selectedKeyword = ""
-                                networkManager.rs.isKewordSearchOn = false
-                                networkManager.fetchData()
-                            }label: {
-                                Image(systemName: "chevron.backward")
-                                    .foregroundColor(Color(UIColor.label))
-                                    .imageScale(.large)
-                            }
-                            .transition(.push(from: .trailing))
-                            
-                            
-                            TextField("Search", text: $networkManager.rs.selectedKeyword)
-                                .frame(width: 300)
-                                .textFieldStyle(.roundedBorder)
                                 .transition(.push(from: .trailing))
+                                
+                                
+                                TextField("Search", text: $networkManager.rs.selectedKeyword)
+                                    .frame(width: 300)
+                                    .textFieldStyle(.roundedBorder)
+                                    .transition(.push(from: .trailing))
+                                
+                                Button{
+                                    networkManager.fetchData()
+                                }label: {
+                                    Image(systemName: "checkmark")
+                                        .fontWeight(.medium)
+                                        .foregroundColor(Color(UIColor.label))
+                                }
+                                .transition(.push(from: .trailing))
+                            }
+                            if !showSearchBox{
+                                Picker(selection: $networkManager.rs.selectedLangOrCntry, label: OptionsPickerLabelView()) {
+                                    ForEach(networkManager.rs.choicesLangOrCntry, id: \.self) {
+                                        Text("Search by \($0)").tag($0)
+                                    }
+                                }
+                                .frame(width: 35,height: 35)
+                                .pickerStyle(.navigationLink)
+                                .animation(.easeInOut(duration: 5), value: 0)
+                                .transition(.push(from: .leading))
+                                .onChange(of: networkManager.rs.selectedLangOrCntry) {value in
+                                    self.networkManager.fetchData()
+                                }
+                                ForEach($networkManager.rs.newsCategoryCollection){ $category in
+                                    Toggle(category.id, isOn: $category.isSelected)
+                                        .toggleStyle(.button)
+                                        .cornerRadius(16.5)
+                                        .foregroundColor(Color(UIColor.label))
+                                        .animation(.easeInOut(duration: 5), value: 0)
+                                        .transition(.push(from: .leading))
+                                        .onChange(of: category.isSelected) {value in
+                                            if value{
+                                                networkManager.rs.unselectOtherFilter(id: category.id)
+                                                self.networkManager.fetchData()
+                                            }
+                                        }
+                                }
+                            }
+                        }
+                        .padding(.leading, 16)
+                        .padding(.top, 24)
+                    }
+                    List(networkManager.newsCollection){news in
+                        HStack(alignment:.top){
+                            AsyncImage(url: news.imageUrl) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 128, height: 128)
+                                    .clipped()
+                                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                            } placeholder: {
+                                Image(systemName: "photo")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 128, height: 128)
+                                    .clipped()
+                                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                            }
                             
+                            VStack(alignment: .trailing) {
+                                ZStack {
+                                    NavigationLink(destination: DetailView(url: news.url)){
+                                        EmptyView()
+                                    }
+                                    .opacity(0.0)
+                                    .buttonStyle(PlainButtonStyle())
+                                    
+                                    Text(news.title)
+                                        .bold()
+                                        .padding(.leading, 10)
+                                        .lineLimit(3)
+                                }
+                                
+                                Button {
+                                    print("Saved \(news.title)")
+                                } label: {
+                                    Image(systemName: "bookmark")
+                                }
+                                .buttonStyle(.borderless)
+                                .padding()
+                            }
+                            
+                        }
+                        .listRowSeparator(.hidden)
+                    }
+                    .toolbar(content: {
+                        ToolbarItemGroup(placement: .navigation) {
+                            Image(systemName: "photo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 32)
+                            Text("PressPilot")
+                                .fontWeight(.bold)
+                                .font(.system(size: 24))
+                        }
+                        ToolbarItemGroup {
                             Button{
-                                networkManager.fetchData()
+                                showAppSettings = true
                             }label: {
-                                Image(systemName: "checkmark")
+                                Image(systemName: "gearshape")
                                     .fontWeight(.medium)
                                     .foregroundColor(Color(UIColor.label))
                             }
-                            .transition(.push(from: .trailing))
-                        }
-                        if !showSearchBox{
-                            Picker(selection: $networkManager.rs.selectedLangOrCntry, label: OptionsPickerLabelView()) {
-                                ForEach(networkManager.rs.choicesLangOrCntry, id: \.self) {
-                                    Text("Search by \($0)").tag($0)
-                                }
-                            }
-                            .frame(width: 35,height: 35)
-                            .pickerStyle(.navigationLink)
-                            .animation(.easeInOut(duration: 5), value: 0)
-                            .transition(.push(from: .leading))
-                            .onChange(of: networkManager.rs.selectedLangOrCntry) {value in
-                                self.networkManager.fetchData()
-                            }
-                            ForEach($networkManager.rs.newsCategoryCollection){ $category in
-                                Toggle(category.id, isOn: $category.isSelected)
-                                    .toggleStyle(.button)
-                                    .cornerRadius(16.5)
-                                    .foregroundColor(Color(UIColor.label))
-                                    .animation(.easeInOut(duration: 5), value: 0)
-                                    .transition(.push(from: .leading))
-                                    .onChange(of: category.isSelected) {value in
-                                        if value{
-                                            networkManager.rs.unselectOtherFilter(id: category.id)
-                                            self.networkManager.fetchData()
-                                        }
-                                    }
-                            }
-                        }
-                    }
-                    .padding(.leading, 16)
-                    .padding(.top, 24)
-                }
-                List(networkManager.newsCollection){news in
-                    HStack(alignment:.top){
-                        AsyncImage(url: news.imageUrl) { image in
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 128, height: 128)
-                                .clipped()
-                                .clipShape(RoundedRectangle(cornerRadius: 16))
-                        } placeholder: {
-                            Image(systemName: "photo")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 128, height: 128)
-                                .clipped()
-                                .clipShape(RoundedRectangle(cornerRadius: 16))
-                        }
-                        
-                        VStack(alignment: .trailing) {
-                            ZStack {
-                                NavigationLink(destination: DetailView(url: news.url)){
-                                    EmptyView()
-                                }
-                                .opacity(0.0)
-                                .buttonStyle(PlainButtonStyle())
+                            .sheet(isPresented: $showAppSettings, content: AppSettingsView.init)
+                            
+                            Button{
                                 
-                                Text(news.title)
-                                    .bold()
-                                    .padding(.leading, 10)
-                                    .lineLimit(3)
+                            }label: {
+                                Image(systemName: "bell")
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color(UIColor.label))
                             }
-                            
-                            Button {
-                                print("Saved \(news.title)")
-                            } label: {
-                                Image(systemName: "bookmark")
+                            Button{
+                                withAnimation(.spring()) {
+                                    showSearchBox = true
+                                }
+                                networkManager.rs.isKewordSearchOn = true
+                            }label: {
+                                Image(systemName: "magnifyingglass")
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color(UIColor.label))
                             }
-                            .buttonStyle(.borderless)
-                            .padding()
                         }
-                        
+                    })
+                    .padding(.top, 24)
+                    .listStyle(.plain)
+                    .refreshable {
+                        self.networkManager.fetchData()
                     }
-                    .listRowSeparator(.hidden)
                 }
-                .toolbar(content: {
-                    ToolbarItemGroup(placement: .navigation) {
-                        Image(systemName: "photo")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 32)
-                        Text("PressPilot")
-                            .fontWeight(.bold)
-                            .font(.system(size: 24))
-                    }
-                    ToolbarItemGroup {
-                        Button{
-                            showAppSettings = true
-                        }label: {
-                            Image(systemName: "gearshape")
-                                .fontWeight(.medium)
-                                .foregroundColor(Color(UIColor.label))
-                        }
-                        .sheet(isPresented: $showAppSettings, content: AppSettingsView.init)
-                        
-                        Button{
-                            
-                        }label: {
-                            Image(systemName: "bell")
-                                .fontWeight(.medium)
-                                .foregroundColor(Color(UIColor.label))
-                        }
-                        Button{
-                            withAnimation(.spring()) {
-                                showSearchBox = true
-                            }
-                            networkManager.rs.isKewordSearchOn = true
-                        }label: {
-                            Image(systemName: "magnifyingglass")
-                                .fontWeight(.medium)
-                                .foregroundColor(Color(UIColor.label))
-                        }
-                    }
-                })
-                .padding(.top, 24)
-                .listStyle(.plain)
-                .refreshable {
-                    self.networkManager.fetchData()
+                
+                if networkManager.newsCollection.count == 0{
+                    LoadingView(isAnimating: .constant(true), style: .large)
                 }
             }
         }

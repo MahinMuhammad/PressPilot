@@ -59,5 +59,6 @@ struct MainView_Previews: PreviewProvider {
         MainView()
             .environmentObject(AuthService())
             .environmentObject(NetworkManager())
+            .environmentObject(DataService())
     }
 }

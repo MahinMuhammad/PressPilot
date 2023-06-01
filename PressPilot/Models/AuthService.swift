@@ -30,7 +30,7 @@ class AuthService : ObservableObject {
     @Published var signedIn:Bool
     @Published var errorMessage:String = ""
     
-    var dataService:DataService = DataService()
+    @Published var dataService:DataService = DataService()
     
     init() {
         if Auth.auth().currentUser != nil{
@@ -60,6 +60,7 @@ class AuthService : ObservableObject {
                 self.errorMessage = e.localizedDescription
             }else{
                 print("User signIn successfull!")
+                self.dataService.readUserData()
                 self.signedIn = true
             }
         }
