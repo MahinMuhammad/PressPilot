@@ -60,7 +60,7 @@ class AuthService : ObservableObject {
                 self.errorMessage = e.localizedDescription
             }else{
                 print("User signIn successfull!")
-                self.dataService.readUserData()
+//                self.dataService.readUserData()
                 self.signedIn = true
             }
         }

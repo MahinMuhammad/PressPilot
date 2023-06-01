@@ -59,13 +59,13 @@ struct MyProfileView: View {
                                             .frame(height: 100)
                                     }
                                 
-                                Text("Mahinur Rahman")
+                                Text("\(dataService.userData?.firstName ?? "") \(dataService.userData?.lastname ?? "")")
                                     .bold()
                                     .font(.system(size: 23))
                                     .padding(.top)
                                     .padding(.bottom, 1)
                                 
-                                Text("1@2.com")
+                                Text(dataService.userData?.email ?? "")
                                     .bold()
                                     .font(.system(size: 15))
                                     .tint(Color(UIColor.darkGray))
@@ -148,13 +148,20 @@ struct MyProfileView: View {
                         SignInView()
                     }
                 }
-                if dataService.email == ""{
-                    LoadingView(isAnimating: .constant(true), style: .large)
+                if dataService.userData == nil{
+                    ZStack{
+                        Color(K.CustomColors.bluishWhiteToBlack)
+                            .edgesIgnoringSafeArea(.all)
+                        LoadingView(isAnimating: .constant(true), style: .large)
+                    }
                 }
             }
             .navigationDestination(isPresented: Binding<Bool>(get: {return !authService.signedIn}, set: { p in authService.signedIn = p})) {
                 SignInView()
             }
+        }
+        .onChange(of: authService.signedIn) { newValue in
+            self.dataService.readUserData()
         }
     }
 }
