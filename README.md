@@ -1,6 +1,3 @@
-# TechEveryday
-iOS app that fetch data from HackerNews website
-
 <!-- Copyright 2023 Md. Mahinur Rahman-->
 <!---->
 <!-- Licensed under the Apache License, Version 2.0 (the "License");-->
