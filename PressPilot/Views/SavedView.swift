@@ -62,8 +62,22 @@ struct SavedView: View {
                                         .padding(.leading, 10)
                                         .lineLimit(3)
                                 }
+                                Button {
+                                    if dataService.isSaved(newsURl: news.url){
+                                        dataService.deleteSaveNews(email: dataService.userData?.email, url: news.url)
+                                    }else{
+                                        dataService.saveNews(email: dataService.userData?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
+                                    }
+                                } label: {
+                                    if dataService.isSaved(newsURl: news.url){
+                                        Image(systemName: "bookmark.fill")
+                                    }else{
+                                        Image(systemName: "bookmark")
+                                    }
+                                }
+                                .buttonStyle(.borderless)
+                                .padding()
                             }
-                            
                         }
                         .listRowSeparator(.hidden)
                     }

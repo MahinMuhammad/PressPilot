@@ -135,7 +135,7 @@ struct NewsView: View {
                                 Button {
                                     if authService.signedIn{
                                         if dataService.isSaved(newsURl: news.url){
-                                            //code to delete save news
+                                            dataService.deleteSaveNews(email: dataService.userData?.email, url: news.url)
                                         }else{
                                             dataService.saveNews(email: dataService.userData?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
                                         }

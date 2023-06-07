@@ -65,6 +65,31 @@ class DataService: ObservableObject{
         }
     }
     
+    func deleteSaveNews(email:String?, url:String){
+        let firestoreCollection = db.collection(K.FStore.savedNewsCollectionName)
+        
+        if let currentUserEmail = Auth.auth().currentUser?.email{
+            let newsCollection = firestoreCollection.whereField(K.FStore.emailField, isEqualTo: currentUserEmail)
+            
+            let query = newsCollection.whereField(K.FStore.urlField, isEqualTo: url)
+            query.getDocuments { (querySnapshot, error) in
+                if let e = error {
+                    print("Error getting news: \(e)")
+                }else{
+                    if let documents = querySnapshot?.documents{
+                        for document in documents {
+                            document.reference.delete()
+                        }
+                        print("unsaved news")
+                    }else{
+                        print("No news found")
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
     func fetchSavedNews(){
         self.newsCollection = []
         let firestoreCollection = db.collection(K.FStore.savedNewsCollectionName)
