@@ -12,11 +12,8 @@ import FirebaseFirestore
 class DataService: ObservableObject{
     let db = Firestore.firestore()
     
-    @Published var firstName:String = ""
-    @Published var lastName:String = ""
-    @Published var email:String = ""
-    
     @Published var userData:UserData?
+    @Published var newsCollection = [News]()
     
     func storeUserData(firstName:String, lastName:String, email:String){
         db.collection(K.FStore.userCollectionName).addDocument(data: [
@@ -52,17 +49,43 @@ class DataService: ObservableObject{
         }
     }
     
-    func saveNews(email:String ,title:String, url:String, urlToImage:String){
+    func saveNews(email:String? ,title:String, url:String, urlToImage:String?){
         db.collection(K.FStore.savedNewsCollectionName).addDocument(data: [
-            K.FStore.emailField : email,
+            K.FStore.emailField : email as Any,
             K.FStore.titleField : title,
             K.FStore.urlField : url,
-            K.FStore.urlToImageField : urlToImage
+            K.FStore.urlToImageField : urlToImage as Any
         ]){error in
             if let e = error{
                 print("Failed to save news with error: \(e)")
             }else{
                 print("News saved successful")
+            }
+        }
+    }
+    
+    func fetchSavedNews(){
+        self.newsCollection = []
+        let firestoreCollection = db.collection(K.FStore.savedNewsCollectionName)
+        
+        if let currentUserEmail = Auth.auth().currentUser?.email{
+            let newsCollection = firestoreCollection.whereField(K.FStore.emailField, isEqualTo: currentUserEmail)
+            newsCollection.getDocuments { querySnapshot, error in
+                if let e = error{
+                    print("Failed to retrive saved news with error: \(e)")
+                }else{
+                    print("Retrived saved news successfully")
+                    if let snapshotDocuments = querySnapshot?.documents{
+                        for doc in snapshotDocuments{
+                            let data = doc.data()
+                            if let title = data[K.FStore.titleField] as? String, let url = data[K.FStore.urlField] as? String{
+                                let urlToImage = data[K.FStore.urlToImageField] as? String
+                                let news = News(title: title, url: url, urlToImage: urlToImage)
+                                self.newsCollection.append(news)
+                            }
+                        }
+                    }
+                }
             }
         }
     }

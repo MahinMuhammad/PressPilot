@@ -158,8 +158,15 @@ struct MyProfileView: View {
                 SignInView()
             }
         }
+        .onAppear{
+            if authService.signedIn{
+                self.dataService.readUserData()
+            }
+        }
         .onChange(of: authService.signedIn) { newValue in
-            self.dataService.readUserData()
+            if newValue{
+                self.dataService.readUserData()
+            }
         }
     }
 }

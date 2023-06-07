@@ -134,7 +134,7 @@ struct NewsView: View {
                                 
                                 Button {
                                     if authService.signedIn{
-                                        dataService.saveNews(email: dataService.userData?.email ?? "", title: news.title, url: news.url, urlToImage: news.urlToImage ?? "")
+                                        dataService.saveNews(email: dataService.userData?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
                                     }else{
                                         showingAlertToSignIn = true
                                     }
