@@ -37,5 +37,10 @@ struct K{
         static let firstNameField = "firstName"
         static let lastNameField = "lastName"
         static let emailField = "email"
+        
+        static let savedNewsCollectionName = "savedNews"
+        static let titleField = "title"
+        static let urlField = "url"
+        static let urlToImageField = "urlToImage"
     }
 }

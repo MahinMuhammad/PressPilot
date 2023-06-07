@@ -31,9 +31,7 @@ struct MyProfileView: View {
     @State private var email = ""
     
     @EnvironmentObject var networkManager: NetworkManager
-    
     @EnvironmentObject var authService: AuthService
-    
     @EnvironmentObject var dataService: DataService
     
     var body: some View {

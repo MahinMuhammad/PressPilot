@@ -51,4 +51,19 @@ class DataService: ObservableObject{
             }
         }
     }
+    
+    func saveNews(email:String ,title:String, url:String, urlToImage:String){
+        db.collection(K.FStore.savedNewsCollectionName).addDocument(data: [
+            K.FStore.emailField : email,
+            K.FStore.titleField : title,
+            K.FStore.urlField : url,
+            K.FStore.urlToImageField : urlToImage
+        ]){error in
+            if let e = error{
+                print("Failed to save news with error: \(e)")
+            }else{
+                print("News saved successful")
+            }
+        }
+    }
 }

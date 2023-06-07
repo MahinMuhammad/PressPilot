@@ -26,8 +26,11 @@ import SwiftUI
 struct NewsView: View {
     @State private var showSearchBox = false
     @EnvironmentObject var networkManager: NetworkManager
+    @EnvironmentObject var authService: AuthService
+    @EnvironmentObject var dataService: DataService
     
     @State var showAppSettings = false
+    @State private var showingAlertToSignIn = false
     
     var body: some View {
         NavigationStack{
@@ -130,10 +133,17 @@ struct NewsView: View {
                                 }
                                 
                                 Button {
-                                    print("Saved \(news.title)")
+                                    if authService.signedIn{
+                                        dataService.saveNews(email: dataService.userData?.email ?? "", title: news.title, url: news.url, urlToImage: news.urlToImage ?? "")
+                                    }else{
+                                        showingAlertToSignIn = true
+                                    }
                                 } label: {
                                     Image(systemName: "bookmark")
                                 }
+                                .alert("SignIn to Save News", isPresented: $showingAlertToSignIn) {
+                                            Button("OK", role: .cancel) { }
+                                        }
                                 .buttonStyle(.borderless)
                                 .padding()
                             }
@@ -203,6 +213,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NewsView()
             .environmentObject(NetworkManager())
+            .environmentObject(AuthService())
     }
 }
 

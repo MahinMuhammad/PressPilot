@@ -22,7 +22,6 @@
  */
 
 import SwiftUI
-import LoadingButton
 
 struct SignUpView: View {
     @State private var firstName:String = "han"
