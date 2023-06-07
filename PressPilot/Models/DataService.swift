@@ -30,6 +30,7 @@ class DataService: ObservableObject{
     }
     
     func readUserData(){
+        self.userData = nil
         let firestoreCollection = db.collection(K.FStore.userCollectionName)
         
         if let currentUserEmail = Auth.auth().currentUser?.email{

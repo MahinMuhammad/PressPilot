@@ -26,8 +26,8 @@ import FloatingLabelTextFieldSwiftUI
 
 struct SignInView: View {
     
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @State private var email:String = "2@2.com"
+    @State private var password:String = "123456"
     @State private var isRememberOn:Bool = false
     
     @State var emailWarning:String?

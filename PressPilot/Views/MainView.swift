@@ -24,6 +24,8 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject var authService: AuthService
+    @EnvironmentObject var dataService: DataService
     
     var body: some View {
         TabView{
@@ -50,6 +52,12 @@ struct MainView: View {
                     Label("My Profile", systemImage: "person")
                 }
                 .toolbarBackground(Color("MyProfileBGColor"), for: .navigationBar, .tabBar)
+        }
+        .onChange(of: authService.signedIn) { newValue in
+            if newValue{
+                self.dataService.readUserData()
+                self.dataService.fetchSavedNews()
+            }
         }
     }
 }

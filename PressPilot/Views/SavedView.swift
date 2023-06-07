@@ -85,11 +85,6 @@ struct SavedView: View {
                 self.dataService.fetchSavedNews()
             }
         }
-        .onChange(of: authService.signedIn) { newValue in
-            if newValue{
-                self.dataService.fetchSavedNews()
-            }
-        }
     }
 }
 
