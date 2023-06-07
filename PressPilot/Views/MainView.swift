@@ -58,10 +58,8 @@ struct MainView: View {
             self.dataService.fetchSavedNews()
         }
         .onChange(of: authService.signedIn) { newValue in
-            if newValue{
-                self.dataService.readUserData()
-                self.dataService.fetchSavedNews()
-            }
+            self.dataService.readUserData()
+            self.dataService.fetchSavedNews()
         }
     }
 }
