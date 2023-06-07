@@ -90,4 +90,13 @@ class DataService: ObservableObject{
             }
         }
     }
+    
+    func isSaved(newsURl:String)->Bool{
+        for news in newsCollection{
+            if news.url == newsURl{
+                return true
+            }
+        }
+        return false
+    }
 }

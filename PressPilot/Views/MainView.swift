@@ -53,6 +53,10 @@ struct MainView: View {
                 }
                 .toolbarBackground(Color("MyProfileBGColor"), for: .navigationBar, .tabBar)
         }
+        .onAppear{
+            self.dataService.readUserData()
+            self.dataService.fetchSavedNews()
+        }
         .onChange(of: authService.signedIn) { newValue in
             if newValue{
                 self.dataService.readUserData()
