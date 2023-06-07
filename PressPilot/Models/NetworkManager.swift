@@ -50,6 +50,7 @@ class NetworkManager: ObservableObject{
     }
     
     func fetchData(){
+        self.newsCollection = [] //just to make newsCollection empty and show loading view each time fetchData called
         if let url = URL(string: getURL()){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
