@@ -31,6 +31,8 @@ struct MyProfileView: View {
     @State private var lastName = ""
     @State private var email = ""
     
+    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+    
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var authService: AuthService
     @EnvironmentObject var dataService: DataService
@@ -122,8 +124,11 @@ struct MyProfileView: View {
                         .tint(Color(UIColor.label))
                         .alert("Remove all saved news", isPresented: $showRemoveAllNewsAlert) {
                             Button("No", role: .cancel) { }
-                            Button("Yes", role: .destructive) { dataService.deleteAllSaveNews() }
-                                }
+                            Button("Yes", role: .destructive) {
+                                dataService.deleteAllSaveNews()
+                                impactMed.impactOccurred()
+                            }
+                        }
                         
                         HStack{
                             Image(systemName: "rectangle.and.arrow.up.right.and.arrow.down.left.slash")
