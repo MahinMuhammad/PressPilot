@@ -31,8 +31,6 @@ struct MyProfileView: View {
     @State private var lastName = ""
     @State private var email = ""
     
-    let impactMed = UIImpactFeedbackGenerator(style: .medium)
-    
     @EnvironmentObject var networkManager: NetworkManager
     @EnvironmentObject var authService: AuthService
     @EnvironmentObject var dataService: DataService
@@ -126,6 +124,7 @@ struct MyProfileView: View {
                             Button("No", role: .cancel) { }
                             Button("Yes", role: .destructive) {
                                 dataService.deleteAllSaveNews()
+                                let impactMed = UIImpactFeedbackGenerator(style: .heavy)
                                 impactMed.impactOccurred()
                             }
                         }

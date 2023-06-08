@@ -142,6 +142,8 @@ struct NewsView: View {
                                         }else{
                                             dataService.saveNews(email: dataService.userData?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
                                         }
+                                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                        impactMed.impactOccurred()
                                     }else{
                                         showingAlertToSignIn = true
                                     }
