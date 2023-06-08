@@ -32,6 +32,8 @@ struct NewsView: View {
     @State var showAppSettings = false
     @State private var showingAlertToSignIn = false
     
+    @State var showSavedState = false
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -136,6 +138,7 @@ struct NewsView: View {
                                     if authService.signedIn{
                                         if dataService.isSaved(newsURl: news.url){
                                             dataService.deleteSaveNews(email: dataService.userData?.email, url: news.url)
+                                            
                                         }else{
                                             dataService.saveNews(email: dataService.userData?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
                                         }
@@ -143,11 +146,7 @@ struct NewsView: View {
                                         showingAlertToSignIn = true
                                     }
                                 } label: {
-                                    if dataService.isSaved(newsURl: news.url){
-                                        Image(systemName: "bookmark.fill")
-                                    }else{
-                                        Image(systemName: "bookmark")
-                                    }
+                                    Image(systemName: dataService.isSaved(newsURl: news.url) == true ? "bookmark.fill" : "bookmark")
                                 }
                                 .alert("SignIn to Save News", isPresented: $showingAlertToSignIn) {
                                             Button("OK", role: .cancel) { }

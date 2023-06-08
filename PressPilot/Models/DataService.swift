@@ -61,6 +61,7 @@ class DataService: ObservableObject{
                 print("Failed to save news with error: \(e)")
             }else{
                 print("News saved successful")
+                self.fetchSavedNews()
             }
         }
     }
@@ -80,6 +81,7 @@ class DataService: ObservableObject{
                         for document in documents {
                             document.reference.delete()
                         }
+                        self.fetchSavedNews()
                         print("unsaved news")
                     }else{
                         print("No news found")

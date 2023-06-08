@@ -69,11 +69,7 @@ struct SavedView: View {
                                         dataService.saveNews(email: dataService.userData?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
                                     }
                                 } label: {
-                                    if dataService.isSaved(newsURl: news.url){
-                                        Image(systemName: "bookmark.fill")
-                                    }else{
-                                        Image(systemName: "bookmark")
-                                    }
+                                    Image(systemName: dataService.isSaved(newsURl: news.url) == true ? "bookmark.fill" : "bookmark")
                                 }
                                 .buttonStyle(.borderless)
                                 .padding()
