@@ -25,6 +25,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct MyProfileView: View {
+    @State private var showRemoveAllNewsAlert = false
     @State private var logoutSuccess = false
     @State private var firstName = ""
     @State private var lastName = ""
@@ -93,10 +94,6 @@ struct MyProfileView: View {
                         }
                         .foregroundColor(Color(UIColor.label))
                         .pickerStyle(.navigationLink)
-                        .onChange(of: networkManager.rs.selectedLanguage) {value in
-                            //commented out because data is automatically fetched while changing news tabview
-//                            self.networkManager.fetchData()
-                        }
                         
                         Picker(selection: $networkManager.rs.selectedCountry, label: PickerLabelView(imageName: "globe", title: "Country")) {
                             ForEach(networkManager.rs.countries) { country in
@@ -105,24 +102,28 @@ struct MyProfileView: View {
                         }
                         .foregroundColor(Color(UIColor.label))
                         .pickerStyle(.navigationLink)
-                        .onChange(of: networkManager.rs.selectedCountry) {value in
-                            //commented out because data is automatically fetched while changing news tabview
-//                            self.networkManager.fetchData()
-                        }
                     }
                     .scrollDisabled(true)
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     
                     List{
-                        
-                        HStack{
-                            Image(systemName: "bookmark.slash")
-                            Text("Remove saved news")
-                            Spacer()
-                            Image(systemName: "chevron.forward")
-                                .foregroundColor(Color(UIColor.lightGray))
-                                .imageScale(.small)
+                        Button{
+                            showRemoveAllNewsAlert = true
+                        }label: {
+                            HStack{
+                                Image(systemName: "bookmark.slash")
+                                Text("Remove saved news")
+                                Spacer()
+                                Image(systemName: "chevron.forward")
+                                    .foregroundColor(Color(UIColor.lightGray))
+                                    .imageScale(.small)
+                            }
                         }
+                        .tint(Color(UIColor.label))
+                        .alert("Remove all saved news", isPresented: $showRemoveAllNewsAlert) {
+                            Button("No", role: .cancel) { }
+                            Button("Yes", role: .destructive) { dataService.deleteAllSaveNews() }
+                                }
                         
                         HStack{
                             Image(systemName: "rectangle.and.arrow.up.right.and.arrow.down.left.slash")

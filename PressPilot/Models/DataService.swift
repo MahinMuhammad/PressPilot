@@ -66,13 +66,13 @@ class DataService: ObservableObject{
         }
     }
     
-    func deleteSaveNews(email:String?, url:String){
+    func deleteSaveNews(url:String){
         let firestoreCollection = db.collection(K.FStore.savedNewsCollectionName)
         
         if let currentUserEmail = Auth.auth().currentUser?.email{
-            let newsCollection = firestoreCollection.whereField(K.FStore.emailField, isEqualTo: currentUserEmail)
+            let newsCollectionByEmail = firestoreCollection.whereField(K.FStore.emailField, isEqualTo: currentUserEmail)
             
-            let query = newsCollection.whereField(K.FStore.urlField, isEqualTo: url)
+            let query = newsCollectionByEmail.whereField(K.FStore.urlField, isEqualTo: url)
             query.getDocuments { (querySnapshot, error) in
                 if let e = error {
                     print("Error getting news: \(e)")
@@ -83,6 +83,30 @@ class DataService: ObservableObject{
                         }
                         self.fetchSavedNews()
                         print("unsaved news")
+                    }else{
+                        print("No news found")
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
+    func deleteAllSaveNews(){
+        let firestoreCollection = db.collection(K.FStore.savedNewsCollectionName)
+
+        if let currentUserEmail = Auth.auth().currentUser?.email{
+            let query = firestoreCollection.whereField(K.FStore.emailField, isEqualTo: currentUserEmail)
+            query.getDocuments { (querySnapshot, error) in
+                if let e = error {
+                    print("Error getting news: \(e)")
+                }else{
+                    if let documents = querySnapshot?.documents{
+                        for document in documents {
+                            document.reference.delete()
+                        }
+                        self.fetchSavedNews()
+                        print("unsaved all news")
                     }else{
                         print("No news found")
                         return

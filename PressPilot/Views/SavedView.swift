@@ -64,7 +64,7 @@ struct SavedView: View {
                                 }
                                 Button {
                                     if dataService.isSaved(newsURl: news.url){
-                                        dataService.deleteSaveNews(email: dataService.userData?.email, url: news.url)
+                                        dataService.deleteSaveNews(url: news.url)
                                     }else{
                                         dataService.saveNews(email: dataService.userData?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
                                     }
