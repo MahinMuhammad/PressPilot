@@ -7,8 +7,32 @@
 
 import SwiftUI
 
+// Our custom view modifier to track rotation and
+// call our action
+struct DeviceRotationViewModifier: ViewModifier {
+    let action: (UIDeviceOrientation) -> Void
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear()
+            .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+                action(UIDevice.current.orientation)
+            }
+    }
+}
+
+// A View wrapper to make the modifier easier to use
+extension View {
+    func onRotate(perform action: @escaping (UIDeviceOrientation) -> Void) -> some View {
+        self.modifier(DeviceRotationViewModifier(action: action))
+    }
+}
+
 struct AppSettingsView: View {
     @EnvironmentObject var networkManager: NetworkManager
+    @Environment(\.dismiss) var dismiss
+    
+    @State private var orientation = UIDeviceOrientation.unknown
     
     @AppStorage("appTheme") private var isDarkModeOn = false
     
@@ -48,7 +72,35 @@ struct AppSettingsView: View {
                     }
                     .padding()
                     .padding(.top,50)
+                
+                if orientation.isLandscape{
+                    RoundedRectangle(cornerRadius: 25)
+                        .frame(height: 80)
+                        .foregroundColor(Color(UIColor.systemBackground))
+                        .padding()
+                        .overlay{
+                            Button{
+                                dismiss()
+                            }label: {
+                                Text("Go Back")
+                                    .fontWeight(.medium)
+                                    .font(.system(size: 22))
+                                    .tint(Color(UIColor.label))
+                                    .frame(minWidth: 0, maxWidth: .infinity)
+                                    .frame(height: 55)
+                                    .overlay{
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke(Color(UIColor.label), lineWidth: 1)
+                                    }
+                                    .padding(25)
+                            }
+                        }
+                }
+                
                 Spacer()
+            }
+            .onRotate { newOrientation in
+                orientation = newOrientation
             }
         }
         .colorScheme(isDarkModeOn ? .dark : .light)
