@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000A76722A3346E20052A3E8 /* DeviceRotationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A76712A3346E20052A3E8 /* DeviceRotationViewModifier.swift */; };
 		0026E2D72A23A44F00F0308D /* RequestSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0026E2D62A23A44F00F0308D /* RequestSettings.swift */; };
 		00447A4E2A285A77001BAB02 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00447A4D2A285A77001BAB02 /* LoadingView.swift */; };
 		00475F6C2A0AB8A200CA8227 /* PressPilotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00475F6B2A0AB8A200CA8227 /* PressPilotApp.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000A76712A3346E20052A3E8 /* DeviceRotationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRotationViewModifier.swift; sourceTree = "<group>"; };
 		0026E2D62A23A44F00F0308D /* RequestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSettings.swift; sourceTree = "<group>"; };
 		00447A4D2A285A77001BAB02 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		00475F682A0AB8A200CA8227 /* PressPilot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PressPilot.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +158,7 @@
 				009FDCFE2A11386D0088F44B /* FormElements.swift */,
 				006DB0F02A1295E70097E567 /* DownloadsView.swift */,
 				00482EBA2A275ACD00AAC89A /* AppSettingsView.swift */,
+				000A76712A3346E20052A3E8 /* DeviceRotationViewModifier.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 			files = (
 				00E9DE532A0EC1C300C440CF /* MyProfileView.swift in Sources */,
 				00E9DE572A0F9F4E00C440CF /* WebView.swift in Sources */,
+				000A76722A3346E20052A3E8 /* DeviceRotationViewModifier.swift in Sources */,
 				00E9DE552A0F9E6300C440CF /* DetailView.swift in Sources */,
 				00447A4E2A285A77001BAB02 /* LoadingView.swift in Sources */,
 				009E0E512A16635200ECAE73 /* K.swift in Sources */,
