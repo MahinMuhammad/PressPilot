@@ -47,7 +47,9 @@
 
 <ul>
     <li>Displays news from all over the world.</li>
+    <li>Lets user save news on cloud for watch later.</li>
     <li>Filter news list by category such as health, sience, business and so on.</li>
+    <li>Filter news list for specific country or language (ability to change language or country comes with signup).</li>
     <li>Search news with keyword</li>
     <li>Allows user to signin or signup using firebase Auth.</li>
     <li>Stores user data using Firestore.</li>
@@ -59,7 +61,6 @@
 <h3>Future Updates</h3>
   In the next update, I plan to have the following:
 <ul>
-    <li>Lets user save news on cloud for watch later.</li>
     <li>Lets user download news on device for watch later offline.</li>
     <li>Share news over social media.</li>
     <li>Hide news or stop receiving news from perticular source.</li>
