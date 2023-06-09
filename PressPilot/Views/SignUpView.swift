@@ -24,10 +24,10 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @State private var firstName:String = "han"
-    @State private var lastName:String = "ban"
-    @State private var email:String = "2@2.com"
-    @State private var password:String = "123456"
+    @State private var firstName:String = ""
+    @State private var lastName:String = ""
+    @State private var email:String = ""
+    @State private var password:String = ""
     
     @State var firstNameWarning:String?
     @State var lastNameWarning:String?
