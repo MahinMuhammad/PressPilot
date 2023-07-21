@@ -40,6 +40,8 @@
 <ol>
     <li>Clone the repository: git clone https://github.com/MahinMuhammad/PressPilot</li>
     <li>Open the PressPilot.xcodeproj file in Xcode.</li>
+    <li>Make a firebase project and add the google plist inside your project</li>
+    <li>Get an API key from https://newsapi.org and assign it in apiKey property inside NetworkManager class</li>
     <li>Build and run the project in Xcode.</li>
 </ol> 
   
@@ -53,6 +55,7 @@
     <li>Search news with keyword</li>
     <li>Allows user to signin or signup using firebase Auth.</li>
     <li>Stores user data using Firestore.</li>
+    <li>Stores user login data if remember me is on using UserDefault.</li>
     <li>Displays news based on specific language or country (after signup only)</li>
     <li>Toggle dark mode option in app settings.</li>
     <li>Navigates the user to the web view page of a news link when tapped on a headline</li>
