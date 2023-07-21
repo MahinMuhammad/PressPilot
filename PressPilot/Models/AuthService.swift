@@ -32,6 +32,8 @@ class AuthService : ObservableObject {
     
     @Published var dataService:DataService = DataService()
     
+    let defaults = UserDefaults.standard
+    
     init() {
         if Auth.auth().currentUser != nil{
             self.signedIn = true
@@ -53,14 +55,21 @@ class AuthService : ObservableObject {
         }
     }
     
-    func signInUser(email:String, password:String){
+    func signInUser(email:String, password:String, isRememberOn:Bool){
         Auth.auth().signIn(withEmail: email, password: password){ response, error in
             if let e = error{
                 print("SignIn failed with error: \(e)")
                 self.errorMessage = e.localizedDescription
             }else{
                 print("User signIn successfull!")
-//                self.dataService.readUserData()
+                let loginInfo = [K.loginEmailKey : email, K.loginPassKey : password]
+                if isRememberOn{
+                    self.defaults.set(loginInfo, forKey: K.loginDetailsKey)
+                    print("login info saved")
+                }else{
+                    self.defaults.set(nil, forKey: K.loginDetailsKey)
+                    print("login info not saved")
+                }
                 self.signedIn = true
             }
         }

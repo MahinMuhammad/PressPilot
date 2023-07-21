@@ -26,6 +26,9 @@ import Foundation
 struct K{
     static let languageInString = "language"
     static let countryInString = "country"
+    static let loginDetailsKey = "loginDetails"
+    static let loginEmailKey = "email"
+    static let loginPassKey = "password"
     
     struct CustomColors{
         static let bluishWhiteToBlack = "MyProfileBGColor"

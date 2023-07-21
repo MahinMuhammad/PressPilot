@@ -34,6 +34,8 @@ struct SignInView: View {
     @State var passwordWarning:String?
     @State private var showSignInFail:Bool = false
     
+    let defaults = UserDefaults.standard
+    
     func formValidation()->Bool{
         var flag:Bool = true
         emailWarning = ""
@@ -78,7 +80,7 @@ struct SignInView: View {
                     //button
                     Button{
                         if formValidation(){
-                            authService.signInUser(email: email, password: password)
+                            authService.signInUser(email: email, password: password, isRememberOn: isRememberOn)
                         }
                     } label: {
                         FormElements.ButtonLabelView(buttonText: "Sign In")
@@ -109,6 +111,17 @@ struct SignInView: View {
             .navigationTitle("Sign In")
             .navigationBarTitleDisplayMode(.large)
             .navigationBarBackButtonHidden(true)
+            .onAppear{
+                if let safeDictionary = defaults.dictionary(forKey: K.loginDetailsKey){
+                    if let safeEmail = safeDictionary[K.loginEmailKey]{
+                        email = safeEmail as! String
+                    }
+                    if let safePassword = safeDictionary[K.loginPassKey]{
+                        password = safePassword as! String
+                    }
+                    isRememberOn = true
+                }
+            }
         }
     }
 }
