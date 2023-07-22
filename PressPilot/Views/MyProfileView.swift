@@ -89,7 +89,7 @@ struct MyProfileView: View {
                             .frame(height: 110)
                             .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                             .overlay{
-                                VStack(spacing: 6){
+                                VStack(spacing: 8){
                                     HStack{
                                         Picker(selection: $networkManager.rs.selectedLanguage, label: PickerLabelView(imageName: "doc.plaintext", title: "Language")) {
                                             ForEach(networkManager.rs.languages) { language in

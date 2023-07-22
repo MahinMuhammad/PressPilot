@@ -15,7 +15,9 @@ struct AppSettingsView: View {
     
     @AppStorage("appTheme") private var isDarkModeOn = false
     
+    @State var shakeToReport = false
     @State var isNotificationOn = false
+    @State var inAppSoundOn = false
     
     var body: some View {
         ZStack{
@@ -51,6 +53,35 @@ struct AppSettingsView: View {
                     }
                     .padding()
                     .padding(.top,50)
+                
+                RoundedRectangle(cornerRadius: 25)
+                    .frame(height: 110)
+                    .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
+                    .overlay{
+                        VStack{
+                            Toggle(isOn: $shakeToReport) {
+                                HStack{
+                                    Image(systemName: "iphone.gen3.radiowaves.left.and.right.circle")
+                                        .imageScale(.large)
+                                    Text("Shake to report")
+                                        .font(.system(size: 20))
+                                }
+                            }
+                            
+                            Divider()
+                            
+                            Toggle(isOn: $inAppSoundOn) {
+                                HStack{
+                                    Image(systemName: "waveform")
+                                        .imageScale(.large)
+                                    Text("In-app sound")
+                                        .font(.system(size: 20))
+                                }
+                            }
+                        }
+                        .padding()
+                    }
+                    .padding()
                 
                 if orientation.isLandscape{
                     RoundedRectangle(cornerRadius: 25)
