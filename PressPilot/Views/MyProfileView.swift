@@ -87,7 +87,7 @@ struct MyProfileView: View {
                         
                         RoundedRectangle(cornerRadius: 25)
                             .frame(height: 110)
-                            .foregroundColor(Color(UIColor.systemBackground))
+                            .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                             .overlay{
                                 VStack(spacing: 6){
                                     HStack{
@@ -124,7 +124,7 @@ struct MyProfileView: View {
                         
                         RoundedRectangle(cornerRadius: 25)
                             .frame(height: 110)
-                            .foregroundColor(Color(UIColor.systemBackground))
+                            .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                             .overlay{
                                 VStack{
                                     Button{
@@ -163,7 +163,7 @@ struct MyProfileView: View {
                         
                         RoundedRectangle(cornerRadius: 25)
                             .frame(height: 80)
-                            .foregroundColor(Color(UIColor.systemBackground))
+                            .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                             .overlay{
                                 Button{
                                     logoutSuccess = authService.signOut()

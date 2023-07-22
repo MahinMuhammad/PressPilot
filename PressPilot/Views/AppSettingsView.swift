@@ -24,7 +24,7 @@ struct AppSettingsView: View {
             VStack{
                 RoundedRectangle(cornerRadius: 25)
                     .frame(height: 110)
-                    .foregroundColor(Color(UIColor.systemBackground))
+                    .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                     .overlay{
                         VStack{
                             Toggle(isOn: $isDarkModeOn) {
