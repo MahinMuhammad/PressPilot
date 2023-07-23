@@ -126,7 +126,7 @@ struct ExtractedView: View {
             if isLandscape{
                 RoundedRectangle(cornerRadius: 25)
                     .frame(height: 80)
-                    .foregroundColor(Color(UIColor.systemBackground))
+                    .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                     .padding()
                     .overlay{
                         Button{
