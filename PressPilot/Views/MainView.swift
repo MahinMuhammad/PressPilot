@@ -33,25 +33,21 @@ struct MainView: View {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
-                .toolbarBackground(Color(UIColor.systemBackground), for: .navigationBar, .tabBar)
             
             SavedView()
                 .tabItem {
                     Label("Saved", systemImage: "bookmark")
                 }
-                .toolbarBackground(Color(UIColor.systemBackground), for: .navigationBar, .tabBar)
             
             DownloadsView()
                 .tabItem {
                     Label("Downloads", systemImage: "platter.filled.bottom.and.arrow.down.iphone")
                 }
-                .toolbarBackground(Color(UIColor.systemBackground), for: .navigationBar, .tabBar)
             
             MyProfileView()
                 .tabItem {
                     Label("My Profile", systemImage: "person")
                 }
-                .toolbarBackground(Color("MyProfileBGColor"), for: .navigationBar, .tabBar)
         }
         .onAppear{
             self.dataService.readUserData()
