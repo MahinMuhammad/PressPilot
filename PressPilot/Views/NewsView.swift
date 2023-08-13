@@ -223,6 +223,7 @@ struct ContentView_Previews: PreviewProvider {
         NewsView()
             .environmentObject(NetworkManager())
             .environmentObject(AuthService())
+            .environmentObject(DataService())
     }
 }
 
