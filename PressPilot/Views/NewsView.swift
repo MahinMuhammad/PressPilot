@@ -151,8 +151,8 @@ struct NewsView: View {
                                     Image(systemName: dataService.isSaved(newsURl: news.url) == true ? "bookmark.fill" : "bookmark")
                                 }
                                 .alert("SignIn to Save News", isPresented: $showingAlertToSignIn) {
-                                            Button("OK", role: .cancel) { }
-                                        }
+                                    Button("OK", role: .cancel) { }
+                                }
                                 .buttonStyle(.borderless)
                                 .padding()
                             }
@@ -214,6 +214,9 @@ struct NewsView: View {
         .padding(.top,16)
         .onAppear{
             self.networkManager.fetchData()
+        }
+        .onRotate { newOrientation in
+            showAppSettings = false //changing oriantation of sheet without being closed makes a frontend problem
         }
     }
 }
