@@ -38,7 +38,7 @@ struct MyProfileView: View {
     var body: some View {
         NavigationStack{
             ZStack {
-                Color("MyProfileBGColor")
+                Color(K.CustomColors.bluishWhiteToBlack)
                     .edgesIgnoringSafeArea(.all)
                 ScrollView {
                     VStack(spacing: 20){
