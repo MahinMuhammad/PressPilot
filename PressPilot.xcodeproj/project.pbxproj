@@ -18,6 +18,7 @@
 		00475F732A0AB8A300CA8227 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00475F722A0AB8A300CA8227 /* Preview Assets.xcassets */; };
 		00482EBB2A275ACD00AAC89A /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00482EBA2A275ACD00AAC89A /* AppSettingsView.swift */; };
 		006DB0F12A1295E70097E567 /* DownloadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DB0F02A1295E70097E567 /* DownloadsView.swift */; };
+		009BAE9A2AA9A44300600AC6 /* TapTargetResetLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BAE992AA9A44300600AC6 /* TapTargetResetLayer.swift */; };
 		009E0E512A16635200ECAE73 /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E0E502A16635200ECAE73 /* K.swift */; };
 		009E0E572A174DED00ECAE73 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E0E562A174DED00ECAE73 /* AuthService.swift */; };
 		009E0E5A2A1793A100ECAE73 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 009E0E592A1793A100ECAE73 /* FirebaseAuth */; };
@@ -51,6 +52,7 @@
 		00475F722A0AB8A300CA8227 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		00482EBA2A275ACD00AAC89A /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
 		006DB0F02A1295E70097E567 /* DownloadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsView.swift; sourceTree = "<group>"; };
+		009BAE992AA9A44300600AC6 /* TapTargetResetLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapTargetResetLayer.swift; sourceTree = "<group>"; };
 		009E0E502A16635200ECAE73 /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		009E0E562A174DED00ECAE73 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		009FDCFE2A11386D0088F44B /* FormElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormElements.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				006DB0F02A1295E70097E567 /* DownloadsView.swift */,
 				00482EBA2A275ACD00AAC89A /* AppSettingsView.swift */,
 				000A76712A3346E20052A3E8 /* DeviceRotationViewModifier.swift */,
+				009BAE992AA9A44300600AC6 /* TapTargetResetLayer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				00475F6E2A0AB8A200CA8227 /* NewsView.swift in Sources */,
 				0026E2D72A23A44F00F0308D /* RequestSettings.swift in Sources */,
 				00E9DE592A0FE61000C440CF /* SignInView.swift in Sources */,
+				009BAE9A2AA9A44300600AC6 /* TapTargetResetLayer.swift in Sources */,
 				00475F6C2A0AB8A200CA8227 /* PressPilotApp.swift in Sources */,
 				00482EBB2A275ACD00AAC89A /* AppSettingsView.swift in Sources */,
 				0046BF1D2A7FFAB500146F7A /* Config.swift in Sources */,

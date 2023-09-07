@@ -37,6 +37,8 @@ struct NewsView: View {
     var body: some View {
         NavigationStack{
             ZStack{
+                //this solution focuses and unfocuses on a textfield to reload the view and reset the offset
+                TapTargetResetLayer()
                 VStack {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack{
@@ -178,7 +180,6 @@ struct NewsView: View {
                                     .fontWeight(.medium)
                                     .foregroundColor(Color(UIColor.label))
                             }
-                            .sheet(isPresented: $showAppSettings, content: AppSettingsView.init)
                             
                             Button{
                                 
@@ -215,10 +216,14 @@ struct NewsView: View {
         .onAppear{
             self.networkManager.fetchData()
         }
-        .onRotate { newOrientation in
-            showAppSettings = false //changing oriantation of sheet without being closed makes a frontend problem
-        }
+        .onChange(of: showAppSettings, perform: showingSheetChanged) //reset the offset
+        .sheet(isPresented: $showAppSettings, content: AppSettingsView.init)
     }
+}
+
+//this solution focuses and unfocuses on a textfield to reload the view and reset the offset
+func showingSheetChanged(_ newValue: Bool) {
+    TapTargetResetLayer.presentedSheetChanged(toDismissed: newValue == false)
 }
 
 struct ContentView_Previews: PreviewProvider {
