@@ -71,7 +71,7 @@
 </ul> 
     
 <h3>Contributing</h3>
-  I welcome contributions from the community! To contribute to TechEveryday, follow these steps:
+  I welcome contributions from the community! To contribute to PressPilot, follow these steps:
 
 <ol>
     <li>Fork the repository.</li>
