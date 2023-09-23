@@ -27,6 +27,11 @@ struct MainView: View {
     @EnvironmentObject var authService: AuthService
     @EnvironmentObject var dataService: DataService
     
+    //to solve Tabbar remains fully transparent after content scrolls below
+    init(){
+        UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance.init(idiom: .unspecified)
+    }
+    
     var body: some View {
         TabView{
             NewsView()

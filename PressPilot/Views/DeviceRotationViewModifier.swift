@@ -21,6 +21,8 @@
  limitations under the License.
 */
 
+//This is to detect the change of orientation
+
 import Foundation
 import SwiftUI
 

@@ -32,8 +32,6 @@ struct NewsView: View {
     @State var showAppSettings = false
     @State private var showingAlertToSignIn = false
     
-    @State var showSavedState = false
-    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -88,7 +86,7 @@ struct NewsView: View {
                                 ForEach($networkManager.rs.newsCategoryCollection){ $category in
                                     Toggle(category.id, isOn: $category.isSelected)
                                         .toggleStyle(.button)
-                                        .cornerRadius(16.5)
+                                        .cornerRadius(20)
                                         .foregroundColor(Color(UIColor.label))
                                         .animation(.easeInOut(duration: 5), value: 0)
                                         .transition(.push(from: .leading))
@@ -104,6 +102,7 @@ struct NewsView: View {
                         .padding(.leading, 16)
                         .padding(.top, 24)
                     }
+                    
                     List(networkManager.newsCollection){news in
                         HStack(alignment:.top){
                             AsyncImage(url: news.imageUrl) { image in
@@ -226,19 +225,19 @@ func showingSheetChanged(_ newValue: Bool) {
     TapTargetResetLayer.presentedSheetChanged(toDismissed: newValue == false)
 }
 
+struct OptionsPickerLabelView: View {
+    var body: some View {
+        Image(systemName: "line.3.horizontal")
+            .foregroundColor(Color(UIColor.label))
+            .imageScale(.large)
+    }
+}
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NewsView()
             .environmentObject(NetworkManager())
             .environmentObject(AuthService())
             .environmentObject(DataService())
-    }
-}
-
-struct OptionsPickerLabelView: View {
-    var body: some View {
-        Image(systemName: "line.3.horizontal")
-            .foregroundColor(Color(UIColor.label))
-            .imageScale(.large)
     }
 }
