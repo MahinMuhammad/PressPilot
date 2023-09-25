@@ -40,15 +40,17 @@ class AuthManager : ObservableObject {
         }
     }
     
-    // Make sure the API calls once they are finished modify the values on the Main Thread
-    func signUpUser(firstName:String, lastName:String, email:String, password:String){
+    func signUpUser(firstName:String, lastName:String, email:String, password:String, completion: @escaping (Error?) -> Void){
         Auth.auth().createUser(withEmail: email, password: password) { [self] authResult, error in
             if let e = error{
-                print("Failed to sign up with error: \(e)")
+                let err = e as NSError
+                completion(err)
             }else{
                 print("User registration successfull!")
-                UserDataManager().storeUserData(firstName: firstName, lastName: lastName, email: email)
-                self.isSignedIn = true
+                DispatchQueue.main.async {
+                    UserDataManager().storeUserData(firstName: firstName, lastName: lastName, email: email)
+                    self.isSignedIn = true
+                }
             }
         }
     }

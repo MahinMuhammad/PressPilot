@@ -26,6 +26,7 @@
 		0053FBC82AC1A7A1004C2DFE /* SavedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBC72AC1A7A1004C2DFE /* SavedViewModel.swift */; };
 		0053FBCA2AC1C95B004C2DFE /* MyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBC92AC1C95A004C2DFE /* MyProfileViewModel.swift */; };
 		0053FBCC2AC1CDA4004C2DFE /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBCB2AC1CDA4004C2DFE /* SignInViewModel.swift */; };
+		0053FBCE2AC1D7FA004C2DFE /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBCD2AC1D7FA004C2DFE /* SignUpViewModel.swift */; };
 		006DB0F12A1295E70097E567 /* DownloadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DB0F02A1295E70097E567 /* DownloadsView.swift */; };
 		009BAE9A2AA9A44300600AC6 /* TapTargetResetLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BAE992AA9A44300600AC6 /* TapTargetResetLayer.swift */; };
 		009E0E512A16635200ECAE73 /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E0E502A16635200ECAE73 /* K.swift */; };
@@ -69,6 +70,7 @@
 		0053FBC72AC1A7A1004C2DFE /* SavedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewModel.swift; sourceTree = "<group>"; };
 		0053FBC92AC1C95A004C2DFE /* MyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModel.swift; sourceTree = "<group>"; };
 		0053FBCB2AC1CDA4004C2DFE /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		0053FBCD2AC1D7FA004C2DFE /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		006DB0F02A1295E70097E567 /* DownloadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsView.swift; sourceTree = "<group>"; };
 		009BAE992AA9A44300600AC6 /* TapTargetResetLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapTargetResetLayer.swift; sourceTree = "<group>"; };
 		009E0E502A16635200ECAE73 /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				0053FBC72AC1A7A1004C2DFE /* SavedViewModel.swift */,
 				0053FBC92AC1C95A004C2DFE /* MyProfileViewModel.swift */,
 				0053FBCB2AC1CDA4004C2DFE /* SignInViewModel.swift */,
+				0053FBCD2AC1D7FA004C2DFE /* SignUpViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				006DB0F12A1295E70097E567 /* DownloadsView.swift in Sources */,
 				0053FBC82AC1A7A1004C2DFE /* SavedViewModel.swift in Sources */,
 				00E9DE482A0E966F00C440CF /* NetworkManager.swift in Sources */,
+				0053FBCE2AC1D7FA004C2DFE /* SignUpViewModel.swift in Sources */,
 				0053FBC22AC17631004C2DFE /* CountryModel.swift in Sources */,
 				00E9DE4F2A0EBF1900C440CF /* MainView.swift in Sources */,
 				00E9DE512A0EC15D00C440CF /* SavedView.swift in Sources */,

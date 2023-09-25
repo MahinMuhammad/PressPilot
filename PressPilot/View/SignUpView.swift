@@ -24,45 +24,10 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @State private var firstName:String = ""
-    @State private var lastName:String = ""
-    @State private var email:String = ""
-    @State private var password:String = ""
-    
-    @State var firstNameWarning:String?
-    @State var lastNameWarning:String?
-    @State var emailWarning:String?
-    @State var passwordWarning:String?
-    
+    @StateObject var viewModel = SignUpViewModel()
     @StateObject var authService = AuthManager.shared
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
-    func formValidation()->Bool{
-        var flag = true
-        firstNameWarning = ""
-        lastNameWarning = ""
-        emailWarning = ""
-        passwordWarning = ""
-        if firstName == ""{
-            flag = false
-            firstNameWarning = "Name required"
-        }
-        if lastName == ""{
-            flag = false
-            lastNameWarning = "Last name required"
-        }
-        if email == ""{
-            flag = false
-            emailWarning = "Email required"
-        }
-        if password == ""{
-            flag = false
-            passwordWarning = "Password required"
-        }
-        return flag
-    }
-    
     var body: some View {
         ScrollView{
             VStack(alignment: .leading){
@@ -70,17 +35,17 @@ struct SignUpView: View {
                 
                 VStack{
                     HStack(spacing: 30){
-                        FormElements.InputFieldView(input: $firstName, titleShown: "First Name", warningMessage: $firstNameWarning)
-                        FormElements.InputFieldView(input: $lastName, titleShown: "Last Name", warningMessage: $lastNameWarning)
+                        FormElements.InputFieldView(input: $viewModel.firstName, titleShown: "First Name", warningMessage: $viewModel.firstNameWarning)
+                        FormElements.InputFieldView(input: $viewModel.lastName, titleShown: "Last Name", warningMessage: $viewModel.lastNameWarning)
                     }
-                    FormElements.InputFieldView(input: $email, titleShown: "Email", warningMessage: $emailWarning)
+                    FormElements.InputFieldView(input: $viewModel.email, titleShown: "Email", warningMessage: $viewModel.emailWarning)
                     
-                    FormElements.PasswordFielView(pass: $password, warningMessage: $passwordWarning)
+                    FormElements.PasswordFielView(pass: $viewModel.password, warningMessage: $viewModel.passwordWarning)
                     
                     //button
                     Button{
-                        if formValidation(){
-                            authService.signUpUser(firstName: firstName, lastName: lastName, email: email.lowercased(), password: password)
+                        if viewModel.isFormValid(){
+                            viewModel.signUpPressed()
                         }
                     } label: {
                         FormElements.ButtonLabelView(buttonText: "Sign Up")
