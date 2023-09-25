@@ -21,6 +21,9 @@
 		0053FBBE2AC17506004C2DFE /* NewsCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBBD2AC17506004C2DFE /* NewsCategoryModel.swift */; };
 		0053FBC02AC17575004C2DFE /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBBF2AC17575004C2DFE /* LanguageModel.swift */; };
 		0053FBC22AC17631004C2DFE /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBC12AC17631004C2DFE /* CountryModel.swift */; };
+		0053FBC42AC1964F004C2DFE /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBC32AC1964F004C2DFE /* MainViewModel.swift */; };
+		0053FBC62AC1977E004C2DFE /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBC52AC1977E004C2DFE /* NewsViewModel.swift */; };
+		0053FBC82AC1A7A1004C2DFE /* SavedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBC72AC1A7A1004C2DFE /* SavedViewModel.swift */; };
 		006DB0F12A1295E70097E567 /* DownloadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DB0F02A1295E70097E567 /* DownloadsView.swift */; };
 		009BAE9A2AA9A44300600AC6 /* TapTargetResetLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BAE992AA9A44300600AC6 /* TapTargetResetLayer.swift */; };
 		009E0E512A16635200ECAE73 /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E0E502A16635200ECAE73 /* K.swift */; };
@@ -59,6 +62,9 @@
 		0053FBBD2AC17506004C2DFE /* NewsCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategoryModel.swift; sourceTree = "<group>"; };
 		0053FBBF2AC17575004C2DFE /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
 		0053FBC12AC17631004C2DFE /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
+		0053FBC32AC1964F004C2DFE /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		0053FBC52AC1977E004C2DFE /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		0053FBC72AC1A7A1004C2DFE /* SavedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewModel.swift; sourceTree = "<group>"; };
 		006DB0F02A1295E70097E567 /* DownloadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsView.swift; sourceTree = "<group>"; };
 		009BAE992AA9A44300600AC6 /* TapTargetResetLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapTargetResetLayer.swift; sourceTree = "<group>"; };
 		009E0E502A16635200ECAE73 /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
@@ -148,6 +154,9 @@
 		0053FBBA2AC033C7004C2DFE /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				0053FBC32AC1964F004C2DFE /* MainViewModel.swift */,
+				0053FBC52AC1977E004C2DFE /* NewsViewModel.swift */,
+				0053FBC72AC1A7A1004C2DFE /* SavedViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -273,12 +282,15 @@
 				00E9DE552A0F9E6300C440CF /* DetailView.swift in Sources */,
 				00447A4E2A285A77001BAB02 /* LoadingView.swift in Sources */,
 				009E0E512A16635200ECAE73 /* K.swift in Sources */,
+				0053FBC62AC1977E004C2DFE /* NewsViewModel.swift in Sources */,
 				00E9DE5B2A0FE62100C440CF /* SignUpView.swift in Sources */,
+				0053FBC42AC1964F004C2DFE /* MainViewModel.swift in Sources */,
 				0053FBBE2AC17506004C2DFE /* NewsCategoryModel.swift in Sources */,
 				009E0E572A174DED00ECAE73 /* AuthManager.swift in Sources */,
 				0053FBC02AC17575004C2DFE /* LanguageModel.swift in Sources */,
 				00BBA6272A262D7B0010E986 /* UserDataManager.swift in Sources */,
 				006DB0F12A1295E70097E567 /* DownloadsView.swift in Sources */,
+				0053FBC82AC1A7A1004C2DFE /* SavedViewModel.swift in Sources */,
 				00E9DE482A0E966F00C440CF /* NetworkManager.swift in Sources */,
 				0053FBC22AC17631004C2DFE /* CountryModel.swift in Sources */,
 				00E9DE4F2A0EBF1900C440CF /* MainView.swift in Sources */,

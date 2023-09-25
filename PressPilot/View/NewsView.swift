@@ -24,13 +24,10 @@
 import SwiftUI
 
 struct NewsView: View {
-    @State private var showSearchBox = false
-    @ObservedObject var networkManager = NetworkManager()
-    @StateObject var authService = AuthManager.shared
-    @StateObject var dataService = UserDataManager.shared
-    
-    @State var showAppSettings = false
-    @State private var showingAlertToSignIn = false
+    @StateObject var viewModel = NewsViewModel()
+    @StateObject var networkManager = NetworkManager()
+    @StateObject var dataService = UserDataManager.shared //using this to show the realtime change of bookmark icon
+    @StateObject var rs = RequestManager.shared
     
     var body: some View {
         NavigationStack{
@@ -40,13 +37,13 @@ struct NewsView: View {
                 VStack {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack{
-                            if showSearchBox{
+                            if viewModel.showSearchBox{
                                 Button{
                                     withAnimation(.spring()) {
-                                        showSearchBox = false
+                                        viewModel.showSearchBox = false
                                     }
-                                    networkManager.rs.selectedKeyword = ""
-                                    networkManager.rs.isKewordSearchOn = false
+                                    rs.selectedKeyword = ""
+                                    rs.isKewordSearchOn = false
                                     networkManager.fetchData()
                                 }label: {
                                     Image(systemName: "chevron.backward")
@@ -56,7 +53,7 @@ struct NewsView: View {
                                 .transition(.push(from: .trailing))
                                 
                                 
-                                TextField("Search", text: $networkManager.rs.selectedKeyword)
+                                TextField("Search", text: $rs.selectedKeyword)
                                     .frame(width: 300)
                                     .textFieldStyle(.roundedBorder)
                                     .transition(.push(from: .trailing))
@@ -70,9 +67,9 @@ struct NewsView: View {
                                 }
                                 .transition(.push(from: .trailing))
                             }
-                            if !showSearchBox{
-                                Picker(selection: $networkManager.rs.selectedLangOrCntry, label: OptionsPickerLabelView()) {
-                                    ForEach(networkManager.rs.choicesLangOrCntry, id: \.self) {
+                            if !viewModel.showSearchBox{
+                                Picker(selection: $rs.selectedLangOrCntry, label: OptionsPickerLabelView()) {
+                                    ForEach(rs.choicesLangOrCntry, id: \.self) {
                                         Text("Search by \($0)").tag($0)
                                     }
                                 }
@@ -80,10 +77,10 @@ struct NewsView: View {
                                 .pickerStyle(.navigationLink)
                                 .animation(.easeInOut(duration: 5), value: 0)
                                 .transition(.push(from: .leading))
-                                .onChange(of: networkManager.rs.selectedLangOrCntry) {value in
+                                .onChange(of: rs.selectedLangOrCntry) {value in
                                     self.networkManager.fetchData()
                                 }
-                                ForEach($networkManager.rs.newsCategoryCollection){ $category in
+                                ForEach($rs.newsCategoryCollection){ $category in
                                     Toggle(category.id, isOn: $category.isSelected)
                                         .toggleStyle(.button)
                                         .cornerRadius(20)
@@ -92,8 +89,8 @@ struct NewsView: View {
                                         .transition(.push(from: .leading))
                                         .onChange(of: category.isSelected) {value in
                                             if value{
-                                                networkManager.rs.unselectOtherFilter(id: category.id)
-                                                self.networkManager.fetchData()
+                                                rs.unselectOtherFilter(id: category.id)
+                                                networkManager.fetchData()
                                             }
                                         }
                                 }
@@ -136,22 +133,11 @@ struct NewsView: View {
                                 }
                                 
                                 Button {
-                                    if authService.signedIn{
-                                        if dataService.isSaved(newsURl: news.url){
-                                            dataService.deleteSaveNews(url: news.url)
-                                            
-                                        }else{
-                                            dataService.saveNews(email: dataService.userData?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
-                                        }
-                                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                                        impactMed.impactOccurred()
-                                    }else{
-                                        showingAlertToSignIn = true
-                                    }
+                                    viewModel.saveButtonPressed(save: news)
                                 } label: {
                                     Image(systemName: dataService.isSaved(newsURl: news.url) == true ? "bookmark.fill" : "bookmark")
                                 }
-                                .alert("SignIn to Save News", isPresented: $showingAlertToSignIn) {
+                                .alert("SignIn to Save News", isPresented: $viewModel.showingAlertToSignIn) {
                                     Button("OK", role: .cancel) { }
                                 }
                                 .buttonStyle(.borderless)
@@ -173,7 +159,7 @@ struct NewsView: View {
                         }
                         ToolbarItemGroup {
                             Button{
-                                showAppSettings = true
+                                viewModel.showAppSettings = true
                             }label: {
                                 Image(systemName: "gearshape")
                                     .fontWeight(.medium)
@@ -189,9 +175,9 @@ struct NewsView: View {
                             }
                             Button{
                                 withAnimation(.spring()) {
-                                    showSearchBox = true
+                                    viewModel.showSearchBox = true
                                 }
-                                networkManager.rs.isKewordSearchOn = true
+                                rs.isKewordSearchOn = true
                             }label: {
                                 Image(systemName: "magnifyingglass")
                                     .fontWeight(.medium)
@@ -215,14 +201,9 @@ struct NewsView: View {
         .onAppear{
             self.networkManager.fetchData()
         }
-        .onChange(of: showAppSettings, perform: showingSheetChanged) //reset the offset
-        .sheet(isPresented: $showAppSettings, content: AppSettingsView.init)
+        .onChange(of: viewModel.showAppSettings, perform: viewModel.showingSheetChanged) //reset the offset
+        .sheet(isPresented: $viewModel.showAppSettings, content: AppSettingsView.init)
     }
-}
-
-//this solution focuses and unfocuses on a textfield to reload the view and reset the offset
-func showingSheetChanged(_ newValue: Bool) {
-    TapTargetResetLayer.presentedSheetChanged(toDismissed: newValue == false)
 }
 
 struct OptionsPickerLabelView: View {

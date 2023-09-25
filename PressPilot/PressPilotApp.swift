@@ -37,17 +37,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct PressPilotApp: App {
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
     let currentSystemScheme = UITraitCollection.current.userInterfaceStyle
-    
     @AppStorage("appTheme") private var isDarkModeOn = false
     
     var body: some Scene {
         
         WindowGroup {
-            @ObservedObject var networkManager = NetworkManager()
             MainView()
-                .environmentObject(networkManager)
                 .onAppear {
                     isDarkModeOn = (currentSystemScheme == .dark)
                 }

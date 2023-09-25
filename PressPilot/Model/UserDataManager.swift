@@ -72,6 +72,7 @@ class UserDataManager: ObservableObject{
     }
     
     func saveNews(email:String? ,title:String, url:String, urlToImage:String?){
+        self.newsCollection.append(NewsModel(title: title, url: url, urlToImage: urlToImage))
         db.collection(K.FStore.savedNewsCollectionName).addDocument(data: [
             K.FStore.emailField : email as Any,
             K.FStore.titleField : title,
@@ -82,12 +83,12 @@ class UserDataManager: ObservableObject{
                 print("Failed to save news with error: \(e)")
             }else{
                 print("News saved successful")
-                self.fetchSavedNews()
             }
         }
     }
     
     func deleteSaveNews(url:String){
+        newsCollection = newsCollection.filter{$0.url != url}
         let firestoreCollection = db.collection(K.FStore.savedNewsCollectionName)
         
         if let currentUserEmail = Auth.auth().currentUser?.email{
@@ -102,7 +103,6 @@ class UserDataManager: ObservableObject{
                         for document in documents {
                             document.reference.delete()
                         }
-                        self.fetchSavedNews()
                         print("unsaved news")
                     }else{
                         print("No news found")
@@ -114,6 +114,7 @@ class UserDataManager: ObservableObject{
     }
     
     func deleteAllSaveNews(){
+        newsCollection = []
         let firestoreCollection = db.collection(K.FStore.savedNewsCollectionName)
 
         if let currentUserEmail = Auth.auth().currentUser?.email{
@@ -126,7 +127,6 @@ class UserDataManager: ObservableObject{
                         for document in documents {
                             document.reference.delete()
                         }
-                        self.fetchSavedNews()
                         print("unsaved all news")
                     }else{
                         print("No news found")

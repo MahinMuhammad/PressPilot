@@ -24,7 +24,7 @@
 import SwiftUI
 
 struct SavedView: View {
-    @StateObject var authService = AuthManager.shared
+    @StateObject var viewModel = SavedViewModel()
     @StateObject var dataService = UserDataManager.shared
     
     var body: some View {
@@ -88,12 +88,12 @@ struct SavedView: View {
                     LoadingView(isAnimating: .constant(true), style: .large)
                 }
             }
-            .navigationDestination(isPresented: Binding<Bool>(get: {return !authService.signedIn}, set: { p in authService.signedIn = p})) {
+            .navigationDestination(isPresented: Binding<Bool>(get: {return !viewModel.authService.signedIn}, set: { p in viewModel.authService.signedIn = p})) {
                 SignInView()
             }
         }
         .onAppear{
-            if authService.signedIn{
+            if viewModel.authService.signedIn{
                 self.dataService.fetchSavedNews()
             }
         }

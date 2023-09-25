@@ -25,7 +25,7 @@ import Foundation
 
 class NetworkManager: ObservableObject{
     
-    @Published var rs = RequestManager()
+    let rs = RequestManager.shared
     
     @Published var newsCollection = [NewsModel]()
 

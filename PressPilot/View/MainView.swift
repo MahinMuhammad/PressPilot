@@ -25,7 +25,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var authService = AuthManager.shared
-    let dataService =  UserDataManager.shared
+    @StateObject var viewModel = MainViewModel()
     
     //to solve Tabbar remains fully transparent after content scrolls below
     init(){
@@ -55,12 +55,12 @@ struct MainView: View {
                 }
         }
         .onAppear{
-            self.dataService.readUserData()
-            self.dataService.fetchSavedNews()
+            viewModel.readUserData()
+            viewModel.fetchSavedNews()
         }
         .onChange(of: authService.signedIn) { newValue in
-            self.dataService.readUserData()
-            self.dataService.fetchSavedNews()
+            viewModel.readUserData()
+            viewModel.fetchSavedNews()
         }
     }
 }
