@@ -57,9 +57,13 @@ class UserDataManager: ObservableObject{
                     print("Failed to retrive user data: \(e)")
                 }else{
                     if let snapshotDocuments = querySnapshot?.documents{
-                        let data = snapshotDocuments[0].data()
-                        if let firstName = data[K.FStore.firstNameField] as? String, let lastName = data[K.FStore.lastNameField] as? String, let email = data[K.FStore.emailField] as? String{
-                            self.userData = UserModel(firstName: firstName, lastname: lastName, email: email)
+                        if snapshotDocuments.count != 0{
+                            let data = snapshotDocuments[0].data()
+                            if let firstName = data[K.FStore.firstNameField] as? String, let lastName = data[K.FStore.lastNameField] as? String, let email = data[K.FStore.emailField] as? String{
+                                self.userData = UserModel(firstName: firstName, lastname: lastName, email: email)
+                            }
+                        }else{
+                            print("Empty user data from firestore")
                         }
                     }
                 }
