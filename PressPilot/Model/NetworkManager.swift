@@ -25,9 +25,9 @@ import Foundation
 
 class NetworkManager: ObservableObject{
     
-    @Published var rs = RequestSettings()
+    @Published var rs = RequestManager()
     
-    @Published var newsCollection = [News]()
+    @Published var newsCollection = [NewsModel]()
 
     let apiKey = Config.newsapiKey //get an api key from newsapi.org and assign it instead of Config.newsapiKey
     

@@ -34,7 +34,7 @@ struct SignUpView: View {
     @State var emailWarning:String?
     @State var passwordWarning:String?
     
-    @EnvironmentObject var authService: AuthService
+    @StateObject var authService = AuthManager.shared
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -118,6 +118,6 @@ struct SignUpView: View {
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()
-            .environmentObject(AuthService())
+            .environmentObject(AuthManager())
     }
 }

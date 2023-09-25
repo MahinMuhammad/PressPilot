@@ -25,11 +25,12 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-class DataService: ObservableObject{
+class UserDataManager: ObservableObject{
+    static let shared = UserDataManager()
     let db = Firestore.firestore()
     
-    @Published var userData:UserData?
-    @Published var newsCollection = [News]()
+    @Published var userData:UserModel?
+    @Published var newsCollection = [NewsModel]()
     
     func storeUserData(firstName:String, lastName:String, email:String){
         db.collection(K.FStore.userCollectionName).addDocument(data: [
@@ -58,7 +59,7 @@ class DataService: ObservableObject{
                     if let snapshotDocuments = querySnapshot?.documents{
                         let data = snapshotDocuments[0].data()
                         if let firstName = data[K.FStore.firstNameField] as? String, let lastName = data[K.FStore.lastNameField] as? String, let email = data[K.FStore.emailField] as? String{
-                            self.userData = UserData(firstName: firstName, lastname: lastName, email: email)
+                            self.userData = UserModel(firstName: firstName, lastname: lastName, email: email)
                         }
                     }
                 }
@@ -148,7 +149,7 @@ class DataService: ObservableObject{
                             let data = doc.data()
                             if let title = data[K.FStore.titleField] as? String, let url = data[K.FStore.urlField] as? String{
                                 let urlToImage = data[K.FStore.urlToImageField] as? String
-                                let news = News(title: title, url: url, urlToImage: urlToImage)
+                                let news = NewsModel(title: title, url: url, urlToImage: urlToImage)
                                 self.newsCollection.append(news)
                             }
                         }

@@ -26,12 +26,10 @@ import FirebaseCore
 import FirebaseAuth
 import SwiftUI
 
-class AuthService : ObservableObject {
+class AuthManager : ObservableObject {
+    static let shared = AuthManager()
     @Published var signedIn:Bool
     @Published var errorMessage:String = ""
-    
-    @Published var dataService:DataService = DataService()
-    
     let defaults = UserDefaults.standard
     
     init() {
@@ -49,7 +47,7 @@ class AuthService : ObservableObject {
                 print("Failed to sign up with error: \(e)")
             }else{
                 print("User registration successfull!")
-                dataService.storeUserData(firstName: firstName, lastName: lastName, email: email)
+                UserDataManager().storeUserData(firstName: firstName, lastName: lastName, email: email)
                 self.signedIn = true
             }
         }

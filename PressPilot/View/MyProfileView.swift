@@ -31,9 +31,9 @@ struct MyProfileView: View {
     @State private var lastName = ""
     @State private var email = ""
     
-    @EnvironmentObject var networkManager: NetworkManager
-    @EnvironmentObject var authService: AuthService
-    @EnvironmentObject var dataService: DataService
+    @StateObject var rs = RequestManager.shared
+    @StateObject var authService = AuthManager.shared
+    @StateObject var userDataService = UserDataManager.shared
     
     var body: some View {
         NavigationStack{
@@ -57,13 +57,13 @@ struct MyProfileView: View {
                                                 .frame(height: 100)
                                         }
                                     
-                                    Text("\(dataService.userData?.firstName ?? "") \(dataService.userData?.lastname ?? "")")
+                                    Text("\(userDataService.userData?.firstName ?? "") \(userDataService.userData?.lastname ?? "")")
                                         .bold()
                                         .font(.system(size: 23))
                                         .padding(.top)
                                         .padding(.bottom, 1)
                                     
-                                    Text(dataService.userData?.email ?? "")
+                                    Text(userDataService.userData?.email ?? "")
                                         .bold()
                                         .font(.system(size: 15))
                                         .tint(Color(UIColor.darkGray))
@@ -91,8 +91,8 @@ struct MyProfileView: View {
                             .overlay{
                                 VStack(spacing: 8){
                                     HStack{
-                                        Picker(selection: $networkManager.rs.selectedLanguage, label: PickerLabelView(imageName: "doc.plaintext", title: "Language")) {
-                                            ForEach(networkManager.rs.languages) { language in
+                                        Picker(selection: $rs.selectedLanguage, label: PickerLabelView(imageName: "doc.plaintext", title: "Language")) {
+                                            ForEach(rs.languages) { language in
                                                 Text(language.language).tag(language.id)
                                             }
                                         }
@@ -106,9 +106,9 @@ struct MyProfileView: View {
                                     Divider()
                                     
                                     HStack{
-                                        Picker(selection: $networkManager.rs.selectedCountry, label: PickerLabelView(imageName: "globe", title: "Country"))
+                                        Picker(selection: $rs.selectedCountry, label: PickerLabelView(imageName: "globe", title: "Country"))
                                         {
-                                            ForEach(networkManager.rs.countries) { country in
+                                            ForEach(rs.countries) { country in
                                                 Text(country.country).tag(country.id)
                                             }
                                         }
@@ -142,7 +142,7 @@ struct MyProfileView: View {
                                     .alert("Remove all saved news", isPresented: $showRemoveAllNewsAlert) {
                                         Button("No", role: .cancel) { }
                                         Button("Yes", role: .destructive) {
-                                            dataService.deleteAllSaveNews()
+                                            userDataService.deleteAllSaveNews()
                                             let impactMed = UIImpactFeedbackGenerator(style: .heavy)
                                             impactMed.impactOccurred()
                                         }
@@ -188,7 +188,7 @@ struct MyProfileView: View {
                     .padding(.leading)
                     .padding(.trailing)
                 }
-                if dataService.userData == nil{
+                if userDataService.userData == nil{
                     ZStack{
                         Color(K.CustomColors.bluishWhiteToBlack)
                             .edgesIgnoringSafeArea(.all)
@@ -202,7 +202,7 @@ struct MyProfileView: View {
         }
         .onAppear{
             if authService.signedIn{
-                self.dataService.readUserData()
+                self.userDataService.readUserData()
             }
         }
     }
@@ -211,9 +211,9 @@ struct MyProfileView: View {
 struct MyProfileView_Previews: PreviewProvider {
     static var previews: some View {
         MyProfileView()
-            .environmentObject(AuthService())
+            .environmentObject(AuthManager())
             .environmentObject(NetworkManager())
-            .environmentObject(DataService())
+            .environmentObject(UserDataManager())
     }
 }
 

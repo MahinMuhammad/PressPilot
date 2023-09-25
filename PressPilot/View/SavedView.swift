@@ -24,8 +24,8 @@
 import SwiftUI
 
 struct SavedView: View {
-    @EnvironmentObject var authService: AuthService
-    @EnvironmentObject var dataService: DataService
+    @StateObject var authService = AuthManager.shared
+    @StateObject var dataService = UserDataManager.shared
     
     var body: some View {
         NavigationStack{
@@ -103,7 +103,7 @@ struct SavedView: View {
 struct SavedView_Previews: PreviewProvider {
     static var previews: some View {
         SavedView()
-            .environmentObject(AuthService())
-            .environmentObject(DataService())
+            .environmentObject(AuthManager())
+            .environmentObject(UserDataManager())
     }
 }

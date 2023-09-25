@@ -25,9 +25,9 @@ import SwiftUI
 
 struct NewsView: View {
     @State private var showSearchBox = false
-    @EnvironmentObject var networkManager: NetworkManager
-    @EnvironmentObject var authService: AuthService
-    @EnvironmentObject var dataService: DataService
+    @ObservedObject var networkManager = NetworkManager()
+    @StateObject var authService = AuthManager.shared
+    @StateObject var dataService = UserDataManager.shared
     
     @State var showAppSettings = false
     @State private var showingAlertToSignIn = false
@@ -236,8 +236,5 @@ struct OptionsPickerLabelView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NewsView()
-            .environmentObject(NetworkManager())
-            .environmentObject(AuthService())
-            .environmentObject(DataService())
     }
 }

@@ -23,22 +23,8 @@
 
 import Foundation
 
-struct NewsCategory: Identifiable {
-    var id: String
-    var isSelected = false
-}
-
-struct Language: Identifiable{
-    var id: String
-    var language: String
-}
-
-struct Country: Identifiable{
-    var id: String
-    var country: String
-}
-
-class RequestSettings: ObservableObject{
+final class RequestManager: ObservableObject{
+    static let shared = RequestManager()
     
     let pageSize = "20"
     
@@ -54,22 +40,22 @@ class RequestSettings: ObservableObject{
     @Published var selectedCountry = "us"
     
     let countries = [
-        Country(id: "us", country: "USA"),
-        Country(id: "ru", country: "Russia"),
-        Country(id: "gb", country: "UK"),
-        Country(id: "fr", country: "France"),
-        Country(id: "it", country: "Italy")
+        CountryModel(id: "us", country: "USA"),
+        CountryModel(id: "ru", country: "Russia"),
+        CountryModel(id: "gb", country: "UK"),
+        CountryModel(id: "fr", country: "France"),
+        CountryModel(id: "it", country: "Italy")
     ]
     
     //MARK: - Language Settings
     @Published var selectedLanguage = "en"
     
     let languages = [
-        Language(id: "en", language: "English"),
-        Language(id: "ru", language: "Russian"),
-        Language(id: "es", language: "Espanish"),
-        Language(id: "fr", language: "French"),
-        Language(id: "it", language: "Italian")
+        LanguageModel(id: "en", language: "English"),
+        LanguageModel(id: "ru", language: "Russian"),
+        LanguageModel(id: "es", language: "Espanish"),
+        LanguageModel(id: "fr", language: "French"),
+        LanguageModel(id: "it", language: "Italian")
     ]
     
     //MARK: - Day Settings
@@ -85,14 +71,14 @@ class RequestSettings: ObservableObject{
         }
         return "general"
     }
-    @Published var newsCategoryCollection:[NewsCategory] = [
-        NewsCategory(id: "All", isSelected: true),
-        NewsCategory(id: "Business"),
-        NewsCategory(id: "Science"),
-        NewsCategory(id: "Entertainment"),
-        NewsCategory(id: "Health"),
-        NewsCategory(id: "Sports"),
-        NewsCategory(id: "Technology")
+    @Published var newsCategoryCollection:[NewsCategoryModel] = [
+        NewsCategoryModel(id: "All", isSelected: true),
+        NewsCategoryModel(id: "Business"),
+        NewsCategoryModel(id: "Science"),
+        NewsCategoryModel(id: "Entertainment"),
+        NewsCategoryModel(id: "Health"),
+        NewsCategoryModel(id: "Sports"),
+        NewsCategoryModel(id: "Technology")
     ]
     
     func unselectOtherFilter(id:String){

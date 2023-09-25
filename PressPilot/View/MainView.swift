@@ -24,8 +24,8 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var authService: AuthService
-    @EnvironmentObject var dataService: DataService
+    @StateObject var authService = AuthManager.shared
+    let dataService =  UserDataManager.shared
     
     //to solve Tabbar remains fully transparent after content scrolls below
     init(){
@@ -68,8 +68,5 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-            .environmentObject(AuthService())
-            .environmentObject(NetworkManager())
-            .environmentObject(DataService())
     }
 }
