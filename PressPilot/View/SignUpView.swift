@@ -80,7 +80,7 @@ struct SignUpView: View {
                     //button
                     Button{
                         if formValidation(){
-                            authService.signUpUser(firstName: firstName, lastName: lastName, email: email, password: password)
+                            authService.signUpUser(firstName: firstName, lastName: lastName, email: email.lowercased(), password: password)
                         }
                     } label: {
                         FormElements.ButtonLabelView(buttonText: "Sign Up")
