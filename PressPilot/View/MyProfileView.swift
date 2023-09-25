@@ -25,15 +25,10 @@ import SwiftUI
 import FirebaseAuth
 
 struct MyProfileView: View {
-    @State private var showRemoveAllNewsAlert = false
-    @State private var logoutSuccess = false
-    @State private var firstName = ""
-    @State private var lastName = ""
-    @State private var email = ""
-    
+    @StateObject var viewModel = MyProfileViewModel()
     @StateObject var rs = RequestManager.shared
     @StateObject var authService = AuthManager.shared
-    @StateObject var userDataService = UserDataManager.shared
+    @StateObject var userDataService = UserDataManager.shared //using this to show the realtime change of user data after signin
     
     var body: some View {
         NavigationStack{
@@ -128,7 +123,7 @@ struct MyProfileView: View {
                             .overlay{
                                 VStack{
                                     Button{
-                                        showRemoveAllNewsAlert = true
+                                        viewModel.showRemoveAllNewsAlert = true
                                     }label: {
                                         HStack{
                                             Image(systemName: "bookmark.slash")
@@ -139,12 +134,10 @@ struct MyProfileView: View {
                                         }
                                     }
                                     .tint(Color(UIColor.label))
-                                    .alert("Remove all saved news", isPresented: $showRemoveAllNewsAlert) {
+                                    .alert("Remove all saved news", isPresented: $viewModel.showRemoveAllNewsAlert) {
                                         Button("No", role: .cancel) { }
                                         Button("Yes", role: .destructive) {
-                                            userDataService.deleteAllSaveNews()
-                                            let impactMed = UIImpactFeedbackGenerator(style: .heavy)
-                                            impactMed.impactOccurred()
+                                            viewModel.removeSavedNews()
                                         }
                                     }
                                     
@@ -166,7 +159,7 @@ struct MyProfileView: View {
                             .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                             .overlay{
                                 Button{
-                                    logoutSuccess = authService.signOut()
+                                    viewModel.logoutSuccess = authService.signOut()
                                 }label: {
                                     Text("Log Out")
                                         .fontWeight(.medium)
@@ -180,7 +173,7 @@ struct MyProfileView: View {
                                         }
                                         .padding(10)
                                 }
-                                .navigationDestination(isPresented: $logoutSuccess) {
+                                .navigationDestination(isPresented: $viewModel.logoutSuccess) {
                                     SignInView()
                                 }
                             }
@@ -196,12 +189,12 @@ struct MyProfileView: View {
                     }
                 }
             }
-            .navigationDestination(isPresented: Binding<Bool>(get: {return !authService.signedIn}, set: { p in authService.signedIn = p})) {
+            .navigationDestination(isPresented: Binding<Bool>(get: {return !authService.isSignedIn}, set: { p in authService.isSignedIn = p})) {
                 SignInView()
             }
         }
         .onAppear{
-            if authService.signedIn{
+            if authService.isSignedIn{
                 self.userDataService.readUserData()
             }
         }
@@ -211,9 +204,6 @@ struct MyProfileView: View {
 struct MyProfileView_Previews: PreviewProvider {
     static var previews: some View {
         MyProfileView()
-            .environmentObject(AuthManager())
-            .environmentObject(NetworkManager())
-            .environmentObject(UserDataManager())
     }
 }
 

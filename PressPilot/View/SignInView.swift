@@ -25,34 +25,7 @@ import SwiftUI
 import FloatingLabelTextFieldSwiftUI
 
 struct SignInView: View {
-    
-    @State private var email:String = ""
-    @State private var password:String = ""
-    @State private var isRememberOn:Bool = false
-    
-    @State var emailWarning:String?
-    @State var passwordWarning:String?
-    @State private var showSignInFail:Bool = false
-    
-    let defaults = UserDefaults.standard
-    
-    func formValidation()->Bool{
-        var flag:Bool = true
-        emailWarning = ""
-        passwordWarning = ""
-        if email == ""{
-            flag = false
-            emailWarning = "Email Required"
-        }
-        if password == ""{
-            flag = false
-            passwordWarning = "Password Required"
-        }
-        return flag
-    }
-    
-    @StateObject var authService = AuthManager.shared
-    
+    @StateObject var viewModel = SignInViewModel()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
@@ -62,12 +35,12 @@ struct SignInView: View {
                 FormElements.StartingTextView(text: "Stay Signed In for a seamless experience")
                 
                 VStack{
-                    FormElements.InputFieldView(input: $email,titleShown: "Email", warningMessage: $emailWarning)
+                    FormElements.InputFieldView(input: $viewModel.email,titleShown: "Email", warningMessage: $viewModel.emailWarning)
                     
-                    FormElements.PasswordFielView(pass: $password, warningMessage: $passwordWarning)
+                    FormElements.PasswordFielView(pass: $viewModel.password, warningMessage: $viewModel.passwordWarning)
                     
                     HStack(alignment: .center){
-                        FormElements.CheckBoxView(isCheckMarked: $isRememberOn)
+                        FormElements.CheckBoxView(isCheckMarked: $viewModel.isRememberOn)
                         Text("Remember me")
                         
                         Spacer()
@@ -77,20 +50,15 @@ struct SignInView: View {
                     }
                     .padding(.top, 10)
                     
-                    //button
                     Button{
-                        if formValidation(){
-                            authService.signInUser(email: email.lowercased(), password: password, isRememberOn: isRememberOn)
+                        if viewModel.isFormValid(){
+                            viewModel.signInPressed()
                         }
                     } label: {
                         FormElements.ButtonLabelView(buttonText: "Sign In")
                     }
                     .padding(.top)
                     .padding(.bottom, 40)
-                    .alert(authService.errorMessage, isPresented: $showSignInFail) {
-                        Button("Ok", role: .cancel){}
-                    }
-                    //button ending
                     
                     HStack {
                         Text("Don't have an account?")
@@ -112,15 +80,7 @@ struct SignInView: View {
             .navigationBarTitleDisplayMode(.large)
             .navigationBarBackButtonHidden(true)
             .onAppear{
-                if let safeDictionary = defaults.dictionary(forKey: K.loginDetailsKey){
-                    if let safeEmail = safeDictionary[K.loginEmailKey]{
-                        email = safeEmail as! String
-                    }
-                    if let safePassword = safeDictionary[K.loginPassKey]{
-                        password = safePassword as! String
-                    }
-                    isRememberOn = true
-                }
+                viewModel.fetchSignInDetails()
             }
         }
     }

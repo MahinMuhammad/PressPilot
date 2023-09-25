@@ -23,7 +23,7 @@
 
 import SwiftUI
 
-struct AppSettingsView: View {
+struct SettingsView: View {
     
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @AppStorage("appTheme") var isDarkModeOn = false
@@ -44,18 +44,16 @@ struct AppSettingsView: View {
     }
 }
 
-struct AppSettingsView_Previews: PreviewProvider {
+struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        AppSettingsView()
+        SettingsView()
     }
 }
 
 struct SettingsCommonView: View {
     
+    @StateObject var viewModel = SettingsViewModel()
     @Binding var isDarkModeOn:Bool
-    @State var shakeToReport = false
-    @State var isNotificationOn = false
-    @State var inAppSoundOn = false
     @Environment(\.dismiss) var dismiss
     let isLandscape:Bool
     
@@ -77,7 +75,7 @@ struct SettingsCommonView: View {
                         
                         Divider()
                         
-                        Toggle(isOn: $isNotificationOn) {
+                        Toggle(isOn: $viewModel.isNotificationOn) {
                             HStack{
                                 Image(systemName: "bell.badge")
                                     .imageScale(.large)
@@ -96,7 +94,7 @@ struct SettingsCommonView: View {
                 .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                 .overlay{
                     VStack{
-                        Toggle(isOn: $shakeToReport) {
+                        Toggle(isOn: $viewModel.shakeToReport) {
                             HStack{
                                 Image(systemName: "iphone.gen3.radiowaves.left.and.right.circle")
                                     .imageScale(.large)
@@ -107,7 +105,7 @@ struct SettingsCommonView: View {
                         
                         Divider()
                         
-                        Toggle(isOn: $inAppSoundOn) {
+                        Toggle(isOn: $viewModel.inAppSoundOn) {
                             HStack{
                                 Image(systemName: "waveform")
                                     .imageScale(.large)

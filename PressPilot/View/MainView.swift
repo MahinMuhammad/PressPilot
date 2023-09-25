@@ -44,7 +44,7 @@ struct MainView: View {
                     Label("Saved", systemImage: "bookmark")
                 }
             
-            DownloadsView()
+            DownloadedNewsView()
                 .tabItem {
                     Label("Downloads", systemImage: "platter.filled.bottom.and.arrow.down.iphone")
                 }
@@ -58,7 +58,7 @@ struct MainView: View {
             viewModel.readUserData()
             viewModel.fetchSavedNews()
         }
-        .onChange(of: authService.signedIn) { newValue in
+        .onChange(of: authService.isSignedIn) { newValue in
             viewModel.readUserData()
             viewModel.fetchSavedNews()
         }

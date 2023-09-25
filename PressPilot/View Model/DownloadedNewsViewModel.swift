@@ -1,5 +1,5 @@
 //
-//  SavedViewModel.swift
+//  DownloadedNewsViewModel.swift
 //  PressPilot
 //
 //  Created by Md. Mahinur Rahman on 9/25/23.
@@ -22,19 +22,7 @@
  */
 
 import Foundation
-import SwiftUI
 
-final class SavedViewModel:ObservableObject{
-    let authService = AuthManager.shared
-    let dataService = UserDataManager.shared
+final class DownloadedNewsViewModel:ObservableObject{
     
-    func deleteButtonPressed(delete news:NewsModel){
-        if dataService.isSaved(newsURl: news.url){
-            dataService.deleteSaveNews(url: news.url)
-        }else{
-            dataService.saveNews(email: dataService.userData?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
-        }
-        let impactMed = UIImpactFeedbackGenerator(style: .medium)
-        impactMed.impactOccurred()
-    }
 }

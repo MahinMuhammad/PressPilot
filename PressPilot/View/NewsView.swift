@@ -202,7 +202,7 @@ struct NewsView: View {
             self.networkManager.fetchData()
         }
         .onChange(of: viewModel.showAppSettings, perform: viewModel.showingSheetChanged) //reset the offset
-        .sheet(isPresented: $viewModel.showAppSettings, content: AppSettingsView.init)
+        .sheet(isPresented: $viewModel.showAppSettings, content: SettingsView.init)
     }
 }
 
