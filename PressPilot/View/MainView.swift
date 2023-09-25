@@ -44,7 +44,7 @@ struct MainView: View {
                     Label("Saved", systemImage: "bookmark")
                 }
             
-            DownloadsView()
+            DownloadedNewsView()
                 .tabItem {
                     Label("Downloads", systemImage: "platter.filled.bottom.and.arrow.down.iphone")
                 }
