@@ -33,7 +33,7 @@ final class NewsViewModel:ObservableObject{
     @Published var showingAlertToSignIn = false
     
     func saveButtonPressed(save news:NewsModel){
-        if authService.signedIn{
+        if authService.isSignedIn{
             if dataService.isSaved(newsURl: news.url){
                 dataService.deleteSaveNews(url: news.url)
                 

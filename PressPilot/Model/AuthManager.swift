@@ -28,15 +28,15 @@ import SwiftUI
 
 class AuthManager : ObservableObject {
     static let shared = AuthManager()
-    @Published var signedIn:Bool
+    @Published var isSignedIn:Bool
     @Published var errorMessage:String = ""
     let defaults = UserDefaults.standard
     
     init() {
         if Auth.auth().currentUser != nil{
-            self.signedIn = true
+            self.isSignedIn = true
         }else{
-            self.signedIn = false
+            self.isSignedIn = false
         }
     }
     
@@ -48,27 +48,21 @@ class AuthManager : ObservableObject {
             }else{
                 print("User registration successfull!")
                 UserDataManager().storeUserData(firstName: firstName, lastName: lastName, email: email)
-                self.signedIn = true
+                self.isSignedIn = true
             }
         }
     }
     
-    func signInUser(email:String, password:String, isRememberOn:Bool){
+    func signInUser(email:String, password:String, completion: @escaping (Error?) -> Void){
         Auth.auth().signIn(withEmail: email, password: password){ response, error in
             if let e = error{
-                print("SignIn failed with error: \(e)")
-                self.errorMessage = e.localizedDescription
+                let err = e as NSError
+                completion(err)
             }else{
                 print("User signIn successfull!")
-                let loginInfo = [K.loginEmailKey : email, K.loginPassKey : password]
-                if isRememberOn{
-                    self.defaults.set(loginInfo, forKey: K.loginDetailsKey)
-                    print("login info saved")
-                }else{
-                    self.defaults.set(nil, forKey: K.loginDetailsKey)
-                    print("login info not saved")
+                DispatchQueue.main.async{
+                    self.isSignedIn = true
                 }
-                self.signedIn = true
             }
         }
     }
@@ -76,7 +70,7 @@ class AuthManager : ObservableObject {
     func signOut()->Bool{
         do {
             try Auth.auth().signOut()
-            self.signedIn = false
+            self.isSignedIn = false
             return true
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)

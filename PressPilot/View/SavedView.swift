@@ -25,7 +25,7 @@ import SwiftUI
 
 struct SavedView: View {
     @StateObject var viewModel = SavedViewModel()
-    @StateObject var dataService = UserDataManager.shared
+    @StateObject var dataService = UserDataManager.shared //using this to show the realtime change of bookmark icon
     
     var body: some View {
         NavigationStack{
@@ -63,13 +63,7 @@ struct SavedView: View {
                                         .lineLimit(3)
                                 }
                                 Button {
-                                    if dataService.isSaved(newsURl: news.url){
-                                        dataService.deleteSaveNews(url: news.url)
-                                    }else{
-                                        dataService.saveNews(email: dataService.userData?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
-                                    }
-                                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                                    impactMed.impactOccurred()
+                                    viewModel.deleteButtonPressed(delete: news)
                                 } label: {
                                     Image(systemName: dataService.isSaved(newsURl: news.url) == true ? "bookmark.fill" : "bookmark")
                                 }
@@ -88,12 +82,12 @@ struct SavedView: View {
                     LoadingView(isAnimating: .constant(true), style: .large)
                 }
             }
-            .navigationDestination(isPresented: Binding<Bool>(get: {return !viewModel.authService.signedIn}, set: { p in viewModel.authService.signedIn = p})) {
+            .navigationDestination(isPresented: Binding<Bool>(get: {return !viewModel.authService.isSignedIn}, set: { p in viewModel.authService.isSignedIn = p})) {
                 SignInView()
             }
         }
         .onAppear{
-            if viewModel.authService.signedIn{
+            if viewModel.authService.isSignedIn{
                 self.dataService.fetchSavedNews()
             }
         }
