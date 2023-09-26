@@ -46,9 +46,4 @@ final class NewsViewModel:ObservableObject{
             showingAlertToSignIn = true
         }
     }
-    
-    //this solution focuses and unfocuses on a textfield to reload the view and reset the offset
-    func showingSheetChanged(_ newValue: Bool) {
-        TapTargetResetLayer.presentedSheetChanged(toDismissed: newValue == false)
-    }
 }
