@@ -10,8 +10,6 @@
 		000A76722A3346E20052A3E8 /* DeviceRotationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A76712A3346E20052A3E8 /* DeviceRotationViewModifier.swift */; };
 		0026E2D72A23A44F00F0308D /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0026E2D62A23A44F00F0308D /* RequestManager.swift */; };
 		00447A4E2A285A77001BAB02 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00447A4D2A285A77001BAB02 /* LoadingView.swift */; };
-		0046BF1D2A7FFAB500146F7A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0046BF1C2A7FFAB500146F7A /* Config.swift */; };
-		0046BF1F2A7FFABC00146F7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0046BF1E2A7FFABC00146F7A /* GoogleService-Info.plist */; };
 		00475F6C2A0AB8A200CA8227 /* PressPilotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00475F6B2A0AB8A200CA8227 /* PressPilotApp.swift */; };
 		00475F6E2A0AB8A200CA8227 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00475F6D2A0AB8A200CA8227 /* NewsView.swift */; };
 		00475F702A0AB8A300CA8227 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00475F6F2A0AB8A300CA8227 /* Assets.xcassets */; };
@@ -29,6 +27,8 @@
 		0053FBCE2AC1D7FA004C2DFE /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBCD2AC1D7FA004C2DFE /* SignUpViewModel.swift */; };
 		0053FBD02AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBCF2AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift */; };
 		0053FBD22AC1E157004C2DFE /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBD12AC1E157004C2DFE /* SettingsViewModel.swift */; };
+		0053FBD42AC1E4F1004C2DFE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBD32AC1E4F1004C2DFE /* Config.swift */; };
+		0053FBD62AC1E4FA004C2DFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0053FBD52AC1E4FA004C2DFE /* GoogleService-Info.plist */; };
 		006DB0F12A1295E70097E567 /* DownloadedNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DB0F02A1295E70097E567 /* DownloadedNewsView.swift */; };
 		009BAE9A2AA9A44300600AC6 /* TapTargetResetLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009BAE992AA9A44300600AC6 /* TapTargetResetLayer.swift */; };
 		009E0E512A16635200ECAE73 /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E0E502A16635200ECAE73 /* K.swift */; };
@@ -55,8 +55,6 @@
 		000A76712A3346E20052A3E8 /* DeviceRotationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRotationViewModifier.swift; sourceTree = "<group>"; };
 		0026E2D62A23A44F00F0308D /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		00447A4D2A285A77001BAB02 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		0046BF1C2A7FFAB500146F7A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		0046BF1E2A7FFABC00146F7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		00475F682A0AB8A200CA8227 /* PressPilot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PressPilot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00475F6B2A0AB8A200CA8227 /* PressPilotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressPilotApp.swift; sourceTree = "<group>"; };
 		00475F6D2A0AB8A200CA8227 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
@@ -75,6 +73,8 @@
 		0053FBCD2AC1D7FA004C2DFE /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		0053FBCF2AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedNewsViewModel.swift; sourceTree = "<group>"; };
 		0053FBD12AC1E157004C2DFE /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		0053FBD32AC1E4F1004C2DFE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		0053FBD52AC1E4FA004C2DFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		006DB0F02A1295E70097E567 /* DownloadedNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedNewsView.swift; sourceTree = "<group>"; };
 		009BAE992AA9A44300600AC6 /* TapTargetResetLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapTargetResetLayer.swift; sourceTree = "<group>"; };
 		009E0E502A16635200ECAE73 /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
@@ -139,8 +139,8 @@
 		00475F6A2A0AB8A200CA8227 /* PressPilot */ = {
 			isa = PBXGroup;
 			children = (
-				0046BF1E2A7FFABC00146F7A /* GoogleService-Info.plist */,
-				0046BF1C2A7FFAB500146F7A /* Config.swift */,
+				0053FBD52AC1E4FA004C2DFE /* GoogleService-Info.plist */,
+				0053FBD32AC1E4F1004C2DFE /* Config.swift */,
 				00475F6B2A0AB8A200CA8227 /* PressPilotApp.swift */,
 				009E0E502A16635200ECAE73 /* K.swift */,
 				00E9DE462A0E964800C440CF /* Model */,
@@ -279,7 +279,7 @@
 			files = (
 				00475F732A0AB8A300CA8227 /* Preview Assets.xcassets in Resources */,
 				00475F702A0AB8A300CA8227 /* Assets.xcassets in Resources */,
-				0046BF1F2A7FFABC00146F7A /* GoogleService-Info.plist in Resources */,
+				0053FBD62AC1E4FA004C2DFE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,8 +319,8 @@
 				00E9DE592A0FE61000C440CF /* SignInView.swift in Sources */,
 				009BAE9A2AA9A44300600AC6 /* TapTargetResetLayer.swift in Sources */,
 				00475F6C2A0AB8A200CA8227 /* PressPilotApp.swift in Sources */,
+				0053FBD42AC1E4F1004C2DFE /* Config.swift in Sources */,
 				00482EBB2A275ACD00AAC89A /* SettingsView.swift in Sources */,
-				0046BF1D2A7FFAB500146F7A /* Config.swift in Sources */,
 				00E9DE4C2A0E9B1800C440CF /* NewsModel.swift in Sources */,
 				009FDCFF2A11386D0088F44B /* FormElements.swift in Sources */,
 				00BBA6292A2636050010E986 /* UserModel.swift in Sources */,

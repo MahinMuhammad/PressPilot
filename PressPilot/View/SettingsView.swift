@@ -26,19 +26,104 @@ import SwiftUI
 struct SettingsView: View {
     
     @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.dismiss) var dismiss
     @AppStorage("appTheme") var isDarkModeOn = false
+    @StateObject var viewModel = SettingsViewModel()
     
     var body: some View {
         ZStack{
             Color(K.CustomColors.bluishWhiteToBlack)
                 .edgesIgnoringSafeArea(.all)
-            if verticalSizeClass == .compact{
-                ScrollView{
-                    SettingsCommonView(isDarkModeOn: $isDarkModeOn, isLandscape: true)
+            
+            ScrollView {
+                VStack{
+                    RoundedRectangle(cornerRadius: 25)
+                        .frame(height: 110)
+                        .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
+                        .overlay{
+                            VStack{
+                                Toggle(isOn: $isDarkModeOn) {
+                                    HStack{
+                                        Image(systemName: "moon")
+                                            .imageScale(.large)
+                                        Text("Dark Mode")
+                                            .font(.system(size: 20))
+                                    }
+                                }
+                                
+                                Divider()
+                                
+                                Toggle(isOn: $viewModel.isNotificationOn) {
+                                    HStack{
+                                        Image(systemName: "bell.badge")
+                                            .imageScale(.large)
+                                        Text("Notification")
+                                            .font(.system(size: 20))
+                                    }
+                                }
+                            }
+                            .padding()
+                        }
+                        .padding()
+                        .padding(.top,50)
+                    
+                    RoundedRectangle(cornerRadius: 25)
+                        .frame(height: 110)
+                        .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
+                        .overlay{
+                            VStack{
+                                Toggle(isOn: $viewModel.shakeToReport) {
+                                    HStack{
+                                        Image(systemName: "iphone.gen3.radiowaves.left.and.right.circle")
+                                            .imageScale(.large)
+                                        Text("Shake to report")
+                                            .font(.system(size: 20))
+                                    }
+                                }
+                                
+                                Divider()
+                                
+                                Toggle(isOn: $viewModel.inAppSoundOn) {
+                                    HStack{
+                                        Image(systemName: "waveform")
+                                            .imageScale(.large)
+                                        Text("In-app sound")
+                                            .font(.system(size: 20))
+                                    }
+                                }
+                            }
+                            .padding()
+                        }
+                        .padding()
+                    
+                    if verticalSizeClass == .compact{
+                        RoundedRectangle(cornerRadius: 25)
+                            .frame(height: 80)
+                            .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
+                            .padding()
+                            .overlay{
+                                Button{
+                                    dismiss()
+                                }label: {
+                                    Text("Go Back")
+                                        .fontWeight(.medium)
+                                        .font(.system(size: 22))
+                                        .tint(Color(UIColor.label))
+                                        .frame(minWidth: 0, maxWidth: .infinity)
+                                        .frame(height: 55)
+                                        .overlay{
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(Color(UIColor.label), lineWidth: 1)
+                                        }
+                                        .padding(25)
+                                }
+                            }
+                    }
+                    
+                    Spacer()
                 }
-            }else{
-                SettingsCommonView(isDarkModeOn: $isDarkModeOn, isLandscape: false)
             }
+            .scrollDisabled(verticalSizeClass != .compact)
         }
         .colorScheme(isDarkModeOn ? .dark : .light)
     }
@@ -47,102 +132,5 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
-    }
-}
-
-struct SettingsCommonView: View {
-    
-    @StateObject var viewModel = SettingsViewModel()
-    @Binding var isDarkModeOn:Bool
-    @Environment(\.dismiss) var dismiss
-    let isLandscape:Bool
-    
-    var body: some View {
-        VStack{
-            RoundedRectangle(cornerRadius: 25)
-                .frame(height: 110)
-                .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
-                .overlay{
-                    VStack{
-                        Toggle(isOn: $isDarkModeOn) {
-                            HStack{
-                                Image(systemName: "moon")
-                                    .imageScale(.large)
-                                Text("Dark Mode")
-                                    .font(.system(size: 20))
-                            }
-                        }
-                        
-                        Divider()
-                        
-                        Toggle(isOn: $viewModel.isNotificationOn) {
-                            HStack{
-                                Image(systemName: "bell.badge")
-                                    .imageScale(.large)
-                                Text("Notification")
-                                    .font(.system(size: 20))
-                            }
-                        }
-                    }
-                    .padding()
-                }
-                .padding()
-                .padding(.top,50)
-            
-            RoundedRectangle(cornerRadius: 25)
-                .frame(height: 110)
-                .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
-                .overlay{
-                    VStack{
-                        Toggle(isOn: $viewModel.shakeToReport) {
-                            HStack{
-                                Image(systemName: "iphone.gen3.radiowaves.left.and.right.circle")
-                                    .imageScale(.large)
-                                Text("Shake to report")
-                                    .font(.system(size: 20))
-                            }
-                        }
-                        
-                        Divider()
-                        
-                        Toggle(isOn: $viewModel.inAppSoundOn) {
-                            HStack{
-                                Image(systemName: "waveform")
-                                    .imageScale(.large)
-                                Text("In-app sound")
-                                    .font(.system(size: 20))
-                            }
-                        }
-                    }
-                    .padding()
-                }
-                .padding()
-            
-            if isLandscape{
-                RoundedRectangle(cornerRadius: 25)
-                    .frame(height: 80)
-                    .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
-                    .padding()
-                    .overlay{
-                        Button{
-                            dismiss()
-                        }label: {
-                            Text("Go Back")
-                                .fontWeight(.medium)
-                                .font(.system(size: 22))
-                                .tint(Color(UIColor.label))
-                                .frame(minWidth: 0, maxWidth: .infinity)
-                                .frame(height: 55)
-                                .overlay{
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .stroke(Color(UIColor.label), lineWidth: 1)
-                                }
-                                .padding(25)
-                        }
-                    }
-            }
-            
-            Spacer()
-        }
     }
 }
