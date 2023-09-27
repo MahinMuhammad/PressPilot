@@ -26,6 +26,8 @@ import SwiftUI
 
 final class MyProfileViewModel:ObservableObject{
     @Published var showRemoveAllNewsAlert = false
+    @Published var showDeactivateAccountAlert = false
+    @Published var showEditProfileSheet = false
     @Published var logoutSuccess = false
     @Published var firstName = ""
     @Published var lastName = ""

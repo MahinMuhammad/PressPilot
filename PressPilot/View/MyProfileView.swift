@@ -25,6 +25,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct MyProfileView: View {
+    @Environment(\.defaultMinListRowHeight) var minRowHeight
     @StateObject var viewModel = MyProfileViewModel()
     @StateObject var rs = RequestManager.shared
     @StateObject var authService = AuthManager.shared
@@ -80,79 +81,151 @@ struct MyProfileView: View {
                                 }
                             }
                         
-                        RoundedRectangle(cornerRadius: 25)
-                            .frame(height: 110)
-                            .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
-                            .overlay{
-                                VStack(spacing: 8){
-                                    HStack{
-                                        Picker(selection: $rs.selectedLanguage, label: PickerLabelView(imageName: "doc.plaintext", title: "Language")) {
-                                            ForEach(rs.languages) { language in
-                                                Text(language.language).tag(language.id)
-                                            }
-                                        }
-                                        .foregroundColor(Color(UIColor.label))
-                                        .pickerStyle(.navigationLink)
-                                        
-                                        Image(systemName: "chevron.forward")
-                                            .foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                    
-                                    Divider()
-                                    
-                                    HStack{
-                                        Picker(selection: $rs.selectedCountry, label: PickerLabelView(imageName: "globe", title: "Country"))
-                                        {
-                                            ForEach(rs.countries) { country in
-                                                Text(country.country).tag(country.id)
-                                            }
-                                        }
-                                        .foregroundColor(Color(UIColor.label))
-                                        .pickerStyle(.navigationLink)
-                                        
-                                        Image(systemName: "chevron.forward")
-                                            .foregroundColor(Color(UIColor.lightGray))
-                                    }
-                                }
-                                .padding()
-                            }
+                        //                        RoundedRectangle(cornerRadius: 25)
+                        //                            .frame(height: 110)
+                        //                            .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
+                        //                            .overlay{
+                        //                                VStack(spacing: 8){
+                        //                                    HStack{
+                        //                                        Picker(selection: $rs.selectedLanguage, label: PickerLabelView(imageName: "doc.plaintext", title: "Language")) {
+                        //                                            ForEach(rs.languages) { language in
+                        //                                                Text(language.language).tag(language.id)
+                        //                                            }
+                        //                                        }
+                        //                                        .foregroundColor(Color(UIColor.label))
+                        //                                        .pickerStyle(.navigationLink)
+                        //
+                        //                                        Image(systemName: "chevron.forward")
+                        //                                            .foregroundColor(Color(UIColor.lightGray))
+                        //                                    }
+                        //
+                        //                                    Divider()
+                        //
+                        //                                    HStack{
+                        //                                        Picker(selection: $rs.selectedCountry, label: PickerLabelView(imageName: "globe", title: "Country"))
+                        //                                        {
+                        //                                            ForEach(rs.countries) { country in
+                        //                                                Text(country.country).tag(country.id)
+                        //                                            }
+                        //                                        }
+                        //                                        .foregroundColor(Color(UIColor.label))
+                        //                                        .pickerStyle(.navigationLink)
+                        //
+                        //                                        Image(systemName: "chevron.forward")
+                        //                                            .foregroundColor(Color(UIColor.lightGray))
+                        //                                    }
+                        //                                }
+                        //                                .padding()
+                        //                            }
                         
+                        //edit info or change password
                         RoundedRectangle(cornerRadius: 25)
                             .frame(height: 110)
                             .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                             .overlay{
                                 VStack{
-                                    Button{
-                                        viewModel.showRemoveAllNewsAlert = true
-                                    }label: {
+                                    NavigationLink(destination: EmptyView()){
                                         HStack{
-                                            Image(systemName: "bookmark.slash")
-                                            Text("Remove saved news")
+                                            Image(systemName: "pencil.and.outline")
+                                            Text("Edit info")
                                             Spacer()
                                             Image(systemName: "chevron.forward")
                                                 .foregroundColor(Color(UIColor.lightGray))
                                         }
                                     }
                                     .tint(Color(UIColor.label))
-                                    .alert("Remove all saved news", isPresented: $viewModel.showRemoveAllNewsAlert) {
+                                    
+                                    Divider()
+                                    
+                                    NavigationLink(destination: EmptyView()) {
+                                        HStack{
+                                            Image(systemName: "person.badge.key")
+                                            Text("Change Password")
+                                            Spacer()
+                                            Image(systemName: "chevron.forward")
+                                                .foregroundColor(Color(UIColor.lightGray))
+                                        }
+                                    }
+                                    .tint(Color(UIColor.label))
+                                }
+                                .padding()
+                            }
+                        
+                        //delete or deactivate account
+                        RoundedRectangle(cornerRadius: 25)
+                            .frame(height: 110)
+                            .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
+                            .overlay{
+                                VStack{
+                                    NavigationLink(destination: EmptyView()){
+                                        HStack{
+                                            Image(systemName: "stop.circle")
+                                            Text("Deactivate account")
+                                            Spacer()
+                                            Image(systemName: "chevron.forward")
+                                                .foregroundColor(Color(UIColor.lightGray))
+                                        }
+                                    }
+                                    .tint(Color(UIColor.label))
+                                    .alert("Deactivate account", isPresented: $viewModel.showDeactivateAccountAlert) {
                                         Button("No", role: .cancel) { }
                                         Button("Yes", role: .destructive) {
-                                            viewModel.removeSavedNews()
+                                            
                                         }
                                     }
                                     
                                     Divider()
                                     
-                                    HStack{
-                                        Image(systemName: "rectangle.and.arrow.up.right.and.arrow.down.left.slash")
-                                        Text("Delete downloaded news")
-                                        Spacer()
-                                        Image(systemName: "chevron.forward")
-                                            .foregroundColor(Color(UIColor.lightGray))
+                                    NavigationLink(destination: EmptyView()) {
+                                        HStack{
+                                            Image(systemName: "trash")
+                                            Text("Delete account")
+                                            Spacer()
+                                            Image(systemName: "chevron.forward")
+                                                .foregroundColor(Color(UIColor.lightGray))
+                                        }
                                     }
+                                    .tint(Color(UIColor.label))
                                 }
                                 .padding()
                             }
+                        
+                        //                        RoundedRectangle(cornerRadius: 25)
+                        //                            .frame(height: 110)
+                        //                            .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
+                        //                            .overlay{
+                        //                                VStack{
+                        //                                    Button{
+                        //                                        viewModel.showRemoveAllNewsAlert = true
+                        //                                    }label: {
+                        //                                        HStack{
+                        //                                            Image(systemName: "bookmark.slash")
+                        //                                            Text("Remove saved news")
+                        //                                            Spacer()
+                        //                                            Image(systemName: "chevron.forward")
+                        //                                                .foregroundColor(Color(UIColor.lightGray))
+                        //                                        }
+                        //                                    }
+                        //                                    .tint(Color(UIColor.label))
+                        //                                    .alert("Remove all saved news", isPresented: $viewModel.showRemoveAllNewsAlert) {
+                        //                                        Button("No", role: .cancel) { }
+                        //                                        Button("Yes", role: .destructive) {
+                        //                                            viewModel.removeSavedNews()
+                        //                                        }
+                        //                                    }
+                        //
+                        //                                    Divider()
+                        //
+                        //                                    HStack{
+                        //                                        Image(systemName: "rectangle.and.arrow.up.right.and.arrow.down.left.slash")
+                        //                                        Text("Delete downloaded news")
+                        //                                        Spacer()
+                        //                                        Image(systemName: "chevron.forward")
+                        //                                            .foregroundColor(Color(UIColor.lightGray))
+                        //                                    }
+                        //                                }
+                        //                                .padding()
+                        //                            }
                         
                         RoundedRectangle(cornerRadius: 25)
                             .frame(height: 80)
