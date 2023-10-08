@@ -31,6 +31,7 @@ final class MyProfileViewModel:ObservableObject{
     @Published var userDataService = UserDataManager.shared
     
     func fetchUserData(){
+        user = nil
         userDataService.readUserData(){ user in
             self.user = user
         }

@@ -29,7 +29,7 @@ class UserDataManager: ObservableObject{
     static let shared = UserDataManager()
     let db = Firestore.firestore()
     
-    @Published var userData:UserModel?
+//    @Published var userData:UserModel?
     @Published var newsCollection = [NewsModel]()
     
     func storeUserData(firstName:String, lastName:String, email:String){
@@ -47,7 +47,7 @@ class UserDataManager: ObservableObject{
     }
     
     func readUserData(completion: @escaping (UserModel?) -> Void){
-        self.userData = nil
+        var userData:UserModel?
         let firestoreCollection = db.collection(K.FStore.userCollectionName)
         
         if let currentUserEmail = Auth.auth().currentUser?.email{
@@ -60,8 +60,8 @@ class UserDataManager: ObservableObject{
                         if snapshotDocuments.count != 0{
                             let data = snapshotDocuments[0].data()
                             if let firstName = data[K.FStore.firstNameField] as? String, let lastName = data[K.FStore.lastNameField] as? String, let email = data[K.FStore.emailField] as? String{
-                                self.userData = UserModel(firstName: firstName, lastname: lastName, email: email)
-                                completion(self.userData)
+                                userData = UserModel(firstName: firstName, lastname: lastName, email: email)
+                                completion(userData)
                             }
                         }else{
                             print("Empty user data from firestore")

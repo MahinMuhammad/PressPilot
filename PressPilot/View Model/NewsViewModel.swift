@@ -38,7 +38,7 @@ final class NewsViewModel:ObservableObject{
                 dataService.deleteSaveNews(url: news.url)
                 
             }else{
-                dataService.saveNews(email: dataService.userData?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
+                dataService.saveNews(email: Auth.auth().currentUser?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
             }
             let impactMed = UIImpactFeedbackGenerator(style: .medium)
             impactMed.impactOccurred()

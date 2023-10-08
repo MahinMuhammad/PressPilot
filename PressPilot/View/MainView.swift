@@ -55,7 +55,6 @@ struct MainView: View {
                 }
         }
         .onAppear{
-            viewModel.readUserData()
             viewModel.fetchSavedNews()
         }
         .onChange(of: authService.isSignedIn) { newValue in

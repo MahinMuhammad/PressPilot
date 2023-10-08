@@ -29,11 +29,7 @@ final class SavedViewModel:ObservableObject{
     let dataService = UserDataManager.shared
     
     func deleteButtonPressed(delete news:NewsModel){
-        if dataService.isSaved(newsURl: news.url){
-            dataService.deleteSaveNews(url: news.url)
-        }else{
-            dataService.saveNews(email: dataService.userData?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
-        }
+        dataService.deleteSaveNews(url: news.url)
         let impactMed = UIImpactFeedbackGenerator(style: .medium)
         impactMed.impactOccurred()
     }
