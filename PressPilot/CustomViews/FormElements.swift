@@ -55,12 +55,13 @@ struct FormElements{
     
     struct PasswordFielView: View {
         @Binding var pass:String
+        let titleShown:String
         @State private var isPasswordShow: Bool = false
         @Binding var warningMessage:String?
         
         var body: some View {
             VStack(alignment: .leading) {
-                FloatingLabelTextField($pass, placeholder: "Password")
+                FloatingLabelTextField($pass, placeholder: titleShown)
                     .isSecureTextEntry(!isPasswordShow)
                     .rightView({
                         Button {

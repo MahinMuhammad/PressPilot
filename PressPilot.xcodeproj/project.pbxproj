@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		000A76722A3346E20052A3E8 /* DeviceRotationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000A76712A3346E20052A3E8 /* DeviceRotationViewModifier.swift */; };
 		0026E2D72A23A44F00F0308D /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0026E2D62A23A44F00F0308D /* RequestManager.swift */; };
+		0028253E2AD2E8A700BFCB64 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0028253C2AD2E8A700BFCB64 /* Config.swift */; };
+		0028253F2AD2E8A700BFCB64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0028253D2AD2E8A700BFCB64 /* GoogleService-Info.plist */; };
+		002825412AD2E97D00BFCB64 /* EditInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002825402AD2E97D00BFCB64 /* EditInfoView.swift */; };
+		002825432AD2E9A900BFCB64 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002825422AD2E9A900BFCB64 /* ChangePasswordView.swift */; };
+		002825452AD2E9E200BFCB64 /* DeactiveAccoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002825442AD2E9E200BFCB64 /* DeactiveAccoutView.swift */; };
+		002825472AD2EA0100BFCB64 /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002825462AD2EA0100BFCB64 /* DeleteAccountView.swift */; };
+		002825492AD2EA1C00BFCB64 /* EditInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002825482AD2EA1C00BFCB64 /* EditInfoViewModel.swift */; };
+		0028254B2AD2EA4600BFCB64 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0028254A2AD2EA4600BFCB64 /* ChangePasswordViewModel.swift */; };
+		0028254D2AD2EA6000BFCB64 /* DeactivateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0028254C2AD2EA6000BFCB64 /* DeactivateAccountViewModel.swift */; };
+		0028254F2AD2EAC200BFCB64 /* DeleteAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0028254E2AD2EAC200BFCB64 /* DeleteAccountViewModel.swift */; };
 		00447A4E2A285A77001BAB02 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00447A4D2A285A77001BAB02 /* LoadingView.swift */; };
 		00475F6C2A0AB8A200CA8227 /* PressPilotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00475F6B2A0AB8A200CA8227 /* PressPilotApp.swift */; };
 		00475F6E2A0AB8A200CA8227 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00475F6D2A0AB8A200CA8227 /* NewsView.swift */; };
@@ -27,8 +37,6 @@
 		0053FBCE2AC1D7FA004C2DFE /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBCD2AC1D7FA004C2DFE /* SignUpViewModel.swift */; };
 		0053FBD02AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBCF2AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift */; };
 		0053FBD22AC1E157004C2DFE /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBD12AC1E157004C2DFE /* SettingsViewModel.swift */; };
-		0053FBD42AC1E4F1004C2DFE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBD32AC1E4F1004C2DFE /* Config.swift */; };
-		0053FBD62AC1E4FA004C2DFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0053FBD52AC1E4FA004C2DFE /* GoogleService-Info.plist */; };
 		006DB0F12A1295E70097E567 /* DownloadedNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DB0F02A1295E70097E567 /* DownloadedNewsView.swift */; };
 		009E0E512A16635200ECAE73 /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E0E502A16635200ECAE73 /* K.swift */; };
 		009E0E572A174DED00ECAE73 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E0E562A174DED00ECAE73 /* AuthManager.swift */; };
@@ -53,6 +61,16 @@
 /* Begin PBXFileReference section */
 		000A76712A3346E20052A3E8 /* DeviceRotationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRotationViewModifier.swift; sourceTree = "<group>"; };
 		0026E2D62A23A44F00F0308D /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		0028253C2AD2E8A700BFCB64 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		0028253D2AD2E8A700BFCB64 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		002825402AD2E97D00BFCB64 /* EditInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInfoView.swift; sourceTree = "<group>"; };
+		002825422AD2E9A900BFCB64 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		002825442AD2E9E200BFCB64 /* DeactiveAccoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeactiveAccoutView.swift; sourceTree = "<group>"; };
+		002825462AD2EA0100BFCB64 /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
+		002825482AD2EA1C00BFCB64 /* EditInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInfoViewModel.swift; sourceTree = "<group>"; };
+		0028254A2AD2EA4600BFCB64 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
+		0028254C2AD2EA6000BFCB64 /* DeactivateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeactivateAccountViewModel.swift; sourceTree = "<group>"; };
+		0028254E2AD2EAC200BFCB64 /* DeleteAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewModel.swift; sourceTree = "<group>"; };
 		00447A4D2A285A77001BAB02 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		00475F682A0AB8A200CA8227 /* PressPilot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PressPilot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00475F6B2A0AB8A200CA8227 /* PressPilotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressPilotApp.swift; sourceTree = "<group>"; };
@@ -72,8 +90,6 @@
 		0053FBCD2AC1D7FA004C2DFE /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		0053FBCF2AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedNewsViewModel.swift; sourceTree = "<group>"; };
 		0053FBD12AC1E157004C2DFE /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		0053FBD32AC1E4F1004C2DFE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		0053FBD52AC1E4FA004C2DFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		006DB0F02A1295E70097E567 /* DownloadedNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedNewsView.swift; sourceTree = "<group>"; };
 		009E0E502A16635200ECAE73 /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		009E0E562A174DED00ECAE73 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -136,8 +152,8 @@
 		00475F6A2A0AB8A200CA8227 /* PressPilot */ = {
 			isa = PBXGroup;
 			children = (
-				0053FBD52AC1E4FA004C2DFE /* GoogleService-Info.plist */,
-				0053FBD32AC1E4F1004C2DFE /* Config.swift */,
+				0028253C2AD2E8A700BFCB64 /* Config.swift */,
+				0028253D2AD2E8A700BFCB64 /* GoogleService-Info.plist */,
 				00475F6B2A0AB8A200CA8227 /* PressPilotApp.swift */,
 				009E0E502A16635200ECAE73 /* K.swift */,
 				00E9DE462A0E964800C440CF /* Model */,
@@ -169,6 +185,10 @@
 				0053FBCD2AC1D7FA004C2DFE /* SignUpViewModel.swift */,
 				0053FBCF2AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift */,
 				0053FBD12AC1E157004C2DFE /* SettingsViewModel.swift */,
+				002825482AD2EA1C00BFCB64 /* EditInfoViewModel.swift */,
+				0028254A2AD2EA4600BFCB64 /* ChangePasswordViewModel.swift */,
+				0028254C2AD2EA6000BFCB64 /* DeactivateAccountViewModel.swift */,
+				0028254E2AD2EAC200BFCB64 /* DeleteAccountViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -203,6 +223,10 @@
 				00E9DE5A2A0FE62100C440CF /* SignUpView.swift */,
 				006DB0F02A1295E70097E567 /* DownloadedNewsView.swift */,
 				00482EBA2A275ACD00AAC89A /* SettingsView.swift */,
+				002825402AD2E97D00BFCB64 /* EditInfoView.swift */,
+				002825422AD2E9A900BFCB64 /* ChangePasswordView.swift */,
+				002825442AD2E9E200BFCB64 /* DeactiveAccoutView.swift */,
+				002825462AD2EA0100BFCB64 /* DeleteAccountView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -276,7 +300,7 @@
 			files = (
 				00475F732A0AB8A300CA8227 /* Preview Assets.xcassets in Resources */,
 				00475F702A0AB8A300CA8227 /* Assets.xcassets in Resources */,
-				0053FBD62AC1E4FA004C2DFE /* GoogleService-Info.plist in Resources */,
+				0028253F2AD2E8A700BFCB64 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,8 +311,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0028254B2AD2EA4600BFCB64 /* ChangePasswordViewModel.swift in Sources */,
 				00E9DE532A0EC1C300C440CF /* MyProfileView.swift in Sources */,
+				0028254D2AD2EA6000BFCB64 /* DeactivateAccountViewModel.swift in Sources */,
+				002825432AD2E9A900BFCB64 /* ChangePasswordView.swift in Sources */,
 				0053FBBC2AC1725F004C2DFE /* NewsDataManager.swift in Sources */,
+				0028254F2AD2EAC200BFCB64 /* DeleteAccountViewModel.swift in Sources */,
+				002825412AD2E97D00BFCB64 /* EditInfoView.swift in Sources */,
 				0053FBD02AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift in Sources */,
 				00E9DE572A0F9F4E00C440CF /* WebView.swift in Sources */,
 				000A76722A3346E20052A3E8 /* DeviceRotationViewModifier.swift in Sources */,
@@ -304,9 +333,11 @@
 				0053FBC02AC17575004C2DFE /* LanguageModel.swift in Sources */,
 				00BBA6272A262D7B0010E986 /* UserDataManager.swift in Sources */,
 				006DB0F12A1295E70097E567 /* DownloadedNewsView.swift in Sources */,
+				0028253E2AD2E8A700BFCB64 /* Config.swift in Sources */,
 				0053FBC82AC1A7A1004C2DFE /* SavedViewModel.swift in Sources */,
 				00E9DE482A0E966F00C440CF /* NetworkManager.swift in Sources */,
 				0053FBCE2AC1D7FA004C2DFE /* SignUpViewModel.swift in Sources */,
+				002825472AD2EA0100BFCB64 /* DeleteAccountView.swift in Sources */,
 				0053FBC22AC17631004C2DFE /* CountryModel.swift in Sources */,
 				00E9DE4F2A0EBF1900C440CF /* MainView.swift in Sources */,
 				00E9DE512A0EC15D00C440CF /* SavedView.swift in Sources */,
@@ -315,8 +346,9 @@
 				0053FBCA2AC1C95B004C2DFE /* MyProfileViewModel.swift in Sources */,
 				00E9DE592A0FE61000C440CF /* SignInView.swift in Sources */,
 				00475F6C2A0AB8A200CA8227 /* PressPilotApp.swift in Sources */,
-				0053FBD42AC1E4F1004C2DFE /* Config.swift in Sources */,
+				002825492AD2EA1C00BFCB64 /* EditInfoViewModel.swift in Sources */,
 				00482EBB2A275ACD00AAC89A /* SettingsView.swift in Sources */,
+				002825452AD2E9E200BFCB64 /* DeactiveAccoutView.swift in Sources */,
 				00E9DE4C2A0E9B1800C440CF /* NewsModel.swift in Sources */,
 				009FDCFF2A11386D0088F44B /* FormElements.swift in Sources */,
 				00BBA6292A2636050010E986 /* UserModel.swift in Sources */,

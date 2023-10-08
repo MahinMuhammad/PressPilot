@@ -40,7 +40,7 @@ struct SignUpView: View {
                     }
                     FormElements.InputFieldView(input: $viewModel.email, titleShown: "Email", warningMessage: $viewModel.emailWarning)
                     
-                    FormElements.PasswordFielView(pass: $viewModel.password, warningMessage: $viewModel.passwordWarning)
+                    FormElements.PasswordFielView(pass: $viewModel.password, titleShown: "Password", warningMessage: $viewModel.passwordWarning)
                     
                     //button
                     Button{

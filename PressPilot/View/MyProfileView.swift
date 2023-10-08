@@ -64,20 +64,6 @@ struct MyProfileView: View {
                                         .font(.system(size: 15))
                                         .tint(Color(UIColor.darkGray))
                                     
-                                    Button{
-                                        
-                                    }label: {
-                                        RoundedRectangle(cornerRadius: 50)
-                                            .frame(width: 159, height: 40)
-                                            .overlay{
-                                                HStack{
-                                                    Text("Edit Profile")
-                                                    Image(systemName: "chevron.forward")
-                                                }
-                                                .fontWeight(.medium)
-                                                .foregroundColor(.white)
-                                            }
-                                    }
                                 }
                             }
                         
@@ -124,7 +110,7 @@ struct MyProfileView: View {
                             .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                             .overlay{
                                 VStack{
-                                    NavigationLink(destination: EmptyView()){
+                                    NavigationLink(destination: EditInfoView()){
                                         HStack{
                                             Image(systemName: "pencil.and.outline")
                                             Text("Edit info")
@@ -137,7 +123,7 @@ struct MyProfileView: View {
                                     
                                     Divider()
                                     
-                                    NavigationLink(destination: EmptyView()) {
+                                    NavigationLink(destination: ChangePasswordView()) {
                                         HStack{
                                             Image(systemName: "person.badge.key")
                                             Text("Change Password")
@@ -157,7 +143,7 @@ struct MyProfileView: View {
                             .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                             .overlay{
                                 VStack{
-                                    NavigationLink(destination: EmptyView()){
+                                    NavigationLink(destination: DeactiveAccoutView()){
                                         HStack{
                                             Image(systemName: "stop.circle")
                                             Text("Deactivate account")
@@ -176,7 +162,7 @@ struct MyProfileView: View {
                                     
                                     Divider()
                                     
-                                    NavigationLink(destination: EmptyView()) {
+                                    NavigationLink(destination: DeleteAccountView()) {
                                         HStack{
                                             Image(systemName: "trash")
                                             Text("Delete account")

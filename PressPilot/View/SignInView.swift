@@ -37,7 +37,7 @@ struct SignInView: View {
                 VStack{
                     FormElements.InputFieldView(input: $viewModel.email,titleShown: "Email", warningMessage: $viewModel.emailWarning)
                     
-                    FormElements.PasswordFielView(pass: $viewModel.password, warningMessage: $viewModel.passwordWarning)
+                    FormElements.PasswordFielView(pass: $viewModel.password, titleShown: "Password", warningMessage: $viewModel.passwordWarning)
                     
                     HStack(alignment: .center){
                         FormElements.CheckBoxView(isCheckMarked: $viewModel.isRememberOn)
