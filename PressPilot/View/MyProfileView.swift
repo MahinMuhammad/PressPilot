@@ -38,33 +38,38 @@ struct MyProfileView: View {
                     .edgesIgnoringSafeArea(.all)
                 ScrollView {
                     VStack(spacing: 20){
-                        RoundedRectangle(cornerRadius: 15)
+                        RoundedRectangle(cornerRadius: 25)
                             .foregroundColor(Color("ProfileInfoColor"))
-                            .frame(height: 330)
+                            .frame(height: 150)
                             .overlay{
-                                VStack{
-                                    RoundedRectangle(cornerRadius: 50)
-                                        .frame(width: 150, height: 150)
+                                HStack(alignment: .top){
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .frame(width: 90, height: 90)
                                         .foregroundColor(Color.gray)
                                         .overlay{
-                                            Image(systemName: "figure.stand")
+                                            Image(systemName: "person.fill")
                                                 .resizable()
                                                 .scaledToFit()
-                                                .frame(height: 100)
+                                                .frame(height: 60)
                                         }
                                     
-                                    Text("\(userDataService.userData?.firstName ?? "") \(userDataService.userData?.lastname ?? "")")
-                                        .bold()
-                                        .font(.system(size: 23))
-                                        .padding(.top)
-                                        .padding(.bottom, 1)
-                                    
-                                    Text(userDataService.userData?.email ?? "")
-                                        .bold()
-                                        .font(.system(size: 15))
-                                        .tint(Color(UIColor.darkGray))
-                                    
+                                    VStack(alignment: .leading){
+                                        Text("\(userDataService.userData?.firstName ?? "") \(userDataService.userData?.lastname ?? "")")
+                                            .bold()
+                                            .font(.system(size: 23))
+                                            .padding(.top, 3)
+                                            .padding(.bottom, 1)
+                                            .lineLimit(1)
+                                        
+                                        Text(userDataService.userData?.email ?? "")
+                                            .bold()
+                                            .font(.system(size: 15))
+                                            .tint(Color(UIColor.darkGray))
+                                    }
+                                    .frame(maxWidth: 200, alignment: .leading)
                                 }
+                                .padding(.leading, 30)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             }
                         
                         //                        RoundedRectangle(cornerRadius: 25)
