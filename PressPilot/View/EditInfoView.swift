@@ -10,33 +10,45 @@ import SwiftUI
 struct EditInfoView: View {
     @StateObject var viewModel = EditInfoViewModel()
     var body: some View {
-        ScrollView{
-            VStack(alignment: .leading){
-                Text("Edit Account")
-                    .font(.largeTitle)
-                    .bold()
-                    .padding(.bottom, 1)
-                
-                FormElements.StartingTextView(text: "Change your account informations")
-                
-                VStack{
-                    HStack(spacing: 30){
-//                        FormElements.InputFieldView(input: $viewModel.firstName, titleShown: "First Name", warningMessage: $viewModel.firstNameWarning)
-//                        FormElements.InputFieldView(input: $viewModel.lastName, titleShown: "Last Name", warningMessage: $viewModel.lastNameWarning)
-                    }
+        ZStack{
+            ScrollView{
+                VStack(alignment: .leading){
+                    Text("Edit Account")
+                        .font(.largeTitle)
+                        .bold()
+                        .padding(.bottom, 1)
                     
-                    Button{
-                        if viewModel.isFormValid(){
-                            viewModel.savePressed()
+                    FormElements.StartingTextView(text: "Change your account informations")
+                    
+                    VStack{
+                        HStack(spacing: 30){
+                            FormElements.InputFieldView(input: $viewModel.firstName, titleShown: "First Name", warningMessage: $viewModel.firstNameWarning)
+                            FormElements.InputFieldView(input: $viewModel.lastName, titleShown: "Last Name", warningMessage: $viewModel.lastNameWarning)
                         }
-                    }label: {
-                        FormElements.ButtonLabelView(buttonText: "Save")
+                        
+                        Button{
+                            if viewModel.isFormValid(){
+                                viewModel.savePressed()
+                            }
+                        }label: {
+                            FormElements.ButtonLabelView(buttonText: "Save")
+                        }
                     }
+                    .padding()
                 }
-                .padding()
+                .padding(.leading, 19)
+                .padding(.trailing, 19)
             }
-            .padding(.leading, 19)
-            .padding(.trailing, 19)
+            if !viewModel.userLoaded(){
+                ZStack{
+                    Color(K.CustomColors.bluishWhiteToBlack)
+                        .edgesIgnoringSafeArea(.all)
+                    LoadingView(isAnimating: .constant(true), style: .large)
+                }
+            }
+        }
+        .onAppear{
+            viewModel.fetchUserData()
         }
     }
 }

@@ -8,17 +8,25 @@
 import Foundation
 
 final class EditInfoViewModel:ObservableObject{
-    @Published var firstName:String?
-    @Published var lastName:String?
+    @Published var firstName:String = ""
+    @Published var lastName:String = ""
     @Published var firstNameWarning:String?
     @Published var lastNameWarning:String?
-    @Published var userDataService = UserDataManager.shared
+    var user:UserModel?
+    var userDataService = UserDataManager.shared
     
-    init() {
-        self.firstName = userDataService.userData?.firstName
-        self.lastName = userDataService.userData?.lastname
-        self.firstNameWarning = firstNameWarning
-        self.lastNameWarning = lastNameWarning
+    func fetchUserData(){
+        userDataService.readUserData(){ user in
+            self.user = user
+            if let user = self.user{
+                self.firstName = user.firstName
+                self.lastName = user.lastname
+            }
+        }
+    }
+    
+    func userLoaded()->Bool{
+        return user != nil
     }
     
     func isFormValid()->Bool{
