@@ -25,11 +25,9 @@ import SwiftUI
 import FirebaseAuth
 
 struct MyProfileView: View {
-    @Environment(\.defaultMinListRowHeight) var minRowHeight
     @StateObject var viewModel = MyProfileViewModel()
     @StateObject var rs = RequestManager.shared
     @StateObject var authService = AuthManager.shared
-    @StateObject var userDataService = UserDataManager.shared //using this to show the realtime change of user data after signin
     
     var body: some View {
         NavigationStack{
@@ -54,14 +52,14 @@ struct MyProfileView: View {
                                         }
                                     
                                     VStack(alignment: .leading){
-                                        Text("\(userDataService.userData?.firstName ?? "") \(userDataService.userData?.lastname ?? "")")
+                                        Text("\(viewModel.user?.firstName ?? "") \(viewModel.user?.lastname ?? "")")
                                             .bold()
                                             .font(.system(size: 23))
                                             .padding(.top, 3)
                                             .padding(.bottom, 1)
                                             .lineLimit(1)
                                         
-                                        Text(userDataService.userData?.email ?? "")
+                                        Text(viewModel.user?.email ?? "")
                                             .bold()
                                             .font(.system(size: 15))
                                             .tint(Color(UIColor.darkGray))
@@ -158,12 +156,6 @@ struct MyProfileView: View {
                                         }
                                     }
                                     .tint(Color(UIColor.label))
-                                    .alert("Deactivate account", isPresented: $viewModel.showDeactivateAccountAlert) {
-                                        Button("No", role: .cancel) { }
-                                        Button("Yes", role: .destructive) {
-                                            
-                                        }
-                                    }
                                     
                                     Divider()
                                     
@@ -245,7 +237,7 @@ struct MyProfileView: View {
                     .padding(.leading)
                     .padding(.trailing)
                 }
-                if userDataService.userData == nil{
+                if !viewModel.userLoaded(){
                     ZStack{
                         Color(K.CustomColors.bluishWhiteToBlack)
                             .edgesIgnoringSafeArea(.all)
@@ -259,7 +251,12 @@ struct MyProfileView: View {
         }
         .onAppear{
             if authService.isSignedIn{
-                self.userDataService.readUserData()
+                viewModel.fetchUserData()
+            }
+        }
+        .onChange(of: authService.isSignedIn) { isSignedIn in
+            if isSignedIn{
+                viewModel.fetchUserData()
             }
         }
     }

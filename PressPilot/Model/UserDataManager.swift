@@ -46,7 +46,7 @@ class UserDataManager: ObservableObject{
         }
     }
     
-    func readUserData(){
+    func readUserData(completion: @escaping (UserModel?) -> Void){
         self.userData = nil
         let firestoreCollection = db.collection(K.FStore.userCollectionName)
         
@@ -61,6 +61,7 @@ class UserDataManager: ObservableObject{
                             let data = snapshotDocuments[0].data()
                             if let firstName = data[K.FStore.firstNameField] as? String, let lastName = data[K.FStore.lastNameField] as? String, let email = data[K.FStore.emailField] as? String{
                                 self.userData = UserModel(firstName: firstName, lastname: lastName, email: email)
+                                completion(self.userData)
                             }
                         }else{
                             print("Empty user data from firestore")

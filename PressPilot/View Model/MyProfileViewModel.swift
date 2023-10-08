@@ -26,13 +26,19 @@ import SwiftUI
 
 final class MyProfileViewModel:ObservableObject{
     @Published var showRemoveAllNewsAlert = false
-    @Published var showDeactivateAccountAlert = false
-    @Published var showEditProfileSheet = false
     @Published var logoutSuccess = false
-    @Published var firstName = ""
-    @Published var lastName = ""
-    @Published var email = ""
+    @Published var user:UserModel?
     @Published var userDataService = UserDataManager.shared
+    
+    func fetchUserData(){
+        userDataService.readUserData(){ user in
+            self.user = user
+        }
+    }
+    
+    func userLoaded()->Bool{
+        return user != nil
+    }
     
     func removeSavedNews(){
         userDataService.deleteAllSaveNews()

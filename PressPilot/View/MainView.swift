@@ -59,7 +59,6 @@ struct MainView: View {
             viewModel.fetchSavedNews()
         }
         .onChange(of: authService.isSignedIn) { newValue in
-            viewModel.readUserData()
             viewModel.fetchSavedNews()
         }
     }

@@ -27,7 +27,7 @@ final class MainViewModel: ObservableObject{
     let dataService =  UserDataManager.shared
     
     func readUserData(){
-        dataService.readUserData()
+        dataService.readUserData(){user in}
     }
     
     func fetchSavedNews(){
