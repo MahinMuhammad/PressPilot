@@ -73,6 +73,30 @@ class DataManager: ObservableObject{
         }
     }
     
+    func updateUserInfo(firstName:String, lastName:String){
+        if let currentUserEmail = Auth.auth().currentUser?.email{
+            let firestoreCollection = db.collection(K.FStore.userCollectionName)
+            let specificDataCollection = firestoreCollection.whereField(K.FStore.emailField, isEqualTo: currentUserEmail)
+            specificDataCollection.getDocuments { querySnapshot, error in
+                if let error{
+                    print("Failed to find user data to update: \(error)")
+                }else{
+                    if let documents = querySnapshot?.documents{
+                        if documents.count != 0{
+                            documents[0].reference.updateData([K.FStore.firstNameField : firstName, K.FStore.lastNameField : lastName]) { error in
+                                if let error{
+                                    print("Failed to update the user data: \(error)")
+                                }else{
+                                    print("User data updated successfully!")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     //MARK: - News Data Manager
     
     func saveNews(email:String? ,title:String, url:String, urlToImage:String?){

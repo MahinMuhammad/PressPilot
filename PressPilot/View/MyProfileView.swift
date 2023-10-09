@@ -113,7 +113,7 @@ struct MyProfileView: View {
                             .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                             .overlay{
                                 VStack{
-                                    NavigationLink(destination: EditInfoView()){
+                                    NavigationLink(destination: EditInfoView(viewModel: EditInfoViewModel(profileViewModel: viewModel))){
                                         HStack{
                                             Image(systemName: "pencil.and.outline")
                                             Text("Edit info")
