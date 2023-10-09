@@ -30,8 +30,6 @@ class UserDataManager: ObservableObject{
     private init(){}
     
     let db = Firestore.firestore()
-//    @Published var userData:UserModel?
-    @Published var newsCollection = [NewsModel]()
     
     //MARK: - User Data Manager
     
@@ -78,7 +76,6 @@ class UserDataManager: ObservableObject{
     //MARK: - News Data Manager
     
     func saveNews(email:String? ,title:String, url:String, urlToImage:String?){
-        self.newsCollection.append(NewsModel(title: title, url: url, urlToImage: urlToImage))
         db.collection(K.FStore.savedNewsCollectionName).addDocument(data: [
             K.FStore.emailField : email as Any,
             K.FStore.titleField : title,
@@ -94,9 +91,7 @@ class UserDataManager: ObservableObject{
     }
     
     func deleteSaveNews(url:String){
-        newsCollection = newsCollection.filter{$0.url != url}
         let firestoreCollection = db.collection(K.FStore.savedNewsCollectionName)
-        
         if let currentUserEmail = Auth.auth().currentUser?.email{
             let newsCollectionByEmail = firestoreCollection.whereField(K.FStore.emailField, isEqualTo: currentUserEmail)
             
@@ -120,7 +115,6 @@ class UserDataManager: ObservableObject{
     }
     
     func deleteAllSaveNews(){
-        newsCollection = []
         let firestoreCollection = db.collection(K.FStore.savedNewsCollectionName)
 
         if let currentUserEmail = Auth.auth().currentUser?.email{
@@ -143,8 +137,8 @@ class UserDataManager: ObservableObject{
         }
     }
     
-    func fetchSavedNews(){
-        self.newsCollection = []
+    func fetchSavedNews(completion: @escaping ([NewsModel]) -> Void){
+        var savedNewsCollection = [NewsModel]()
         let firestoreCollection = db.collection(K.FStore.savedNewsCollectionName)
         
         if let currentUserEmail = Auth.auth().currentUser?.email{
@@ -160,21 +154,13 @@ class UserDataManager: ObservableObject{
                             if let title = data[K.FStore.titleField] as? String, let url = data[K.FStore.urlField] as? String{
                                 let urlToImage = data[K.FStore.urlToImageField] as? String
                                 let news = NewsModel(title: title, url: url, urlToImage: urlToImage)
-                                self.newsCollection.append(news)
+                                savedNewsCollection.append(news)
                             }
                         }
+                        completion(savedNewsCollection)
                     }
                 }
             }
         }
-    }
-    
-    func isSaved(newsURl:String)->Bool{
-        for news in newsCollection{
-            if news.url == newsURl{
-                return true
-            }
-        }
-        return false
     }
 }

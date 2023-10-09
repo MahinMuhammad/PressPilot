@@ -27,14 +27,30 @@ import SwiftUI
 final class SavedViewModel:ObservableObject{
     let authService = AuthManager.shared
     let dataService = UserDataManager.shared
+    @Published var savedNewsCollection = [NewsModel]()
     
     func deleteButtonPressed(delete news:NewsModel){
+        savedNewsCollection = savedNewsCollection.filter{$0.url != news.url}
         dataService.deleteSaveNews(url: news.url)
         let impactMed = UIImpactFeedbackGenerator(style: .medium)
         impactMed.impactOccurred()
     }
     
     func fetchSavedNews(){
-        dataService.fetchSavedNews()
+        savedNewsCollection = []
+        dataService.fetchSavedNews(){ newsCollection in
+            self.savedNewsCollection = newsCollection
+        }
+    }
+    
+    func newsLoaded()->Bool{
+        return savedNewsCollection.count != 0
+    }
+    
+    func removeAllSavedNews(){
+        savedNewsCollection = []
+        dataService.deleteAllSaveNews()
+        let impactMed = UIImpactFeedbackGenerator(style: .heavy)
+        impactMed.impactOccurred()
     }
 }

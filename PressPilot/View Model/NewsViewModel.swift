@@ -31,13 +31,15 @@ final class NewsViewModel:ObservableObject{
     @Published var showSearchBox = false
     @Published var showAppSettings = false
     @Published var showingAlertToSignIn = false
+    @Published var savedNewsCollection = [NewsModel]()
     
     func saveButtonPressed(save news:NewsModel){
         if authService.isSignedIn{
-            if dataService.isSaved(newsURl: news.url){
+            if isSaved(newsURl: news.url){
+                savedNewsCollection = savedNewsCollection.filter{$0.url != news.url}
                 dataService.deleteSaveNews(url: news.url)
-                
             }else{
+                savedNewsCollection.append(news)
                 dataService.saveNews(email: Auth.auth().currentUser?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
             }
             let impactMed = UIImpactFeedbackGenerator(style: .medium)
@@ -45,5 +47,14 @@ final class NewsViewModel:ObservableObject{
         }else{
             showingAlertToSignIn = true
         }
+    }
+    
+    func isSaved(newsURl:String)->Bool{
+        for news in savedNewsCollection{
+            if news.url == newsURl{
+                return true
+            }
+        }
+        return false
     }
 }

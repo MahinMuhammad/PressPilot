@@ -26,8 +26,4 @@ import Foundation
 final class MainViewModel: ObservableObject{
     let dataService =  UserDataManager.shared
     
-    func fetchSavedNews(){
-        dataService.fetchSavedNews()
-    }
-    
 }

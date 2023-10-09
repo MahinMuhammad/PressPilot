@@ -133,7 +133,7 @@ struct NewsView: View {
                                 Button {
                                     viewModel.saveButtonPressed(save: news)
                                 } label: {
-                                    Image(systemName: dataService.isSaved(newsURl: news.url) == true ? "bookmark.fill" : "bookmark")
+                                    Image(systemName: viewModel.isSaved(newsURl: news.url) == true ? "bookmark.fill" : "bookmark")
                                 }
                                 .alert("SignIn to Save News", isPresented: $viewModel.showingAlertToSignIn) {
                                     Button("OK", role: .cancel) { }

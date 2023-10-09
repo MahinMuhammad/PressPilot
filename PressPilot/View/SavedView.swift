@@ -24,14 +24,14 @@
 import SwiftUI
 
 struct SavedView: View {
-    @StateObject var viewModel:SavedViewModel
-    @StateObject var dataService = UserDataManager.shared //using this to show the realtime change of bookmark icon
+    @StateObject var viewModel = SavedViewModel()
+    @StateObject var authService = AuthManager.shared
     
     var body: some View {
         NavigationStack{
             ZStack{
                 VStack{
-                    List(dataService.newsCollection){news in
+                    List(viewModel.savedNewsCollection){news in
                         HStack(alignment:.top){
                             AsyncImage(url: news.imageUrl) { image in
                                 image
@@ -65,7 +65,7 @@ struct SavedView: View {
                                 Button {
                                     viewModel.deleteButtonPressed(delete: news)
                                 } label: {
-                                    Image(systemName: dataService.isSaved(newsURl: news.url) == true ? "bookmark.fill" : "bookmark")
+                                    Image(systemName: "bookmark.fill")
                                 }
                                 .buttonStyle(.borderless)
                                 .padding()
@@ -75,10 +75,10 @@ struct SavedView: View {
                     }
                     .listStyle(.plain)
                     .refreshable {
-                        self.dataService.fetchSavedNews()
+                        viewModel.fetchSavedNews()
                     }
                 }
-                if dataService.newsCollection.count == 0{
+                if !viewModel.newsLoaded(){
                     LoadingView(isAnimating: .constant(true), style: .large)
                 }
             }
@@ -86,16 +86,21 @@ struct SavedView: View {
                 SignInView()
             }
         }
-//        .onAppear{
-//            if viewModel.authService.isSignedIn{
-//                self.dataService.fetchSavedNews()
-//            }
-//        }
+        .onAppear{
+            if viewModel.authService.isSignedIn{
+                viewModel.fetchSavedNews()
+            }
+        }
+        .onChange(of: authService.isSignedIn) { isSignedIn in
+            if isSignedIn{
+                viewModel.fetchSavedNews()
+            }
+        }
     }
 }
 
 struct SavedView_Previews: PreviewProvider {
     static var previews: some View {
-        SavedView(viewModel: SavedViewModel())
+        SavedView()
     }
 }
