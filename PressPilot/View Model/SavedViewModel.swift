@@ -33,4 +33,8 @@ final class SavedViewModel:ObservableObject{
         let impactMed = UIImpactFeedbackGenerator(style: .medium)
         impactMed.impactOccurred()
     }
+    
+    func fetchSavedNews(){
+        dataService.fetchSavedNews()
+    }
 }

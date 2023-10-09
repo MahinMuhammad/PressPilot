@@ -24,7 +24,7 @@
 import SwiftUI
 
 struct SavedView: View {
-    @StateObject var viewModel = SavedViewModel()
+    @StateObject var viewModel:SavedViewModel
     @StateObject var dataService = UserDataManager.shared //using this to show the realtime change of bookmark icon
     
     var body: some View {
@@ -86,16 +86,16 @@ struct SavedView: View {
                 SignInView()
             }
         }
-        .onAppear{
-            if viewModel.authService.isSignedIn{
-                self.dataService.fetchSavedNews()
-            }
-        }
+//        .onAppear{
+//            if viewModel.authService.isSignedIn{
+//                self.dataService.fetchSavedNews()
+//            }
+//        }
     }
 }
 
 struct SavedView_Previews: PreviewProvider {
     static var previews: some View {
-        SavedView()
+        SavedView(viewModel: SavedViewModel())
     }
 }

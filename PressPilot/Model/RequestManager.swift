@@ -26,6 +26,8 @@ import Foundation
 final class RequestManager: ObservableObject{
     static let shared = RequestManager()
     
+    private init(){}
+    
     let pageSize = "20"
     
     //MARK: - KeyWord search

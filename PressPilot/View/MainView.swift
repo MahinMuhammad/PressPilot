@@ -27,6 +27,9 @@ struct MainView: View {
     @StateObject var authService = AuthManager.shared
     @StateObject var viewModel = MainViewModel()
     
+    var myProfileViewModel = MyProfileViewModel()
+    var savedViewModel = SavedViewModel()
+    
     //to solve Tabbar remains fully transparent after content scrolls below
     init(){
         UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance.init(idiom: .unspecified)
@@ -39,7 +42,7 @@ struct MainView: View {
                     Label("Home", systemImage: "house")
                 }
             
-            SavedView()
+            SavedView(viewModel: savedViewModel)
                 .tabItem {
                     Label("Saved", systemImage: "bookmark")
                 }
@@ -49,16 +52,22 @@ struct MainView: View {
                     Label("Downloads", systemImage: "platter.filled.bottom.and.arrow.down.iphone")
                 }
             
-            MyProfileView()
+            MyProfileView(viewModel: myProfileViewModel)
                 .tabItem {
                     Label("My Profile", systemImage: "person")
                 }
         }
         .onAppear{
-            viewModel.fetchSavedNews()
+            if authService.isSignedIn{
+                savedViewModel.fetchSavedNews()
+                myProfileViewModel.fetchUserData()
+            }
         }
-        .onChange(of: authService.isSignedIn) { newValue in
-            viewModel.fetchSavedNews()
+        .onChange(of: authService.isSignedIn) { isSignedIn in
+            if isSignedIn{
+                savedViewModel.fetchSavedNews()
+                myProfileViewModel.fetchUserData()
+            }
         }
     }
 }

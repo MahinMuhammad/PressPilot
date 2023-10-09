@@ -25,7 +25,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct MyProfileView: View {
-    @StateObject var viewModel = MyProfileViewModel()
+    @StateObject var viewModel: MyProfileViewModel
     @StateObject var rs = RequestManager.shared
     @StateObject var authService = AuthManager.shared
     
@@ -249,22 +249,12 @@ struct MyProfileView: View {
                 SignInView()
             }
         }
-        .onAppear{
-            if authService.isSignedIn{
-                viewModel.fetchUserData()
-            }
-        }
-        .onChange(of: authService.isSignedIn) { isSignedIn in
-            if isSignedIn{
-                viewModel.fetchUserData()
-            }
-        }
     }
 }
 
 struct MyProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        MyProfileView()
+        MyProfileView(viewModel: MyProfileViewModel())
     }
 }
 

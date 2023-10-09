@@ -29,4 +29,5 @@ final class MainViewModel: ObservableObject{
     func fetchSavedNews(){
         dataService.fetchSavedNews()
     }
+    
 }
