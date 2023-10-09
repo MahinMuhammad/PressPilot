@@ -97,7 +97,5 @@ struct SavedView: View {
 struct SavedView_Previews: PreviewProvider {
     static var previews: some View {
         SavedView()
-            .environmentObject(AuthManager())
-            .environmentObject(UserDataManager())
     }
 }

@@ -27,10 +27,13 @@ import FirebaseFirestore
 
 class UserDataManager: ObservableObject{
     static let shared = UserDataManager()
-    let db = Firestore.firestore()
+    private init(){}
     
+    let db = Firestore.firestore()
 //    @Published var userData:UserModel?
     @Published var newsCollection = [NewsModel]()
+    
+    //MARK: - User Data Manager
     
     func storeUserData(firstName:String, lastName:String, email:String){
         db.collection(K.FStore.userCollectionName).addDocument(data: [
@@ -71,6 +74,8 @@ class UserDataManager: ObservableObject{
             }
         }
     }
+    
+    //MARK: - News Data Manager
     
     func saveNews(email:String? ,title:String, url:String, urlToImage:String?){
         self.newsCollection.append(NewsModel(title: title, url: url, urlToImage: urlToImage))

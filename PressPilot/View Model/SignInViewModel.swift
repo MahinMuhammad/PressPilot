@@ -45,7 +45,7 @@ final class SignInViewModel:ObservableObject{
                 case AuthErrorCode.wrongPassword.rawValue:
                     self.passwordWarning = "wrong password"
                 default:
-                    print("Failed to sign up with error: \(err)")
+                    print("Failed to sign in with error: \(err)")
                 }
             }else{
                 let loginInfo = [K.loginEmailKey : self.email, K.loginPassKey : self.password]

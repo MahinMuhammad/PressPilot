@@ -28,11 +28,12 @@ import SwiftUI
 
 class AuthManager : ObservableObject {
     static let shared = AuthManager()
+    
     @Published var isSignedIn:Bool
     @Published var errorMessage:String = ""
     let defaults = UserDefaults.standard
     
-    init() {
+    private init() {
         if Auth.auth().currentUser != nil{
             self.isSignedIn = true
         }else{
@@ -48,7 +49,7 @@ class AuthManager : ObservableObject {
             }else{
                 print("User registration successfull!")
                 DispatchQueue.main.async {
-                    UserDataManager().storeUserData(firstName: firstName, lastName: lastName, email: email)
+                    UserDataManager.shared.storeUserData(firstName: firstName, lastName: lastName, email: email)
                     self.isSignedIn = true
                 }
             }
@@ -65,6 +66,7 @@ class AuthManager : ObservableObject {
                 DispatchQueue.main.async{
                     self.isSignedIn = true
                 }
+                completion(nil)
             }
         }
     }
