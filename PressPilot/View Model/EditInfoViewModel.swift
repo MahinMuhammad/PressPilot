@@ -29,10 +29,10 @@ final class EditInfoViewModel:ObservableObject{
     @Published var firstNameWarning:String?
     @Published var lastNameWarning:String?
     var user:UserModel?
-    var userDataService = UserDataManager.shared
+    var dataManager = DataManager.shared
     
     func fetchUserData(){
-        userDataService.readUserData(){ user in
+        dataManager.readUserData(){ user in
             self.user = user
             if let user = self.user{
                 self.firstName = user.firstName

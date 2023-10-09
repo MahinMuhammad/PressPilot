@@ -22,7 +22,6 @@
 */
 
 import Foundation
-
 import SwiftUI
 
 struct LoadingView: UIViewRepresentable {

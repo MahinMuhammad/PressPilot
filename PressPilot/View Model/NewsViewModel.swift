@@ -27,7 +27,7 @@ import FirebaseAuth
 
 final class NewsViewModel:ObservableObject{
     let authService = AuthManager.shared
-    let dataService = UserDataManager.shared
+    let dataManager = DataManager.shared
     @Published var showSearchBox = false
     @Published var showAppSettings = false
     @Published var showingAlertToSignIn = false
@@ -37,10 +37,10 @@ final class NewsViewModel:ObservableObject{
         if authService.isSignedIn{
             if isSaved(newsURl: news.url){
                 savedNewsCollection = savedNewsCollection.filter{$0.url != news.url}
-                dataService.deleteSaveNews(url: news.url)
+                dataManager.deleteSaveNews(url: news.url)
             }else{
                 savedNewsCollection.append(news)
-                dataService.saveNews(email: Auth.auth().currentUser?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
+                dataManager.saveNews(email: Auth.auth().currentUser?.email, title: news.title, url: news.url, urlToImage: news.urlToImage)
             }
             let impactMed = UIImpactFeedbackGenerator(style: .medium)
             impactMed.impactOccurred()
@@ -51,7 +51,7 @@ final class NewsViewModel:ObservableObject{
     
     func fetchSavedNews(){
         savedNewsCollection = []
-        dataService.fetchSavedNews(){ newsCollection in
+        dataManager.fetchSavedNews(){ newsCollection in
             self.savedNewsCollection = newsCollection
         }
     }

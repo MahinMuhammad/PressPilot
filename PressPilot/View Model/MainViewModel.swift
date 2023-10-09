@@ -24,6 +24,6 @@
 import Foundation
 
 final class MainViewModel: ObservableObject{
-    let dataService =  UserDataManager.shared
+    let dataManager =  DataManager.shared
     
 }

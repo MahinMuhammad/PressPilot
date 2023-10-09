@@ -28,11 +28,11 @@ final class MyProfileViewModel:ObservableObject{
     @Published var showRemoveAllNewsAlert = false
     @Published var logoutSuccess = false
     @Published var user:UserModel?
-    @Published var userDataService = UserDataManager.shared
+    @Published var dataManager = DataManager.shared
     
     func fetchUserData(){
         user = nil
-        userDataService.readUserData(){ user in
+        dataManager.readUserData(){ user in
             self.user = user
         }
     }
@@ -42,7 +42,7 @@ final class MyProfileViewModel:ObservableObject{
     }
     
     func removeSavedNews(){
-        userDataService.deleteAllSaveNews()
+        dataManager.deleteAllSaveNews()
         let impactMed = UIImpactFeedbackGenerator(style: .heavy)
         impactMed.impactOccurred()
     }

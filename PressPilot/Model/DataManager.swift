@@ -25,8 +25,8 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-class UserDataManager: ObservableObject{
-    static let shared = UserDataManager()
+class DataManager: ObservableObject{
+    static let shared = DataManager()
     private init(){}
     
     let db = Firestore.firestore()

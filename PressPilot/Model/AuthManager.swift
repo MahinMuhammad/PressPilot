@@ -49,7 +49,7 @@ class AuthManager : ObservableObject {
             }else{
                 print("User registration successfull!")
                 DispatchQueue.main.async {
-                    UserDataManager.shared.storeUserData(firstName: firstName, lastName: lastName, email: email)
+                    DataManager.shared.storeUserData(firstName: firstName, lastName: lastName, email: email)
                     self.isSignedIn = true
                 }
             }

@@ -26,7 +26,7 @@ import SwiftUI
 struct NewsView: View {
     @StateObject var viewModel:NewsViewModel
     @StateObject var networkManager:NetworkManager
-    @StateObject var dataService = UserDataManager.shared //using this to show the realtime change of bookmark icon
+    @StateObject var dataService = DataManager.shared //using this to show the realtime change of bookmark icon
     @StateObject var rs = RequestManager.shared
     
     var body: some View {
