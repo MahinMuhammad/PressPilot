@@ -25,6 +25,7 @@ import SwiftUI
 
 struct ChangePasswordView: View {
     @StateObject var viewModel = ChangePasswordViewModel()
+    @Environment(\.dismiss) var dismiss
     var body: some View {
             ScrollView{
                 VStack(alignment: .leading){
@@ -48,6 +49,11 @@ struct ChangePasswordView: View {
                             }
                         } label: {
                             FormElements.ButtonLabelView(buttonText: "Reset")
+                        }
+                        .alert("Password Changed", isPresented: $viewModel.showCompletionAlert) {
+                            Button("Ok", role: .none) {
+                                dismiss()
+                            }
                         }
                     }
                     .padding()

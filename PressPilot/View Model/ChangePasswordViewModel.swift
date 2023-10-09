@@ -22,6 +22,7 @@
 */
 
 import Foundation
+import Firebase
 
 final class ChangePasswordViewModel:ObservableObject{
     @Published var oldPassword:String = ""
@@ -31,6 +32,11 @@ final class ChangePasswordViewModel:ObservableObject{
     @Published var oldPasswordWarning:String?
     @Published var newPasswordWarning:String?
     @Published var confirmPasswordWarning:String?
+    
+    @Published var showCompletionAlert = false
+    
+    let dataManager = DataManager.shared
+    let authManager = AuthManager.shared
     
     func isFormValid()->Bool{
         oldPasswordWarning = ""
@@ -55,6 +61,20 @@ final class ChangePasswordViewModel:ObservableObject{
     }
     
     func resetPressed(){
-        
+        dataManager.updatePassword(from: oldPassword, to: newPassword) { error in
+            if let error{
+                let nsError = error as NSError
+                switch nsError.code{
+                case AuthErrorCode.wrongPassword.rawValue:
+                    self.oldPasswordWarning = "Wrong password"
+                case AuthErrorCode.weakPassword.rawValue:
+                    self.newPasswordWarning = "Password is too weak"
+                default:
+                    print("Failed to sign in with error: \(error)")
+                }
+            }else{
+                self.showCompletionAlert = true
+            }
+        }
     }
 }

@@ -97,6 +97,30 @@ class DataManager: ObservableObject{
         }
     }
     
+    func updatePassword(from password:String, to newPassword:String, completion: @escaping (Error?) -> Void){
+        if let user = Auth.auth().currentUser{
+            let credential: AuthCredential = EmailAuthProvider.credential(withEmail: user.email!, password: password)
+            
+            user.reauthenticate(with: credential) { result, error  in
+                if let error{
+                    print("Failed to reauthenticate: \(error)")
+                    
+                    completion(error as NSError)
+                }else{
+                    user.updatePassword(to: newPassword) { error in
+                        if let error{
+                            print("Failed to update password: \(error)")
+                            completion(error as NSError)
+                        }else{
+                            print("Password Updated!")
+                            completion(nil)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     //MARK: - News Data Manager
     
     func saveNews(email:String? ,title:String, url:String, urlToImage:String?){
