@@ -24,8 +24,8 @@
 import SwiftUI
 
 struct NewsView: View {
-    @StateObject var viewModel = NewsViewModel()
-    @StateObject var networkManager = NetworkManager()
+    @StateObject var viewModel:NewsViewModel
+    @StateObject var networkManager:NetworkManager
     @StateObject var dataService = UserDataManager.shared //using this to show the realtime change of bookmark icon
     @StateObject var rs = RequestManager.shared
     
@@ -238,9 +238,6 @@ struct NewsView: View {
             }
         }
         .padding(.top,16)
-        .onAppear{
-            self.networkManager.fetchData()
-        }
         .sheet(isPresented: $viewModel.showAppSettings, content: SettingsView.init)
     }
 }
@@ -255,6 +252,6 @@ struct OptionsPickerLabelView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsView()
+        NewsView(viewModel: NewsViewModel(), networkManager: NetworkManager())
     }
 }

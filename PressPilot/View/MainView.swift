@@ -27,6 +27,12 @@ struct MainView: View {
     @StateObject var authService = AuthManager.shared
     @StateObject var viewModel = MainViewModel()
     
+    @StateObject var newsViewModel = NewsViewModel()
+    @StateObject var savedViewModel = SavedViewModel()
+    var downloadViewModel = DownloadedNewsViewModel()
+    var profileViewModel = MyProfileViewModel()
+    var networkManager = NetworkManager()
+    
     //to solve Tabbar remains fully transparent after content scrolls below
     init(){
         UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance.init(idiom: .unspecified)
@@ -34,25 +40,46 @@ struct MainView: View {
     
     var body: some View {
         TabView{
-            NewsView()
+            NewsView(viewModel: newsViewModel, networkManager: networkManager)
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
             
-            SavedView()
+            SavedView(viewModel: savedViewModel)
                 .tabItem {
                     Label("Saved", systemImage: "bookmark")
                 }
             
-            DownloadedNewsView()
+            DownloadedNewsView(viewModel: downloadViewModel)
                 .tabItem {
                     Label("Downloads", systemImage: "platter.filled.bottom.and.arrow.down.iphone")
                 }
             
-            MyProfileView()
+            MyProfileView(viewModel: profileViewModel)
                 .tabItem {
                     Label("My Profile", systemImage: "person")
                 }
+        }
+        .onAppear{
+            networkManager.fetchData()
+            if authService.isSignedIn{
+                profileViewModel.fetchUserData()
+                savedViewModel.fetchSavedNews()
+                newsViewModel.fetchSavedNews()
+            }
+        }
+        .onChange(of: authService.isSignedIn) { isSignedIn in
+            savedViewModel.fetchSavedNews()
+            newsViewModel.fetchSavedNews()
+            if isSignedIn{
+                profileViewModel.fetchUserData()
+            }
+        }
+        .onChange(of: newsViewModel.savedNewsCollection.count){ value in
+            savedViewModel.savedNewsCollection = newsViewModel.savedNewsCollection
+        }
+        .onChange(of: savedViewModel.savedNewsCollection.count){ value in
+            newsViewModel.savedNewsCollection = savedViewModel.savedNewsCollection
         }
     }
 }

@@ -49,6 +49,13 @@ final class NewsViewModel:ObservableObject{
         }
     }
     
+    func fetchSavedNews(){
+        savedNewsCollection = []
+        dataService.fetchSavedNews(){ newsCollection in
+            self.savedNewsCollection = newsCollection
+        }
+    }
+    
     func isSaved(newsURl:String)->Bool{
         for news in savedNewsCollection{
             if news.url == newsURl{

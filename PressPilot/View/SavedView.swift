@@ -24,7 +24,7 @@
 import SwiftUI
 
 struct SavedView: View {
-    @StateObject var viewModel = SavedViewModel()
+    @StateObject var viewModel:SavedViewModel
     @StateObject var authService = AuthManager.shared
     
     var body: some View {
@@ -86,21 +86,11 @@ struct SavedView: View {
                 SignInView()
             }
         }
-        .onAppear{
-            if viewModel.authService.isSignedIn{
-                viewModel.fetchSavedNews()
-            }
-        }
-        .onChange(of: authService.isSignedIn) { isSignedIn in
-            if isSignedIn{
-                viewModel.fetchSavedNews()
-            }
-        }
     }
 }
 
 struct SavedView_Previews: PreviewProvider {
     static var previews: some View {
-        SavedView()
+        SavedView(viewModel: SavedViewModel())
     }
 }
