@@ -45,8 +45,11 @@ struct SignInView: View {
                         
                         Spacer()
                         
-                        Text("Forgot password?")
-                            .underline()
+                        NavigationLink(destination: ForgotPasswordView()){
+                            Text("Forgot password?")
+                                .underline()
+                        }
+                        .tint(Color(UIColor.label))
                     }
                     .padding(.top, 10)
                     

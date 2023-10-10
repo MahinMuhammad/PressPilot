@@ -42,6 +42,8 @@
 		009E0E5A2A1793A100ECAE73 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 009E0E592A1793A100ECAE73 /* FirebaseAuth */; };
 		009E0E5C2A1793A100ECAE73 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 009E0E5B2A1793A100ECAE73 /* FirebaseFirestoreSwift */; };
 		009FDCFF2A11386D0088F44B /* FormElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009FDCFE2A11386D0088F44B /* FormElements.swift */; };
+		00B9FEF12AD592A5009C23B0 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B9FEF02AD592A5009C23B0 /* ForgotPasswordView.swift */; };
+		00B9FEF32AD59357009C23B0 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B9FEF22AD59357009C23B0 /* ForgotPasswordViewModel.swift */; };
 		00BBA6272A262D7B0010E986 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BBA6262A262D7B0010E986 /* DataManager.swift */; };
 		00BBA6292A2636050010E986 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BBA6282A2636050010E986 /* UserModel.swift */; };
 		00E9DE482A0E966F00C440CF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9DE472A0E966F00C440CF /* NetworkManager.swift */; };
@@ -92,6 +94,8 @@
 		009E0E502A16635200ECAE73 /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		009E0E562A174DED00ECAE73 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		009FDCFE2A11386D0088F44B /* FormElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormElements.swift; sourceTree = "<group>"; };
+		00B9FEF02AD592A5009C23B0 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		00B9FEF22AD59357009C23B0 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		00BBA6262A262D7B0010E986 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		00BBA6282A2636050010E986 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		00E9DE472A0E966F00C440CF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 				0028254A2AD2EA4600BFCB64 /* ChangePasswordViewModel.swift */,
 				0028254C2AD2EA6000BFCB64 /* DeactivateAccountViewModel.swift */,
 				0028254E2AD2EAC200BFCB64 /* DeleteAccountViewModel.swift */,
+				00B9FEF22AD59357009C23B0 /* ForgotPasswordViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				002825422AD2E9A900BFCB64 /* ChangePasswordView.swift */,
 				002825442AD2E9E200BFCB64 /* DeactiveAccoutView.swift */,
 				002825462AD2EA0100BFCB64 /* DeleteAccountView.swift */,
+				00B9FEF02AD592A5009C23B0 /* ForgotPasswordView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 				00E9DE572A0F9F4E00C440CF /* WebView.swift in Sources */,
 				000A76722A3346E20052A3E8 /* DeviceRotationViewModifier.swift in Sources */,
 				00E9DE552A0F9E6300C440CF /* DetailView.swift in Sources */,
+				00B9FEF12AD592A5009C23B0 /* ForgotPasswordView.swift in Sources */,
 				00447A4E2A285A77001BAB02 /* LoadingView.swift in Sources */,
 				009E0E512A16635200ECAE73 /* K.swift in Sources */,
 				0053FBC62AC1977E004C2DFE /* NewsViewModel.swift in Sources */,
@@ -335,6 +342,7 @@
 				0053FBCE2AC1D7FA004C2DFE /* SignUpViewModel.swift in Sources */,
 				002825472AD2EA0100BFCB64 /* DeleteAccountView.swift in Sources */,
 				0053FBC22AC17631004C2DFE /* CountryModel.swift in Sources */,
+				00B9FEF32AD59357009C23B0 /* ForgotPasswordViewModel.swift in Sources */,
 				00E9DE4F2A0EBF1900C440CF /* MainView.swift in Sources */,
 				00E9DE512A0EC15D00C440CF /* SavedView.swift in Sources */,
 				00475F6E2A0AB8A200CA8227 /* NewsView.swift in Sources */,
