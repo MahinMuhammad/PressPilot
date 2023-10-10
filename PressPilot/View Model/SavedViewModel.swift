@@ -27,6 +27,7 @@ import SwiftUI
 final class SavedViewModel:ObservableObject{
     let authService = AuthManager.shared
     let dataManager = DataManager.shared
+    var loadingFinished = false
     @Published var savedNewsCollection = [NewsModel]()
     
     func deleteButtonPressed(delete news:NewsModel){
@@ -38,13 +39,19 @@ final class SavedViewModel:ObservableObject{
     
     func fetchSavedNews(){
         savedNewsCollection = []
+        loadingFinished = false
         dataManager.fetchSavedNews(){ newsCollection in
             self.savedNewsCollection = newsCollection
+            self.loadingFinished = true
         }
     }
     
     func newsLoaded()->Bool{
-        return savedNewsCollection.count != 0
+        return savedNewsCollection.count != 0 || loadingFinished
+    }
+    
+    func isNewsEmpty()->Bool{
+        return savedNewsCollection.count == 0 && loadingFinished
     }
     
     func removeAllSavedNews(){

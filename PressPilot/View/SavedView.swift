@@ -81,6 +81,9 @@ struct SavedView: View {
                 if !viewModel.newsLoaded(){
                     LoadingView(isAnimating: .constant(true), style: .large)
                 }
+                else if viewModel.isNewsEmpty(){
+                    Text("No Saved News")
+                }
             }
             .navigationDestination(isPresented: Binding<Bool>(get: {return !viewModel.authService.isSignedIn}, set: { p in viewModel.authService.isSignedIn = p})) {
                 SignInView()
