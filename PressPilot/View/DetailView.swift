@@ -40,12 +40,10 @@ struct DetailView: View {
                         .imageScale(.large)
                 }
                 .padding()
-                Text(viewModel.getSecondLevelDomain(from: url) ?? "")
+                Text(viewModel.getSecondLevelDomain(from: url))
                     .lineLimit(1)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            
-            Divider()
             
             WebView(urlString: url)
         }

@@ -104,8 +104,14 @@ final class NewsViewModel:ObservableObject{
         return false
     }
     
-    func getSecondLevelDomain(from url:String?)->String?{
-        let parsedUrl = url?.components(separatedBy: ".")
-        return parsedUrl?[1] != "com" ? parsedUrl?[1].uppercased() : "EMPTY"
+    func getSecondLevelDomain(from url:String?)->String{
+        guard let url else{return ""}
+        let parsedUrl = url.components(separatedBy: ".")
+        
+        if parsedUrl.count < 2 || parsedUrl[1].contains("com"){
+            return parsedUrl[0].replacingOccurrences(of: "https://", with: "").replacingOccurrences(of: "http://", with: "").uppercased()
+        }else{
+            return parsedUrl[1].uppercased()
+        }
     }
 }
