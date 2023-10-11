@@ -60,4 +60,9 @@ final class SavedViewModel:ObservableObject{
         let impactMed = UIImpactFeedbackGenerator(style: .heavy)
         impactMed.impactOccurred()
     }
+    
+    func getSecondLevelDomain(from url:String?)->String?{
+        let parsedUrl = url?.components(separatedBy: ".")
+        return parsedUrl?[1] != "com" ? parsedUrl?[1].uppercased() : "EMPTY"
+    }
 }

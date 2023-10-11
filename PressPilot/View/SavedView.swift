@@ -32,7 +32,7 @@ struct SavedView: View {
             ZStack{
                 VStack{
                     List(viewModel.savedNewsCollection){news in
-                        HStack(alignment:.top){
+                        HStack(){
                             AsyncImage(url: news.imageUrl) { image in
                                 image
                                     .resizable()
@@ -62,14 +62,37 @@ struct SavedView: View {
                                         .padding(.leading, 10)
                                         .lineLimit(3)
                                 }
-                                Button {
-                                    viewModel.deleteButtonPressed(delete: news)
-                                } label: {
-                                    Image(systemName: "bookmark.fill")
+                                
+                                Spacer()
+                                
+                                HStack(alignment: .top){
+                                    Text(viewModel.getSecondLevelDomain(from: news.url) ?? "")
+                                        .lineLimit(1)
+                                        .font(.system(size: 13))
+                                        .foregroundStyle(Color(UIColor.systemBackground))
+                                        .padding(.top,1)
+                                        .padding(.bottom,1)
+                                        .padding(.leading,7)
+                                        .padding(.trailing,7)
+                                        .background {
+                                            RoundedRectangle(cornerRadius: 7)
+                                                .foregroundStyle(Color(K.CustomColors.grayToBluish))
+                                        }
+                                        .padding(.leading, 10)
+                                    
+                                    Spacer()
+                                    
+                                    Button {
+                                        viewModel.deleteButtonPressed(delete: news)
+                                    } label: {
+                                        Image(systemName: "bookmark.fill")
+                                    }
+                                    .buttonStyle(.borderless)
+                                    .padding(.trailing, 10)
                                 }
-                                .buttonStyle(.borderless)
-                                .padding()
+                                .padding(.bottom, 20)
                             }
+                            .padding(.top,5)
                         }
                         .listRowSeparator(.hidden)
                     }
