@@ -25,6 +25,7 @@
 		00475F702A0AB8A300CA8227 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00475F6F2A0AB8A300CA8227 /* Assets.xcassets */; };
 		00475F732A0AB8A300CA8227 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00475F722A0AB8A300CA8227 /* Preview Assets.xcassets */; };
 		00482EBB2A275ACD00AAC89A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00482EBA2A275ACD00AAC89A /* SettingsView.swift */; };
+		00492E612AD68FAA00C88B68 /* MonitoringNewtorkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00492E602AD68FAA00C88B68 /* MonitoringNewtorkState.swift */; };
 		0053FBBE2AC17506004C2DFE /* NewsCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBBD2AC17506004C2DFE /* NewsCategoryModel.swift */; };
 		0053FBC02AC17575004C2DFE /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBBF2AC17575004C2DFE /* LanguageModel.swift */; };
 		0053FBC22AC17631004C2DFE /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBC12AC17631004C2DFE /* CountryModel.swift */; };
@@ -79,6 +80,7 @@
 		00475F6F2A0AB8A300CA8227 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00475F722A0AB8A300CA8227 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		00482EBA2A275ACD00AAC89A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		00492E602AD68FAA00C88B68 /* MonitoringNewtorkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoringNewtorkState.swift; sourceTree = "<group>"; };
 		0053FBBD2AC17506004C2DFE /* NewsCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategoryModel.swift; sourceTree = "<group>"; };
 		0053FBBF2AC17575004C2DFE /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
 		0053FBC12AC17631004C2DFE /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				0028253D2AD2E8A700BFCB64 /* GoogleService-Info.plist */,
 				00475F6B2A0AB8A200CA8227 /* PressPilotApp.swift */,
 				009E0E502A16635200ECAE73 /* K.swift */,
+				00492E602AD68FAA00C88B68 /* MonitoringNewtorkState.swift */,
 				00E9DE462A0E964800C440CF /* Model */,
 				00E9DE4D2A0EA10D00C440CF /* View */,
 				0053FBBA2AC033C7004C2DFE /* View Model */,
@@ -343,6 +346,7 @@
 				002825472AD2EA0100BFCB64 /* DeleteAccountView.swift in Sources */,
 				0053FBC22AC17631004C2DFE /* CountryModel.swift in Sources */,
 				00B9FEF32AD59357009C23B0 /* ForgotPasswordViewModel.swift in Sources */,
+				00492E612AD68FAA00C88B68 /* MonitoringNewtorkState.swift in Sources */,
 				00E9DE4F2A0EBF1900C440CF /* MainView.swift in Sources */,
 				00E9DE512A0EC15D00C440CF /* SavedView.swift in Sources */,
 				00475F6E2A0AB8A200CA8227 /* NewsView.swift in Sources */,

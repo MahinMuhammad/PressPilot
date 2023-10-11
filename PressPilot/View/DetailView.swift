@@ -24,11 +24,25 @@
 import SwiftUI
 
 struct DetailView: View {
+    @Environment(\.dismiss) var dismiss
     
     let url:String?
     
     var body: some View {
-        WebView(urlString: url)
+        VStack{
+            HStack{
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .foregroundColor(Color(UIColor.label))
+                        .imageScale(.large)
+                }
+                .frame(alignment: .leading)
+            }
+            WebView(urlString: url)
+        }
+        .navigationBarBackButtonHidden()
     }
 }
 

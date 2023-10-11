@@ -22,8 +22,8 @@
  */
 
 import Foundation
+import Network
 
 final class MainViewModel: ObservableObject{
     let dataManager =  DataManager.shared
-    
 }

@@ -26,6 +26,7 @@ import SwiftUI
 struct MainView: View {
     @StateObject var authService = AuthManager.shared
     @StateObject var viewModel = MainViewModel()
+    @StateObject var networkState = MonitoringNetworkState()
     
     @StateObject var newsViewModel = NewsViewModel()
     @StateObject var savedViewModel = SavedViewModel()
@@ -80,6 +81,17 @@ struct MainView: View {
         }
         .onChange(of: savedViewModel.savedNewsCollection.count){ value in
             newsViewModel.savedNewsCollection = savedViewModel.savedNewsCollection
+        }
+        //fatching data after being online
+        .onChange(of: networkState.isConnected) { connected in
+            if connected{
+                newsViewModel.loadNews()
+                if authService.isSignedIn{
+                    profileViewModel.fetchUserData()
+                    savedViewModel.fetchSavedNews()
+                    newsViewModel.fetchSavedNews()
+                }
+            }
         }
     }
 }
