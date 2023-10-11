@@ -97,7 +97,7 @@ struct NewsView: View {
                     }
                     
                     List(viewModel.newsCollection){news in
-                        HStack(alignment:.top){
+                        HStack(){
                             AsyncImage(url: news.imageUrl) { image in
                                 image
                                     .resizable()
@@ -128,18 +128,39 @@ struct NewsView: View {
                                         .lineLimit(3)
                                 }
                                 
-                                Button {
-                                    viewModel.saveButtonPressed(save: news)
-                                } label: {
-                                    Image(systemName: viewModel.isSaved(newsURl: news.url) == true ? "bookmark.fill" : "bookmark")
+                                Spacer()
+                                
+                                HStack(alignment: .top){
+                                    Text(viewModel.getSecondLevelDomain(from: news.url) ?? "")
+                                        .lineLimit(1)
+                                        .font(.system(size: 13))
+                                        .foregroundStyle(Color(UIColor.systemBackground))
+                                        .padding(.top,1)
+                                        .padding(.bottom,1)
+                                        .padding(.leading,7)
+                                        .padding(.trailing,7)
+                                        .background {
+                                            RoundedRectangle(cornerRadius: 7)
+                                                .foregroundStyle(Color(K.CustomColors.grayToBluish))
+                                        }
+                                        .padding(.leading, 10)
+                                    
+                                    Spacer()
+                                    
+                                    Button {
+                                        viewModel.saveButtonPressed(save: news)
+                                    } label: {
+                                        Image(systemName: viewModel.isSaved(newsURl: news.url) == true ? "bookmark.fill" : "bookmark")
+                                    }
+                                    .alert("SignIn to Save News", isPresented: $viewModel.showingAlertToSignIn) {
+                                        Button("OK", role: .cancel) { }
+                                    }
+                                    .buttonStyle(.borderless)
+                                    .padding(.trailing, 10)
                                 }
-                                .alert("SignIn to Save News", isPresented: $viewModel.showingAlertToSignIn) {
-                                    Button("OK", role: .cancel) { }
-                                }
-                                .buttonStyle(.borderless)
-                                .padding()
+                                .padding(.bottom, 20)
                             }
-                            
+                            .padding(.top,5)
                         }
                         .listRowSeparator(.hidden)
                         .swipeActions(edge: .trailing, allowsFullSwipe: true) {

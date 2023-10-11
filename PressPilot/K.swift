@@ -33,6 +33,7 @@ struct K{
     struct CustomColors{
         static let bluishWhiteToBlack = "MyProfileBGColor"
         static let whiteToDarkGray = "ProfileInfoColor"
+        static let grayToBluish = "GrayToBluish"
     }
     
     struct FStore{

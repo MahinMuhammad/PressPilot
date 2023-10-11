@@ -10,6 +10,6 @@ import Foundation
 final class DetailViewModel:ObservableObject{
     func getSecondLevelDomain(from url:String?)->String?{
         let parsedUrl = url?.components(separatedBy: ".")
-        return parsedUrl?[1].uppercased()
+        return parsedUrl?[1] != "com" ? parsedUrl?[1].uppercased() : "EMPTY"
     }
 }
