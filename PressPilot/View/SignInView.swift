@@ -26,7 +26,6 @@ import FloatingLabelTextFieldSwiftUI
 
 struct SignInView: View {
     @StateObject var viewModel = SignInViewModel()
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         

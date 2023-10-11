@@ -25,7 +25,6 @@ import SwiftUI
 
 struct SignUpView: View {
     @StateObject var viewModel = SignUpViewModel()
-    @StateObject var authService = AuthManager.shared
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
