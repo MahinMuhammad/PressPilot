@@ -25,6 +25,7 @@ import SwiftUI
 
 struct DetailView: View {
     @Environment(\.dismiss) var dismiss
+    @StateObject var viewModel = DetailViewModel()
     
     let url:String?
     
@@ -38,8 +39,14 @@ struct DetailView: View {
                         .foregroundColor(Color(UIColor.label))
                         .imageScale(.large)
                 }
-                .frame(alignment: .leading)
+                .padding()
+                Text(viewModel.getSecondLevelDomain(from: url) ?? "")
+                    .lineLimit(1)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Divider()
+            
             WebView(urlString: url)
         }
         .navigationBarBackButtonHidden()

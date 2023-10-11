@@ -58,6 +58,7 @@
 		00E9DE5B2A0FE62100C440CF /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9DE5A2A0FE62100C440CF /* SignUpView.swift */; };
 		00E9DE5E2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 00E9DE5D2A0FFCB800C440CF /* FloatingLabelTextFieldSwiftUI */; };
 		00E9DE602A10C0EA00C440CF /* ThemeTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9DE5F2A10C0EA00C440CF /* ThemeTextFieldStyle.swift */; };
+		00FE29972AD6D3A000845E98 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE29962AD6D3A000845E98 /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		00E9DE582A0FE61000C440CF /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		00E9DE5A2A0FE62100C440CF /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		00E9DE5F2A10C0EA00C440CF /* ThemeTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTextFieldStyle.swift; sourceTree = "<group>"; };
+		00FE29962AD6D3A000845E98 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 				0028254C2AD2EA6000BFCB64 /* DeactivateAccountViewModel.swift */,
 				0028254E2AD2EAC200BFCB64 /* DeleteAccountViewModel.swift */,
 				00B9FEF22AD59357009C23B0 /* ForgotPasswordViewModel.swift */,
+				00FE29962AD6D3A000845E98 /* DetailViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				000A76722A3346E20052A3E8 /* DeviceRotationViewModifier.swift in Sources */,
 				00E9DE552A0F9E6300C440CF /* DetailView.swift in Sources */,
 				00B9FEF12AD592A5009C23B0 /* ForgotPasswordView.swift in Sources */,
+				00FE29972AD6D3A000845E98 /* DetailViewModel.swift in Sources */,
 				00447A4E2A285A77001BAB02 /* LoadingView.swift in Sources */,
 				009E0E512A16635200ECAE73 /* K.swift in Sources */,
 				0053FBC62AC1977E004C2DFE /* NewsViewModel.swift in Sources */,
