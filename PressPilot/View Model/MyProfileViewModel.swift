@@ -28,17 +28,24 @@ final class MyProfileViewModel:ObservableObject{
     @Published var showRemoveAllNewsAlert = false
     @Published var logoutSuccess = false
     @Published var user:UserModel?
+    @Published var loadingFinished = false
     @Published var dataManager = DataManager.shared
     
     func fetchUserData(){
         user = nil
+        loadingFinished = false
         dataManager.readUserData(){ user in
             self.user = user
+            self.loadingFinished = true
         }
     }
     
     func userLoaded()->Bool{
-        return user != nil
+        return user != nil || loadingFinished
+    }
+    
+    func failedToFetchUserData()->Bool{
+        return user == nil || loadingFinished
     }
     
     func removeSavedNews(){

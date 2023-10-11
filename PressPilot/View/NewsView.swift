@@ -232,8 +232,11 @@ struct NewsView: View {
                     }
                 }
                 
-                if networkManager.newsCollection.count == 0{
+                if !networkManager.dataFetched(){
                     LoadingView(isAnimating: .constant(true), style: .large)
+                }
+                else if networkManager.zeroNewsFetched(){
+                    Text(networkManager.emptyListMessage)
                 }
             }
         }

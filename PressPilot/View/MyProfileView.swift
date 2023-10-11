@@ -52,14 +52,14 @@ struct MyProfileView: View {
                                         }
                                     
                                     VStack(alignment: .leading){
-                                        Text("\(viewModel.user?.firstName ?? "") \(viewModel.user?.lastname ?? "")")
+                                        Text("\(viewModel.user?.firstName ?? "Failed to fetch") \(viewModel.user?.lastname ?? "")")
                                             .bold()
                                             .font(.system(size: 23))
                                             .padding(.top, 3)
                                             .padding(.bottom, 1)
                                             .lineLimit(1)
                                         
-                                        Text(viewModel.user?.email ?? "")
+                                        Text(viewModel.user?.email ?? "Failed to fetch")
                                             .bold()
                                             .font(.system(size: 15))
                                             .tint(Color(UIColor.darkGray))

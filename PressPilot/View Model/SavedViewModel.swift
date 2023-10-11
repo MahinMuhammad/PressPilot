@@ -27,7 +27,7 @@ import SwiftUI
 final class SavedViewModel:ObservableObject{
     let authService = AuthManager.shared
     let dataManager = DataManager.shared
-    var loadingFinished = false
+    @Published var loadingFinished = false
     @Published var savedNewsCollection = [NewsModel]()
     
     func deleteButtonPressed(delete news:NewsModel){
