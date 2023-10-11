@@ -28,10 +28,17 @@ import FirebaseAuth
 final class NewsViewModel:ObservableObject{
     let authService = AuthManager.shared
     let dataManager = DataManager.shared
+    let networkManager = NetworkManager()
+    
     @Published var showSearchBox = false
     @Published var showAppSettings = false
     @Published var showingAlertToSignIn = false
+    
+    @Published var newsCollection = [NewsModel]()
     @Published var savedNewsCollection = [NewsModel]()
+    
+    @Published var loadingFinished = false
+    var emptyListMessage = ""
     
     func saveButtonPressed(save news:NewsModel){
         if authService.isSignedIn{
@@ -47,6 +54,38 @@ final class NewsViewModel:ObservableObject{
         }else{
             showingAlertToSignIn = true
         }
+    }
+    
+    func loadNews(){
+        newsCollection = []
+        loadingFinished = false
+        emptyListMessage = ""
+        networkManager.fetchData { result, error in
+            if let error{
+                    self.loadingFinished = true
+                    let nsError = error as NSError
+                    switch nsError.code{
+                    case URLError.notConnectedToInternet.rawValue:
+                        self.emptyListMessage = "Not connected to the internet"
+                    default:
+                        print("Data fetch failed with error: \(error)")
+                    }
+            }else{
+                self.newsCollection = result
+                self.loadingFinished = true
+                if self.newsCollection.count == 0{
+                    self.emptyListMessage = "No news found"
+                }
+            }
+        }
+    }
+    
+    func newsLoaded()->Bool{
+        return newsCollection.count != 0 || loadingFinished
+    }
+    
+    func zeroNewsLoaded()->Bool{
+        return newsCollection.count == 0 && loadingFinished
     }
     
     func fetchSavedNews(){

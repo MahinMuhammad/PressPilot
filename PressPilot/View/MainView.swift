@@ -40,7 +40,7 @@ struct MainView: View {
     
     var body: some View {
         TabView{
-            NewsView(viewModel: newsViewModel, networkManager: networkManager)
+            NewsView(viewModel: newsViewModel)
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
@@ -61,7 +61,7 @@ struct MainView: View {
                 }
         }
         .onAppear{
-            networkManager.fetchData()
+            newsViewModel.loadNews()
             if authService.isSignedIn{
                 profileViewModel.fetchUserData()
                 savedViewModel.fetchSavedNews()

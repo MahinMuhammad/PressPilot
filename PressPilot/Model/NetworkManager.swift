@@ -27,9 +27,9 @@ class NetworkManager: ObservableObject{
     
     let rs = RequestManager.shared
     
-    @Published var newsCollection = [NewsModel]()
-    @Published var loadingFinished = false
-    var emptyListMessage = ""
+//    @Published var newsCollection = [NewsModel]()
+//    @Published var loadingFinished = false
+//    var emptyListMessage = ""
 
     let apiKey = Config.newsapiKey //get an api key from newsapi.org and assign it instead of Config.newsapiKey
     
@@ -53,45 +53,28 @@ class NetworkManager: ObservableObject{
         return finaUrlString
     }
     
-    func fetchData(){
-        loadingFinished = false
-        emptyListMessage = ""
-        self.newsCollection = [] //just to make newsCollection empty and show loading view each time fetchData called
+    func fetchData(completion: @escaping ([NewsModel],Error?) -> Void){
+//        loadingFinished = false
+//        emptyListMessage = ""
+        var newsCollection = [NewsModel]() //just to make newsCollection empty and show loading view each time fetchData called
         if let url = URL(string: getURL()){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
                 if let error{
-                        self.loadingFinished = true
-                        let nsError = error as NSError
-                        switch nsError.code{
-                        case URLError.notConnectedToInternet.rawValue:
-                            self.emptyListMessage = "Not connected to the internet"
-                        default:
-                            print("Data fetch failed with error: \(error)")
-                        }
+                    completion([],error)
                 }else{
                     let decoder = JSONDecoder()
                     if let safeData = data{
                         do{
                             let results = try decoder.decode(Result.self, from: safeData)
                             DispatchQueue.main.async {
-                                self.newsCollection = results.articles
-                                print("Data fetch successful with \(self.newsCollection.count) articles")
-                                self.loadingFinished = true
-                                if self.newsCollection.count == 0{
-                                    self.emptyListMessage = "No news found"
-                                }
+                                newsCollection = results.articles
+                                completion(newsCollection,nil)
+                                print("Data fetch successful with \(newsCollection.count) articles")
                             }
                         }catch{
                             DispatchQueue.main.async {
-                                self.loadingFinished = true
-                                let nsError = error as NSError
-                                switch nsError.code{
-                                case URLError.notConnectedToInternet.rawValue:
-                                    self.emptyListMessage = "Not connected to the internet"
-                                default:
-                                    print("Error in data: \(error)")
-                                }
+                                completion([],error)
                             }
                         }
                     }
@@ -99,13 +82,5 @@ class NetworkManager: ObservableObject{
             }
             task.resume()
         }
-    }
-    
-    func dataFetched()->Bool{   
-        return newsCollection.count != 0 || loadingFinished
-    }
-    
-    func zeroNewsFetched()->Bool{
-        return newsCollection.count == 0 && loadingFinished
     }
 }

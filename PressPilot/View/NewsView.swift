@@ -25,7 +25,6 @@ import SwiftUI
 
 struct NewsView: View {
     @StateObject var viewModel:NewsViewModel
-    @StateObject var networkManager:NetworkManager
     @StateObject var dataService = DataManager.shared //using this to show the realtime change of bookmark icon
     @StateObject var rs = RequestManager.shared
     
@@ -42,7 +41,7 @@ struct NewsView: View {
                                     }
                                     rs.selectedKeyword = ""
                                     rs.isKewordSearchOn = false
-                                    networkManager.fetchData()
+                                    viewModel.loadNews()
                                 }label: {
                                     Image(systemName: "chevron.backward")
                                         .foregroundColor(Color(UIColor.label))
@@ -57,7 +56,7 @@ struct NewsView: View {
                                     .transition(.push(from: .trailing))
                                 
                                 Button{
-                                    networkManager.fetchData()
+                                    viewModel.loadNews()
                                 }label: {
                                     Image(systemName: "checkmark")
                                         .fontWeight(.medium)
@@ -76,7 +75,7 @@ struct NewsView: View {
                                 .animation(.easeInOut(duration: 5), value: 0)
                                 .transition(.push(from: .leading))
                                 .onChange(of: rs.selectedLangOrCntry) {value in
-                                    self.networkManager.fetchData()
+                                    self.viewModel.loadNews()
                                 }
                                 ForEach($rs.newsCategoryCollection){ $category in
                                     Toggle(category.id, isOn: $category.isSelected)
@@ -88,7 +87,7 @@ struct NewsView: View {
                                         .onChange(of: category.isSelected) {value in
                                             if value{
                                                 rs.unselectOtherFilter(id: category.id)
-                                                networkManager.fetchData()
+                                                viewModel.loadNews()
                                             }
                                         }
                                 }
@@ -98,7 +97,7 @@ struct NewsView: View {
                         .padding(.top, 24)
                     }
                     
-                    List(networkManager.newsCollection){news in
+                    List(viewModel.newsCollection){news in
                         HStack(alignment:.top){
                             AsyncImage(url: news.imageUrl) { image in
                                 image
@@ -228,15 +227,15 @@ struct NewsView: View {
                     .padding(.top, 24)
                     .listStyle(.plain)
                     .refreshable {
-                        self.networkManager.fetchData()
+                        self.viewModel.loadNews()
                     }
                 }
                 
-                if !networkManager.dataFetched(){
+                if !viewModel.newsLoaded(){
                     LoadingView(isAnimating: .constant(true), style: .large)
                 }
-                else if networkManager.zeroNewsFetched(){
-                    Text(networkManager.emptyListMessage)
+                else if viewModel.zeroNewsLoaded(){
+                    Text(viewModel.emptyListMessage)
                 }
             }
         }
@@ -255,6 +254,6 @@ struct OptionsPickerLabelView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsView(viewModel: NewsViewModel(), networkManager: NetworkManager())
+        NewsView(viewModel: NewsViewModel())
     }
 }
