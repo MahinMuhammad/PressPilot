@@ -28,14 +28,16 @@ final class RequestManager: ObservableObject{
     
     private init(){}
     
-    let pageSize = "20"
+    //MARK: - Page Sizes of News List
+    @Published var pageSize = "20"
+    let oferedPageSizes = ["20", "25", "30"]
     
     //MARK: - KeyWord search
     @Published var isKewordSearchOn = false
     @Published var selectedKeyword = ""
     
     //MARK: - Language or Country
-    @Published var selectedLangOrCntry = "language"
+    @Published var selectedLangOrCntry = K.languageInString
     let choicesLangOrCntry = [K.languageInString, K.countryInString]
     
     //MARK: - Country Settings

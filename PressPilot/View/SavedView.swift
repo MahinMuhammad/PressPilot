@@ -109,7 +109,7 @@ struct SavedView: View {
                         viewModel.fetchSavedNews()
                     }
                     .toolbar {
-                        ToolbarItemGroup(placement: .navigation) {
+                        ToolbarItem(placement: .navigation) {
                             Text("Saved News")
                                 .fontWeight(.bold)
                                 .font(.system(size: 24))

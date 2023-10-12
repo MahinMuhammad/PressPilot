@@ -64,18 +64,26 @@ struct NewsView: View {
                                 .transition(.push(from: .trailing))
                             }
                             if !viewModel.showSearchBox{
-                                Picker(selection: $rs.selectedLangOrCntry, label: OptionsPickerLabelView()) {
-                                    ForEach(rs.choicesLangOrCntry, id: \.self) {
-                                        Text("Search by \($0)").tag($0)
-                                    }
+//                                Picker(selection: $rs.selectedLangOrCntry, label: OptionsPickerLabelView()) {
+//                                    ForEach(rs.choicesLangOrCntry, id: \.self) {
+//                                        Text("Search by \($0)").tag($0)
+//                                    }
+//                                }
+//                                .frame(width: 35,height: 35)
+//                                .pickerStyle(.navigationLink)
+//                                .animation(.easeInOut(duration: 5), value: 0)
+//                                .transition(.push(from: .leading))
+//                                .onChange(of: rs.selectedLangOrCntry) {value in
+//                                    self.viewModel.loadNews()
+//                                }
+                                NavigationLink(destination: NewsFilterView()) {
+                                    Image(systemName: "line.3.horizontal")
+                                        .foregroundColor(Color(UIColor.label))
+                                        .imageScale(.large)
                                 }
-                                .frame(width: 35,height: 35)
-                                .pickerStyle(.navigationLink)
-                                .animation(.easeInOut(duration: 5), value: 0)
+                                .padding(.trailing,10)
                                 .transition(.push(from: .leading))
-                                .onChange(of: rs.selectedLangOrCntry) {value in
-                                    self.viewModel.loadNews()
-                                }
+                                
                                 ForEach($rs.newsCategoryCollection){ $category in
                                     Toggle(category.id, isOn: $category.isSelected)
                                         .toggleStyle(.button)
@@ -93,7 +101,8 @@ struct NewsView: View {
                             }
                         }
                         .padding(.leading, 16)
-                        .padding(.top, 24)
+                        .padding(.top, 25)
+                        .padding(.bottom, 5)
                     }
                     
                     List(viewModel.newsCollection){news in
@@ -244,7 +253,6 @@ struct NewsView: View {
                             }
                         }
                     })
-                    .padding(.top, 24)
                     .listStyle(.plain)
                     .refreshable {
                         self.viewModel.loadNews()
@@ -261,6 +269,15 @@ struct NewsView: View {
         }
         .padding(.top,16)
         .sheet(isPresented: $viewModel.showAppSettings, content: SettingsView.init)
+        .onChange(of: rs.selectedLangOrCntry) { newValue in
+            viewModel.loadNews()
+        }
+        .onChange(of: rs.selectedCountry) { newValue in
+            viewModel.loadNews()
+        }
+        .onChange(of: rs.selectedLanguage) { newValue in
+            viewModel.loadNews()
+        }
     }
 }
 

@@ -26,7 +26,6 @@ import FirebaseAuth
 
 struct MyProfileView: View {
     @StateObject var viewModel:MyProfileViewModel
-    @StateObject var rs = RequestManager.shared
     @StateObject var authService = AuthManager.shared
     
     var body: some View {
@@ -69,43 +68,6 @@ struct MyProfileView: View {
                                 .padding(.leading, 30)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             }
-                        
-                        //                        RoundedRectangle(cornerRadius: 25)
-                        //                            .frame(height: 110)
-                        //                            .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
-                        //                            .overlay{
-                        //                                VStack(spacing: 8){
-                        //                                    HStack{
-                        //                                        Picker(selection: $rs.selectedLanguage, label: PickerLabelView(imageName: "doc.plaintext", title: "Language")) {
-                        //                                            ForEach(rs.languages) { language in
-                        //                                                Text(language.language).tag(language.id)
-                        //                                            }
-                        //                                        }
-                        //                                        .foregroundColor(Color(UIColor.label))
-                        //                                        .pickerStyle(.navigationLink)
-                        //
-                        //                                        Image(systemName: "chevron.forward")
-                        //                                            .foregroundColor(Color(UIColor.lightGray))
-                        //                                    }
-                        //
-                        //                                    Divider()
-                        //
-                        //                                    HStack{
-                        //                                        Picker(selection: $rs.selectedCountry, label: PickerLabelView(imageName: "globe", title: "Country"))
-                        //                                        {
-                        //                                            ForEach(rs.countries) { country in
-                        //                                                Text(country.country).tag(country.id)
-                        //                                            }
-                        //                                        }
-                        //                                        .foregroundColor(Color(UIColor.label))
-                        //                                        .pickerStyle(.navigationLink)
-                        //
-                        //                                        Image(systemName: "chevron.forward")
-                        //                                            .foregroundColor(Color(UIColor.lightGray))
-                        //                                    }
-                        //                                }
-                        //                                .padding()
-                        //                            }
                         
                         //edit info or change password
                         RoundedRectangle(cornerRadius: 25)

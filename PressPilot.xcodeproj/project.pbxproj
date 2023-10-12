@@ -38,6 +38,8 @@
 		0053FBD02AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBCF2AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift */; };
 		0053FBD22AC1E157004C2DFE /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBD12AC1E157004C2DFE /* SettingsViewModel.swift */; };
 		006DB0F12A1295E70097E567 /* DownloadedNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DB0F02A1295E70097E567 /* DownloadedNewsView.swift */; };
+		009486072AD7D8E5003D25C5 /* NewsFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009486062AD7D8E5003D25C5 /* NewsFilterView.swift */; };
+		009486092AD7D908003D25C5 /* NewsFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009486082AD7D908003D25C5 /* NewsFilterViewModel.swift */; };
 		009E0E512A16635200ECAE73 /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E0E502A16635200ECAE73 /* K.swift */; };
 		009E0E572A174DED00ECAE73 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009E0E562A174DED00ECAE73 /* AuthManager.swift */; };
 		009E0E5A2A1793A100ECAE73 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 009E0E592A1793A100ECAE73 /* FirebaseAuth */; };
@@ -94,6 +96,8 @@
 		0053FBCF2AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedNewsViewModel.swift; sourceTree = "<group>"; };
 		0053FBD12AC1E157004C2DFE /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		006DB0F02A1295E70097E567 /* DownloadedNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedNewsView.swift; sourceTree = "<group>"; };
+		009486062AD7D8E5003D25C5 /* NewsFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFilterView.swift; sourceTree = "<group>"; };
+		009486082AD7D908003D25C5 /* NewsFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFilterViewModel.swift; sourceTree = "<group>"; };
 		009E0E502A16635200ECAE73 /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		009E0E562A174DED00ECAE73 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		009FDCFE2A11386D0088F44B /* FormElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormElements.swift; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 				0028254E2AD2EAC200BFCB64 /* DeleteAccountViewModel.swift */,
 				00B9FEF22AD59357009C23B0 /* ForgotPasswordViewModel.swift */,
 				00FE29962AD6D3A000845E98 /* DetailViewModel.swift */,
+				009486082AD7D908003D25C5 /* NewsFilterViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				002825442AD2E9E200BFCB64 /* DeactiveAccoutView.swift */,
 				002825462AD2EA0100BFCB64 /* DeleteAccountView.swift */,
 				00B9FEF02AD592A5009C23B0 /* ForgotPasswordView.swift */,
+				009486062AD7D8E5003D25C5 /* NewsFilterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -333,11 +339,13 @@
 				00B9FEF12AD592A5009C23B0 /* ForgotPasswordView.swift in Sources */,
 				00FE29972AD6D3A000845E98 /* DetailViewModel.swift in Sources */,
 				00447A4E2A285A77001BAB02 /* LoadingView.swift in Sources */,
+				009486072AD7D8E5003D25C5 /* NewsFilterView.swift in Sources */,
 				009E0E512A16635200ECAE73 /* K.swift in Sources */,
 				0053FBC62AC1977E004C2DFE /* NewsViewModel.swift in Sources */,
 				0053FBCC2AC1CDA4004C2DFE /* SignInViewModel.swift in Sources */,
 				00E9DE5B2A0FE62100C440CF /* SignUpView.swift in Sources */,
 				0053FBC42AC1964F004C2DFE /* MainViewModel.swift in Sources */,
+				009486092AD7D908003D25C5 /* NewsFilterViewModel.swift in Sources */,
 				0053FBBE2AC17506004C2DFE /* NewsCategoryModel.swift in Sources */,
 				009E0E572A174DED00ECAE73 /* AuthManager.swift in Sources */,
 				0053FBC02AC17575004C2DFE /* LanguageModel.swift in Sources */,

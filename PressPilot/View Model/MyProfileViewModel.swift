@@ -25,7 +25,6 @@ import Foundation
 import SwiftUI
 
 final class MyProfileViewModel:ObservableObject{
-    @Published var showRemoveAllNewsAlert = false
     @Published var logoutSuccess = false
     @Published var user:UserModel?
     @Published var loadingFinished = false
