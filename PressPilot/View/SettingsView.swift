@@ -54,11 +54,11 @@ struct SettingsView: View {
                         .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                         .overlay{
                             VStack{
-                                Toggle(isOn: $isDarkModeOn) {
+                                Toggle(isOn: $viewModel.mirrorSystem) {
                                     HStack{
-                                        Image(systemName: "moon")
+                                        Image(systemName: "moonphase.waning.crescent")
                                             .imageScale(.large)
-                                        Text("Dark Mode")
+                                        Text("Mirror System Theme")
                                             .font(.system(size: 20))
                                     }
                                 }
@@ -73,6 +73,7 @@ struct SettingsView: View {
                                             .font(.system(size: 20))
                                     }
                                 }
+                                .disabled(viewModel.mirrorSystem)
                             }
                             .padding()
                         }

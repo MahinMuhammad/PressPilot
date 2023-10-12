@@ -27,6 +27,7 @@ final class SettingsViewModel:ObservableObject{
     @Published var shakeToReport = false
     @Published var isNotificationOn = false
     @Published var inAppSoundOn = false
+    @Published var mirrorSystem = false
     let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
     let appVersion:String
