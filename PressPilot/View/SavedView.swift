@@ -100,6 +100,28 @@ struct SavedView: View {
                     .refreshable {
                         viewModel.fetchSavedNews()
                     }
+                    .toolbar {
+                        ToolbarItemGroup(placement: .navigation) {
+                            Text("Saved News")
+                                .fontWeight(.bold)
+                                .font(.system(size: 24))
+                        }
+                        ToolbarItemGroup {
+                            Button {
+                                viewModel.showRemoveAllNewsAlert = true
+                            } label: {
+                                Image(systemName: "trash")
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color(UIColor.label))
+                            }
+                            .alert("Remove all saved news", isPresented: $viewModel.showRemoveAllNewsAlert) {
+                                Button("No", role: .cancel) { }
+                                Button("Yes", role: .destructive) {
+                                    viewModel.removeAllSavedNews()
+                                }
+                            }
+                        }
+                    }
                 }
                 if !viewModel.newsLoaded(){
                     LoadingView(isAnimating: .constant(true), style: .large)

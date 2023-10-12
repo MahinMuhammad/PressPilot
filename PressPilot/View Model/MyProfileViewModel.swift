@@ -46,11 +46,5 @@ final class MyProfileViewModel:ObservableObject{
     
     func failedToFetchUserData()->Bool{
         return user == nil || loadingFinished
-    }
-    
-    func removeSavedNews(){
-        dataManager.deleteAllSaveNews()
-        let impactMed = UIImpactFeedbackGenerator(style: .heavy)
-        impactMed.impactOccurred()
-    }
+    }    
 }

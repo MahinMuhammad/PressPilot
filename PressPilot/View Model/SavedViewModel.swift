@@ -28,6 +28,7 @@ final class SavedViewModel:ObservableObject{
     let authService = AuthManager.shared
     let dataManager = DataManager.shared
     @Published var loadingFinished = false
+    @Published var showRemoveAllNewsAlert = false
     @Published var savedNewsCollection = [NewsModel]()
     
     func deleteButtonPressed(delete news:NewsModel){
