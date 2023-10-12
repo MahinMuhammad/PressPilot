@@ -65,6 +65,25 @@ struct SettingsView: View {
                                 
                                 Divider()
                                 
+                                Toggle(isOn: $isDarkModeOn) {
+                                    HStack{
+                                        Image(systemName: "moon")
+                                            .imageScale(.large)
+                                        Text("Dark Mode")
+                                            .font(.system(size: 20))
+                                    }
+                                }
+                            }
+                            .padding()
+                        }
+                        .padding()
+
+                    
+                    RoundedRectangle(cornerRadius: 25)
+                        .frame(height: 110)
+                        .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
+                        .overlay{
+                            VStack{
                                 Toggle(isOn: $viewModel.isNotificationOn) {
                                     HStack{
                                         Image(systemName: "bell.badge")
@@ -73,17 +92,9 @@ struct SettingsView: View {
                                             .font(.system(size: 20))
                                     }
                                 }
-                            }
-                            .padding()
-                        }
-                        .padding()
-//                        .padding(.top,50)
-                    
-                    RoundedRectangle(cornerRadius: 25)
-                        .frame(height: 110)
-                        .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
-                        .overlay{
-                            VStack{
+                                
+                                Divider()
+                                
                                 Toggle(isOn: $viewModel.shakeToReport) {
                                     HStack{
                                         Image(systemName: "iphone.gen3.radiowaves.left.and.right.circle")
@@ -92,9 +103,16 @@ struct SettingsView: View {
                                             .font(.system(size: 20))
                                     }
                                 }
-                                
-                                Divider()
-                                
+                            }
+                            .padding()
+                        }
+                        .padding()
+                    
+                    RoundedRectangle(cornerRadius: 25)
+                        .frame(height: 110)
+                        .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
+                        .overlay{
+                            VStack{
                                 Toggle(isOn: $viewModel.inAppSoundOn) {
                                     HStack{
                                         Image(systemName: "waveform")
@@ -102,6 +120,20 @@ struct SettingsView: View {
                                         Text("In-app sound")
                                             .font(.system(size: 20))
                                     }
+                                }
+                                
+                                Divider()
+                                
+                                HStack{
+                                    Image(systemName: "rectangle.portrait.on.rectangle.portrait.angled")
+                                        .imageScale(.large)
+                                    Text("Version")
+                                        .font(.system(size: 20))
+                                    
+                                    Spacer()
+                                    
+                                    Text(viewModel.appVersion)
+                                        .font(.system(size: 20))
                                 }
                             }
                             .padding()

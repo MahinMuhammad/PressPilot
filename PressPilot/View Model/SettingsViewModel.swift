@@ -27,4 +27,15 @@ final class SettingsViewModel:ObservableObject{
     @Published var shakeToReport = false
     @Published var isNotificationOn = false
     @Published var inAppSoundOn = false
+    let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+    let appVersion:String
+    
+    init(){
+        if let version, let buildNumber{
+            appVersion = "\(version).\(buildNumber)"
+        }else{
+            appVersion = "Not Found"
+        }
+    }
 }
