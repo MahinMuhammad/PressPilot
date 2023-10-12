@@ -31,7 +31,15 @@ struct SavedView: View {
         NavigationStack{
             ZStack{
                 VStack{
-                    List(viewModel.savedNewsCollection){news in
+                    if viewModel.showSearchBox{
+                        HStack{
+                            TextField("Search", text: $viewModel.searchedKeyWord)
+                                .frame(width: 300)
+                                .textFieldStyle(.roundedBorder)
+                                .transition(.push(from: .trailing))
+                        }
+                    }
+                    List(viewModel.savedNewsCollection.filter{$0.title.contains(viewModel.searchedKeyWord) || viewModel.isSearchBoxEmpty()}){news in
                         HStack(){
                             AsyncImage(url: news.imageUrl) { image in
                                 image
@@ -107,6 +115,15 @@ struct SavedView: View {
                                 .font(.system(size: 24))
                         }
                         ToolbarItemGroup {
+                            Button {
+                                withAnimation(.bouncy) {
+                                    viewModel.showSearchBox.toggle()
+                                }
+                            } label: {
+                                Image(systemName: "magnifyingglass")
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color(UIColor.label))
+                            }
                             Button {
                                 viewModel.showRemoveAllNewsAlert = true
                             } label: {

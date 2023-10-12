@@ -29,6 +29,8 @@ final class SavedViewModel:ObservableObject{
     let dataManager = DataManager.shared
     @Published var loadingFinished = false
     @Published var showRemoveAllNewsAlert = false
+    @Published var showSearchBox = false
+    @Published var searchedKeyWord = ""
     @Published var savedNewsCollection = [NewsModel]()
     
     func deleteButtonPressed(delete news:NewsModel){
@@ -65,5 +67,9 @@ final class SavedViewModel:ObservableObject{
     func getSecondLevelDomain(from url:String?)->String?{
         let parsedUrl = url?.components(separatedBy: ".")
         return parsedUrl?[1] != "com" ? parsedUrl?[1].uppercased() : "EMPTY"
+    }
+    
+    func isSearchBoxEmpty()->Bool{
+        return searchedKeyWord == ""
     }
 }
