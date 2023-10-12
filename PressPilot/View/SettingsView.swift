@@ -37,6 +37,18 @@ struct SettingsView: View {
             
             ScrollView {
                 VStack{
+                    Text("Settings")
+                        .fontWeight(.bold)
+                        .font(.system(size: 24))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 30)
+                        .padding(.top, 30)
+                    
+                    Rectangle()
+                        .frame(height: 1)
+                        .padding(.leading, 30)
+                        .padding(.trailing, 30)
+                    
                     RoundedRectangle(cornerRadius: 25)
                         .frame(height: 110)
                         .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
@@ -65,7 +77,7 @@ struct SettingsView: View {
                             .padding()
                         }
                         .padding()
-                        .padding(.top,50)
+//                        .padding(.top,50)
                     
                     RoundedRectangle(cornerRadius: 25)
                         .frame(height: 110)
