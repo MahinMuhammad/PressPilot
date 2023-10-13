@@ -199,6 +199,14 @@ struct MyProfileView: View {
                     .padding(.leading)
                     .padding(.trailing)
                 }
+                .toolbar {
+                    ToolbarItem(placement: .navigation) {
+                        Text("Profile")
+                            .fontWeight(.bold)
+                            .font(.system(size: 24))
+                            .padding(.leading)
+                    }
+                }
                 if !viewModel.userLoaded(){
                     ZStack{
                         Color(K.CustomColors.bluishWhiteToBlack)
