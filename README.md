@@ -25,6 +25,11 @@
         <td><img src="Documentation/SignInView.png" height="400"></td>
         <td><img src="Documentation/MyProfileView.png" height="400"></td>
      </tr>
+   <tr>
+        <td><img src="Documentation/SavedNewsView.png" height="400"></td>
+        <td><img src="Documentation/SettingsView.png" height="400"></td>
+        <td><img src="Documentation/NewsFilterView.png" height="400"></td>
+     </tr>
   </table>
   
   <h3>Requirements</h3>
@@ -56,7 +61,7 @@
     <li>Allows user to signin or signup using firebase Auth.</li>
     <li>Stores user data using Firestore.</li>
     <li>Stores user login data if remember me is on using UserDefault.</li>
-    <li>Displays news based on specific language or country (after signup only)</li>
+    <li>Displays news based on specific language or country in Filter News</li>
     <li>Toggle dark mode option in app settings.</li>
     <li>Navigates the user to the web view page of a news link when tapped on a headline</li>
 </ul>   
