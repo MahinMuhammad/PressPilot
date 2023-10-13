@@ -215,50 +215,49 @@ struct NewsView: View {
                             .tint(.green)
                         }
                     }
-                    .toolbar(content: {
-                        ToolbarItemGroup(placement: .navigation) {
-                            Image(systemName: "photo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 32)
-                            Text("PressPilot")
-                                .fontWeight(.bold)
-                                .font(.system(size: 24))
-                        }
-                        ToolbarItemGroup {
-                            Button{
-                                viewModel.showAppSettings = true
-                            }label: {
-                                Image(systemName: "gearshape")
-                                    .fontWeight(.medium)
-                                    .foregroundColor(Color(UIColor.label))
-                            }
-                            
-                            Button{
-                                
-                            }label: {
-                                Image(systemName: "bell")
-                                    .fontWeight(.medium)
-                                    .foregroundColor(Color(UIColor.label))
-                            }
-                            Button{
-                                withAnimation(.spring()) {
-                                    viewModel.showSearchBox = true
-                                }
-                                rs.isKewordSearchOn = true
-                            }label: {
-                                Image(systemName: "magnifyingglass")
-                                    .fontWeight(.medium)
-                                    .foregroundColor(Color(UIColor.label))
-                            }
-                        }
-                    })
                     .listStyle(.plain)
                     .refreshable {
                         self.viewModel.loadNews()
                     }
                 }
-                
+                .toolbar{
+                    ToolbarItemGroup(placement: .navigation) {
+                        Image(systemName: "photo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 32)
+                        Text("PressPilot")
+                            .fontWeight(.bold)
+                            .font(.system(size: 24))
+                    }
+                    ToolbarItemGroup {
+                        Button{
+                            viewModel.showAppSettings = true
+                        }label: {
+                            Image(systemName: "gearshape")
+                                .fontWeight(.medium)
+                                .foregroundColor(Color(UIColor.label))
+                        }
+                        
+                        Button{
+                            
+                        }label: {
+                            Image(systemName: "bell")
+                                .fontWeight(.medium)
+                                .foregroundColor(Color(UIColor.label))
+                        }
+                        Button{
+                            withAnimation(.spring()) {
+                                viewModel.showSearchBox = true
+                            }
+                            rs.isKewordSearchOn = true
+                        }label: {
+                            Image(systemName: "magnifyingglass")
+                                .fontWeight(.medium)
+                                .foregroundColor(Color(UIColor.label))
+                        }
+                    }
+                }
                 if !viewModel.newsLoaded(){
                     LoadingView(isAnimating: .constant(true), style: .large)
                 }
