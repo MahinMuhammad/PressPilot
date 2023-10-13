@@ -64,18 +64,6 @@ struct NewsView: View {
                                 .transition(.push(from: .trailing))
                             }
                             if !viewModel.showSearchBox{
-//                                Picker(selection: $rs.selectedLangOrCntry, label: OptionsPickerLabelView()) {
-//                                    ForEach(rs.choicesLangOrCntry, id: \.self) {
-//                                        Text("Search by \($0)").tag($0)
-//                                    }
-//                                }
-//                                .frame(width: 35,height: 35)
-//                                .pickerStyle(.navigationLink)
-//                                .animation(.easeInOut(duration: 5), value: 0)
-//                                .transition(.push(from: .leading))
-//                                .onChange(of: rs.selectedLangOrCntry) {value in
-//                                    self.viewModel.loadNews()
-//                                }
                                 NavigationLink(destination: NewsFilterView()) {
                                     Image(systemName: "line.3.horizontal")
                                         .foregroundColor(Color(UIColor.label))
@@ -114,6 +102,10 @@ struct NewsView: View {
                                     .frame(width: 128, height: 128)
                                     .clipped()
                                     .clipShape(RoundedRectangle(cornerRadius: 16))
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .stroke(Color.gray)
+                                    }
                             } placeholder: {
                                 Image(systemName: "photo")
                                     .resizable()
@@ -121,6 +113,10 @@ struct NewsView: View {
                                     .frame(width: 128, height: 128)
                                     .clipped()
                                     .clipShape(RoundedRectangle(cornerRadius: 16))
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .stroke(Color.gray)
+                                    }
                             }
                             
                             VStack(alignment: .trailing) {
@@ -277,14 +273,6 @@ struct NewsView: View {
         .onChange(of: rs.selectedLanguage) { newValue in
             viewModel.loadNews()
         }
-    }
-}
-
-struct OptionsPickerLabelView: View {
-    var body: some View {
-        Image(systemName: "line.3.horizontal")
-            .foregroundColor(Color(UIColor.label))
-            .imageScale(.large)
     }
 }
 

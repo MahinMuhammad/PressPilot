@@ -48,6 +48,10 @@ struct SavedView: View {
                                     .frame(width: 128, height: 128)
                                     .clipped()
                                     .clipShape(RoundedRectangle(cornerRadius: 16))
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .stroke(Color.gray)
+                                    }
                             } placeholder: {
                                 Image(systemName: "photo")
                                     .resizable()
@@ -55,6 +59,10 @@ struct SavedView: View {
                                     .frame(width: 128, height: 128)
                                     .clipped()
                                     .clipShape(RoundedRectangle(cornerRadius: 16))
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .stroke(Color.gray)
+                                    }
                             }
                             
                             VStack(alignment: .trailing) {
