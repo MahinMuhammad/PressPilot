@@ -26,6 +26,7 @@ import SwiftUI
 struct NewsView: View {
     @StateObject var viewModel:NewsViewModel
     @StateObject var rs = RequestManager.shared
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationStack{
@@ -75,6 +76,7 @@ struct NewsView: View {
                                 ForEach($rs.newsCategoryCollection){ $category in
                                     Toggle(category.id, isOn: $category.isSelected)
                                         .toggleStyle(.button)
+                                        .tint(colorScheme == .dark ? Color.white : Color.accentColor)
                                         .cornerRadius(20)
                                         .foregroundColor(Color(UIColor.label))
                                         .animation(.easeInOut(duration: 5), value: 0)
