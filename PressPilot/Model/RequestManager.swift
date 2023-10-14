@@ -85,11 +85,17 @@ final class RequestManager: ObservableObject{
         NewsCategoryModel(id: "Technology")
     ]
     
-    func unselectOtherFilter(id:String){
+    func unselectOtherCategory(id:String){
         for i in 0..<newsCategoryCollection.count{
             if newsCategoryCollection[i].id != id{
                 newsCategoryCollection[i].isSelected = false
             }
+        }
+    }
+    
+    func unselectAllOtherCategory(){
+        for i in 0..<newsCategoryCollection.count{
+            newsCategoryCollection[i].isSelected = false
         }
     }
     //    private func numberOfSelectedToggles() -> Int {

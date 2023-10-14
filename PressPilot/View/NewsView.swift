@@ -74,20 +74,42 @@ struct NewsView: View {
                                 .transition(.push(from: .leading))
                                 
                                 ForEach($rs.newsCategoryCollection){ $category in
-                                    Toggle(category.id, isOn: $category.isSelected)
-                                        .toggleStyle(.button)
-                                        .tint(colorScheme == .dark ? Color.white : Color.accentColor)
-                                        .cornerRadius(20)
-                                        .foregroundColor(Color(UIColor.label))
-                                        .animation(.easeInOut(duration: 5), value: 0)
-                                        .transition(.push(from: .leading))
-                                        .onChange(of: category.isSelected) {value in
-                                            if value{
-                                                rs.unselectOtherFilter(id: category.id)
-                                                viewModel.loadNews()
-                                            }
+                                    Button(category.id) {
+                                        if !category.isSelected {
+                                            category.isSelected = true
+                                            rs.unselectOtherCategory(id: category.id)
+                                            viewModel.loadNews()
                                         }
+                                    }
+                                    .foregroundColor(Color(UIColor.label))
+                                    .padding(8)
+                                    .animation(.easeInOut(duration: 5), value: 0)
+                                    .transition(.push(from: .leading))
+//                                    .background(.tint.opacity(category.isSelected ? 0.1 : 0), .tint(colorScheme == .dark ? Color.white : Color.accentColor), in: RoundedRectangle(cornerRadius: 20))
+//                                    .background(.tint.opacity(category.isSelected ? 0.1 : 0))
+                                    .background{
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .foregroundStyle(colorScheme == .dark ? Color.gray : Color.accentColor)
+                                            .opacity(category.isSelected ? 0.1 : 0)
+                                    }
                                 }
+                                
+//                                ForEach($rs.newsCategoryCollection){ $category in
+//                                    Toggle(category.id, isOn: $category.isSelected)
+//                                        .toggleStyle(.button)
+//                                        .tint(colorScheme == .dark ? Color.white : Color.accentColor)
+//                                        .onChange(of: category.isSelected) {value in
+//                                            print("Changed")
+//                                            if value{
+//                                                rs.unselectOtherCategory(id: category.id)
+//                                                print("Selected: \(category.id)")
+//                                                viewModel.loadNews()
+//                                            }else{
+//                                                category.isSelected = true
+//                                                print("Deselected: \(category.id)")
+//                                            }
+//                                        }
+//                                }
                             }
                         }
                         .padding(.leading, 16)
