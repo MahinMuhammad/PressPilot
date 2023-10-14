@@ -82,34 +82,16 @@ struct NewsView: View {
                                         }
                                     }
                                     .foregroundColor(Color(UIColor.label))
-                                    .padding(8)
+                                    .padding(5)
+                                    .padding(.leading,6.5)
+                                    .padding(.trailing,6.5)
                                     .animation(.easeInOut(duration: 5), value: 0)
                                     .transition(.push(from: .leading))
-//                                    .background(.tint.opacity(category.isSelected ? 0.1 : 0), .tint(colorScheme == .dark ? Color.white : Color.accentColor), in: RoundedRectangle(cornerRadius: 20))
-//                                    .background(.tint.opacity(category.isSelected ? 0.1 : 0))
                                     .background{
                                         RoundedRectangle(cornerRadius: 20)
-                                            .foregroundStyle(colorScheme == .dark ? Color.gray : Color.accentColor)
-                                            .opacity(category.isSelected ? 0.1 : 0)
+                                            .foregroundStyle(colorScheme == .dark ? Color.gray.opacity(category.isSelected ? 0.35 : 0) : Color.accentColor.opacity(category.isSelected ? 0.12 : 0))
                                     }
                                 }
-                                
-//                                ForEach($rs.newsCategoryCollection){ $category in
-//                                    Toggle(category.id, isOn: $category.isSelected)
-//                                        .toggleStyle(.button)
-//                                        .tint(colorScheme == .dark ? Color.white : Color.accentColor)
-//                                        .onChange(of: category.isSelected) {value in
-//                                            print("Changed")
-//                                            if value{
-//                                                rs.unselectOtherCategory(id: category.id)
-//                                                print("Selected: \(category.id)")
-//                                                viewModel.loadNews()
-//                                            }else{
-//                                                category.isSelected = true
-//                                                print("Deselected: \(category.id)")
-//                                            }
-//                                        }
-//                                }
                             }
                         }
                         .padding(.leading, 16)
