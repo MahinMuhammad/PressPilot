@@ -77,10 +77,14 @@ struct MainView: View {
             }
         }
         .onChange(of: newsViewModel.savedNewsCollection.count){ value in
-            savedViewModel.savedNewsCollection = newsViewModel.savedNewsCollection
+            if savedViewModel.savedNewsCollection.count != value{
+                savedViewModel.savedNewsCollection = newsViewModel.savedNewsCollection
+            }
         }
         .onChange(of: savedViewModel.savedNewsCollection.count){ value in
-            newsViewModel.savedNewsCollection = savedViewModel.savedNewsCollection
+            if newsViewModel.savedNewsCollection.count != value{
+                newsViewModel.savedNewsCollection = savedViewModel.savedNewsCollection
+            }
         }
         //fatching data after being online
         .onChange(of: networkState.isConnected) { connected in
