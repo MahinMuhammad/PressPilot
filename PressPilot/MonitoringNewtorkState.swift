@@ -29,7 +29,7 @@ class MonitoringNetworkState: ObservableObject {
     private let monitor = NWPathMonitor()
     private let queue = DispatchQueue.global(qos: .background)
     
-    @Published var isConnected = false
+    @Published var isConnected = true
     
     init() {
         monitor.start(queue: queue)
