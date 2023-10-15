@@ -24,5 +24,5 @@
 import Foundation
 
 final class DownloadedNewsViewModel:ObservableObject{
-    
+    let authService = AuthManager.shared
 }

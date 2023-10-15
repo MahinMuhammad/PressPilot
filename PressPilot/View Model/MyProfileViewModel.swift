@@ -29,6 +29,7 @@ final class MyProfileViewModel:ObservableObject{
     @Published var user:UserModel?
     @Published var loadingFinished = false
     @Published var dataManager = DataManager.shared
+    @Published var authManager = AuthManager.shared
     
     func fetchUserData(){
         user = nil
@@ -45,5 +46,9 @@ final class MyProfileViewModel:ObservableObject{
     
     func failedToFetchUserData()->Bool{
         return user == nil || loadingFinished
-    }    
+    }
+    
+    func signOut()->Bool{
+        return authManager.signOut()
+    }
 }

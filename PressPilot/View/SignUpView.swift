@@ -25,8 +25,7 @@ import SwiftUI
 
 struct SignUpView: View {
     @StateObject var viewModel = SignUpViewModel()
-    
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         ScrollView{
             VStack(alignment: .leading){
@@ -57,7 +56,7 @@ struct SignUpView: View {
                         Text("Already have an account?")
                             .fontWeight(.semibold)
                         Button {
-                            self.presentationMode.wrappedValue.dismiss()
+                            dismiss()
                         } label: {
                             Text("Sign In")
                                 .underline()

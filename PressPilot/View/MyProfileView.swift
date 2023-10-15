@@ -26,7 +26,6 @@ import FirebaseAuth
 
 struct MyProfileView: View {
     @StateObject var viewModel:MyProfileViewModel
-    @StateObject var authService = AuthManager.shared
     
     var body: some View {
         NavigationStack{
@@ -177,7 +176,7 @@ struct MyProfileView: View {
                             .foregroundColor(Color(K.CustomColors.whiteToDarkGray))
                             .overlay{
                                 Button{
-                                    viewModel.logoutSuccess = authService.signOut()
+                                    viewModel.logoutSuccess = viewModel.signOut()
                                 }label: {
                                     Text("Log Out")
                                         .fontWeight(.medium)
@@ -215,7 +214,7 @@ struct MyProfileView: View {
                     }
                 }
             }
-            .navigationDestination(isPresented: Binding<Bool>(get: {return !authService.isSignedIn}, set: { p in authService.isSignedIn = p})) {
+            .navigationDestination(isPresented: Binding<Bool>(get: {return !viewModel.authManager.isSignedIn}, set: { p in viewModel.authManager.isSignedIn = p})) {
                 SignInView()
             }
         }

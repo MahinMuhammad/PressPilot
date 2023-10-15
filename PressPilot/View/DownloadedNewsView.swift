@@ -26,7 +26,12 @@ import SwiftUI
 struct DownloadedNewsView: View {
     @StateObject var viewModel = DownloadedNewsViewModel()
     var body: some View {
-        Text("DownloadedView")
+        NavigationStack{
+            Text("DownloadedView")
+                .navigationDestination(isPresented: Binding<Bool>(get: {return !viewModel.authService.isSignedIn}, set: { p in viewModel.authService.isSignedIn = p})) {
+                    SignInView()
+                }
+        }
     }
 }
 
