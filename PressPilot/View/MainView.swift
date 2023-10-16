@@ -31,6 +31,7 @@ struct MainView: View {
     @StateObject var newsViewModel = NewsViewModel()
     @StateObject var savedViewModel = SavedViewModel()
     var downloadViewModel = DownloadedNewsViewModel()
+    var settingViewModel = SettingsViewModel.shared
     var profileViewModel = MyProfileViewModel()
     var networkManager = NetworkManager()
     
@@ -63,6 +64,7 @@ struct MainView: View {
         }
         .onAppear{
             newsViewModel.loadNews()
+            settingViewModel.loadSettings()
             if authService.isSignedIn{
                 profileViewModel.fetchUserData()
                 savedViewModel.fetchSavedNews()

@@ -46,5 +46,6 @@ struct K{
         static let titleField = "title"
         static let urlField = "url"
         static let urlToImageField = "urlToImage"
+        static let dateField = "date"
     }
 }

@@ -28,15 +28,49 @@ final class SettingsViewModel:ObservableObject{
     @Published var isNotificationOn = false
     @Published var inAppSoundOn = false
     @Published var mirrorSystem = false
+    var settings:SettingsModel?
+    static let shared = SettingsViewModel()
+    
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Settings.plist")
+    
     let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
     let appVersion:String
     
-    init(){
+    private init(){
         if let version, let buildNumber{
             appVersion = "\(version).\(buildNumber)"
         }else{
             appVersion = "Not Found"
+        }
+    }
+    
+    func saveSettings(){
+        settings = SettingsModel(shakeToReport: shakeToReport, isNotificationOn: isNotificationOn, inAppSoundOn: inAppSoundOn, mirrorSystem: mirrorSystem)
+        
+        let encoder = PropertyListEncoder()
+        
+        do{
+            let data = try encoder.encode(settings)
+            try data.write(to: dataFilePath!)
+        }catch{
+            print("Failed to save settings: \(error.localizedDescription)")
+        }
+    }
+    
+    func loadSettings(){
+        if let data = try? Data(contentsOf: dataFilePath!){
+            let decoder = PropertyListDecoder()
+            do{
+                settings = try decoder.decode(SettingsModel.self, from: data)
+                guard let settings else{return}
+                shakeToReport = settings.shakeToReport
+                isNotificationOn = settings.isNotificationOn
+                inAppSoundOn = settings.inAppSoundOn
+                mirrorSystem = settings.mirrorSystem
+            }catch{
+                print("Failed to load settings: \(error.localizedDescription)")
+            }
         }
     }
 }

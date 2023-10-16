@@ -28,7 +28,7 @@ struct SettingsView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.dismiss) var dismiss
     @AppStorage("appTheme") var isDarkModeOn = false
-    @StateObject var viewModel = SettingsViewModel()
+    @StateObject var viewModel = SettingsViewModel.shared
     
     var body: some View {
         ZStack{
@@ -171,6 +171,9 @@ struct SettingsView: View {
             .scrollDisabled(verticalSizeClass != .compact)
         }
         .colorScheme(isDarkModeOn ? .dark : .light)
+        .onDisappear{
+            viewModel.saveSettings()
+        }
     }
 }
 

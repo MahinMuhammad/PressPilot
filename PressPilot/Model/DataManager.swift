@@ -128,7 +128,8 @@ class DataManager: ObservableObject{
             K.FStore.emailField : email as Any,
             K.FStore.titleField : title,
             K.FStore.urlField : url,
-            K.FStore.urlToImageField : urlToImage as Any
+            K.FStore.urlToImageField : urlToImage as Any,
+            K.FStore.dateField : Date().timeIntervalSince1970
         ]){error in
             if let e = error{
                 print("Failed to save news with error: \(e)")
