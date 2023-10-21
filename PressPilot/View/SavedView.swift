@@ -82,7 +82,7 @@ struct SavedView: View {
                                 Spacer()
                                 
                                 HStack(alignment: .top){
-                                    Text(viewModel.getSecondLevelDomain(from: news.url) ?? "")
+                                    Text(viewModel.getSecondLevelDomain(from: news.url))
                                         .lineLimit(1)
                                         .font(.system(size: 13))
                                         .foregroundStyle(Color(UIColor.systemBackground))
