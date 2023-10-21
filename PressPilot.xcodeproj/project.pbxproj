@@ -39,7 +39,6 @@
 		0053FBD02AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBCF2AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift */; };
 		0053FBD22AC1E157004C2DFE /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053FBD12AC1E157004C2DFE /* SettingsViewModel.swift */; };
 		006DB0F12A1295E70097E567 /* DownloadedNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006DB0F02A1295E70097E567 /* DownloadedNewsView.swift */; };
-		007A792F2AE3BB7400AFE82A /* project.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 007A792E2AE3BB7400AFE82A /* project.xcconfig */; };
 		009486072AD7D8E5003D25C5 /* NewsFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009486062AD7D8E5003D25C5 /* NewsFilterView.swift */; };
 		009486092AD7D908003D25C5 /* NewsFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009486082AD7D908003D25C5 /* NewsFilterViewModel.swift */; };
 		009DE1142ADC437700B67086 /* PressPilot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 009DE1122ADC437700B67086 /* PressPilot.xcdatamodeld */; };
@@ -101,7 +100,6 @@
 		0053FBCF2AC1E0C9004C2DFE /* DownloadedNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedNewsViewModel.swift; sourceTree = "<group>"; };
 		0053FBD12AC1E157004C2DFE /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		006DB0F02A1295E70097E567 /* DownloadedNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedNewsView.swift; sourceTree = "<group>"; };
-		007A792E2AE3BB7400AFE82A /* project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = project.xcconfig; sourceTree = "<group>"; };
 		009486062AD7D8E5003D25C5 /* NewsFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFilterView.swift; sourceTree = "<group>"; };
 		009486082AD7D908003D25C5 /* NewsFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFilterViewModel.swift; sourceTree = "<group>"; };
 		009DE1132ADC437700B67086 /* PressPilot.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PressPilot.xcdatamodel; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 		00475F5F2A0AB8A200CA8227 = {
 			isa = PBXGroup;
 			children = (
-				007A792E2AE3BB7400AFE82A /* project.xcconfig */,
 				00475F6A2A0AB8A200CA8227 /* PressPilot */,
 				00475F692A0AB8A200CA8227 /* Products */,
 			);
@@ -327,7 +324,6 @@
 			files = (
 				00475F732A0AB8A300CA8227 /* Preview Assets.xcassets in Resources */,
 				00475F702A0AB8A300CA8227 /* Assets.xcassets in Resources */,
-				007A792F2AE3BB7400AFE82A /* project.xcconfig in Resources */,
 				0028253F2AD2E8A700BFCB64 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,7 +394,6 @@
 /* Begin XCBuildConfiguration section */
 		00475F742A0AB8A300CA8227 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 007A792E2AE3BB7400AFE82A /* project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -460,7 +455,6 @@
 		};
 		00475F752A0AB8A300CA8227 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 007A792E2AE3BB7400AFE82A /* project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -523,6 +517,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PressPilot/Preview Content\"";
+				DEVELOPMENT_TEAM = JTC82K5425;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -536,6 +531,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mahinur.PressPilot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -553,6 +549,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PressPilot/Preview Content\"";
+				DEVELOPMENT_TEAM = JTC82K5425;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -566,6 +563,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mahinur.PressPilot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
