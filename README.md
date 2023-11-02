@@ -47,7 +47,7 @@
     <li>Open the PressPilot.xcodeproj file in Xcode.</li>
     <li>Go to "Signin & Capabilities" and change the bundle identifier as your own</li>
     <li>Make a firebase project and add the google plist inside your project</li>
-    <li>Get an API key from https://newsapi.org and assign it in apiKey property inside NetworkManager class</li>
+    <li>Get an API key from https://newsdata.io and assign it in apiKey property inside NetworkManager class</li>
     <li>Build and run the project in Xcode.</li>
 </ol> 
   
